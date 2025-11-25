@@ -137,11 +137,14 @@
                                class="icon-btn btn-edit mx-1 no-link-style">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
+                        
+                            @can('delete-langues')
                             <!-- Bouton Supprimer avec icône -->
                             <button type="button" class="icon-btn btn-delete mx-1" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal{{ $langue->id }}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
+                            @endcan
 
                         </td>
                     </tr>

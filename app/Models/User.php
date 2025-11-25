@@ -6,10 +6,14 @@
 
 namespace App\Models;
 
+use App\Enums\StatutUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class User
  *
@@ -36,8 +40,9 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
 {
+	use HasFactory, Notifiable;
 	protected $table = 'users';
 
 	protected $casts = [
@@ -64,7 +69,14 @@ class User extends Model
 		'password',
 		'remember_token',
 		'id_role',
-		'id_langue'
+		'id_langue',
+		'google2fa_enabled',
+		'google2fa_secret'
+	];
+
+	protected $attributes = [
+		'statut'=>StatutUser::ACTIVE,
+		'id_role'=>7
 	];
 
 
@@ -87,5 +99,22 @@ class User extends Model
 	public function contenus()
 	{
 		return $this->hasMany(Contenu::class, 'id_moderateur');
+	}
+
+	// app/Models/User.php
+
+	public function isAdmin(): bool
+	{
+		return (int) $this->id_role === 4;
+	}
+
+	public function isManager(): bool
+	{
+		return (int) $this->id_role === 5;
+	}
+
+	public function isAdminOrManager(): bool
+	{
+		return $this->isAdmin() || $this->isManager();
 	}
 }

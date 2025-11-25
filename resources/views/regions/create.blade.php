@@ -5,97 +5,190 @@
 @endsection
 
 @section('content')
-    <div class="container mt-5">
-        <div class="card shadow-lg" style="max-width: 700px; margin: auto;">
-            <div class="card-header bg-primary text-white d-flex align-items-center">
-                <i class="bi bi-geo-alt-fill me-2"></i>
-                <h4 class="mb-0">Créer une nouvelle Région</h4>
-            </div>
 
-            <div class="card-body">
-                <form action="{{ route('regions.store') }}" method="POST">
-                    @csrf
+    <style>
+        /* ----- Card modern ----- */
+        .custom-card {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
 
-                    {{-- Nom de la région --}}
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            <i class="bi bi-tag-fill text-primary"></i> Nom de la région
-                        </label>
-                        <input type="text" name="nom_region" class="form-control @error('nom_region') is-invalid @enderror"
-                               placeholder="Nom de la région" value="{{ old('nom_region') }}">
-                        @error('nom_region')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+        .custom-card-header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 20px 20px;
+        }
 
-                    {{-- Description --}}
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            <i class="bi bi-text-left text-primary"></i> Description
-                        </label>
-                        <textarea name="description_region" rows="3"
-                                  class="form-control @error('description_region') is-invalid @enderror"
-                                  placeholder="Décrivez la région...">{{ old('description_region') }}</textarea>
-                        @error('description_region')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+        .custom-card-header .card-title {
+            font-size: 19px;
+            font-weight: 600;
+            margin: 0;
+        }
 
-                    {{-- Population --}}
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            <i class="bi bi-people-fill text-primary"></i> Population
-                        </label>
-                        <input type="number" name="population"
-                               class="form-control @error('population') is-invalid @enderror"
-                               placeholder="Population" value="{{ old('population') }}">
-                        @error('population')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+        .form-label {
+            font-weight: 600;
+            color: #4e4e4e;
+            margin-bottom: 6px;
+        }
 
-                    {{-- Superficie --}}
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            <i class="bi bi-bounding-box-circles text-primary"></i> Superficie (km²)
-                        </label>
-                        <input type="number" step="0.01" name="superficie"
-                               class="form-control @error('superficie') is-invalid @enderror"
-                               placeholder="Superficie en km²" value="{{ old('superficie') }}">
-                        @error('superficie')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+        .form-control, .form-select {
+            border-radius: 8px !important;
+            border: 1px solid #d1d3e2;
+            padding: 10px 12px;
+            transition: 0.25s ease-in-out;
+        }
 
-                    {{-- 🔵 LOCALISATION (ajout demandé) --}}
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            <i class="bi bi-pin-map-fill text-primary"></i> Localisation
-                        </label>
-                        <input type="text" name="localisation"
-                               class="form-control @error('localisation') is-invalid @enderror"
-                               placeholder="Ville, département ou zone géographique"
-                               value="{{ old('localisation') }}">
+        .form-control:focus, .form-select:focus {
+            border-color: #2563eb !important;
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
 
-                        @error('localisation')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: white;
+            transition: 0.2s ease-in-out;
+        }
+        .btn-primary-custom:hover {
+            transform: scale(1.05);
+            background: #1e40af;
+        }
 
-                    {{-- Boutons --}}
-                    <div class="text-end mt-4">
-                        <a href="{{ route('regions.index') }}" class="btn btn-secondary">
-                            <i class="bi bi-arrow-left-circle"></i> Retour
-                        </a>
+        .btn-cancel-custom {
+            background: #6c757d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: white;
+            transition: 0.2s ease-in-out;
+        }
+        .btn-cancel-custom:hover {
+            transform: scale(1.05);
+            background: #5a6268;
+            color: white;
+        }
 
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-check-circle-fill"></i> Enregistrer
-                        </button>
-                    </div>
-                </form>
+        .custom-footer {
+            padding: 15px 20px;
+            background: #f7f7f7;
+            border-top: 1px solid #e2e2e2;
+        }
+    </style>
+
+    <div class="card custom-card mb-4">
+
+        <!-- HEADER avec icône de région -->
+        <div class="custom-card-header">
+            <div class="card-title">
+                <i class="bi bi-geo-alt-fill me-2"></i>Formulaire de création de région
             </div>
         </div>
+
+        <!-- FORM -->
+        <form action="{{ route('regions.store') }}" method="POST">
+            @csrf
+
+            <div class="card-body">
+
+                <div class="row">
+                    <!-- Nom de la région -->
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Nom de la région</label>
+                        <input
+                            type="text"
+                            class="form-control @error('nom_region') is-invalid @enderror"
+                            name="nom_region"
+                            value="{{ old('nom_region') }}"
+                            placeholder="Nom de la région"
+                        >
+                        @error('nom_region')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea
+                            class="form-control @error('description_region') is-invalid @enderror"
+                            name="description_region"
+                            rows="3"
+                            placeholder="Décrivez la région..."
+                        >{{ old('description_region') }}</textarea>
+                        @error('description_region')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Population -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Population</label>
+                        <input
+                            type="number"
+                            class="form-control @error('population') is-invalid @enderror"
+                            name="population"
+                            value="{{ old('population') }}"
+                            placeholder="Population"
+                        >
+                        @error('population')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Superficie -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Superficie (km²)</label>
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control @error('superficie') is-invalid @enderror"
+                            name="superficie"
+                            value="{{ old('superficie') }}"
+                            placeholder="Superficie en km²"
+                        >
+                        @error('superficie')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Localisation -->
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Localisation</label>
+                        <input
+                            type="text"
+                            class="form-control @error('localisation') is-invalid @enderror"
+                            name="localisation"
+                            value="{{ old('localisation') }}"
+                            placeholder="Ville, département ou zone géographique"
+                        >
+                        @error('localisation')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="custom-footer">
+                <a href="{{ route('regions.index') }}" class="btn-cancel-custom">
+                    Annuler
+                </a>
+
+                <button type="submit" class="btn-primary-custom ms-2">
+                    Enregistrer
+                </button>
+            </div>
+        </form>
+
     </div>
+
 @endsection
 
 @push('scripts')
@@ -110,8 +203,9 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: '#4CAF50',
-                color: '#fff'
+                background: '#2563eb',
+                color: '#fff',
+                iconColor: '#fff'
             });
             @endif
 
@@ -124,8 +218,9 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: '#e74a3b',
-                color: '#fff'
+                background: '#ef4444',
+                color: '#fff',
+                iconColor: '#fff'
             });
             @endif
         });

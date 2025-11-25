@@ -6,10 +6,10 @@
 
 @section('content')
 
-    <div class="container mt-5">
+    <div class="container-fluid mt-4 w-100">
         <div class="card shadow-sm custom-card">
             <!-- Header -->
-            <div class="card-header custom-card-header text-white">
+            <div class="card-header text-white custom-card-header">
                 <h4 class="mb-0">Modifier le type de média "{{ $typeMedia->nom }}"</h4>
             </div>
 
@@ -44,28 +44,91 @@
 @endsection
 
 @push('styles')
-    <style>
-        /* Card modern */
-        .custom-card { border-radius: 12px; border: none; box-shadow: 0 6px 18px rgba(0,0,0,0.08); overflow: hidden; }
-        .custom-card-header { background: linear-gradient(135deg, #36b9cc, #1cc88a); padding: 20px; }
-        .custom-card-header h4 { margin: 0; font-weight: 600; }
+<style>
+    /* Card modern */
+    .custom-card {
+        border-radius: 12px;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
 
-        /* Form */
-        .form-label { color: #4e4e4e; }
-        .form-control { border-radius: 8px; border: 1px solid #d1d3e2; padding: 10px 12px; transition: 0.25s; }
-        .form-control:focus { border-color: #36b9cc; box-shadow: 0 0 0 0.2rem rgba(54,185,204,0.2); }
-        .is-invalid { border-color: #e74a3b !important; }
-        .invalid-feedback { font-size: 0.875rem; }
+    /* HEADER BLEU UNIFORME */
+    .custom-card-header {
+        background: linear-gradient(135deg, #4e73df, #224abe);
+        padding: 20px;
+    }
 
-        /* Buttons */
-        .btn-submit { background: linear-gradient(135deg, #36b9cc, #1cc88a); border: none; font-weight: 600; transition: 0.2s; }
-        .btn-submit:hover { transform: scale(1.05); }
-    </style>
+    .custom-card-header h4 {
+        margin: 0;
+        font-weight: 600;
+        color: #fff !important;
+    }
+
+    /* Form */
+    .form-label { 
+        color: #4e4e4e; 
+        font-weight: 600;
+    }
+    
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #d1d3e2;
+        padding: 10px 12px;
+        transition: 0.25s;
+    }
+    
+    .form-control:focus {
+        border-color: #4e73df;
+        box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25);
+    }
+
+    .is-invalid { 
+        border-color: #e74a3b !important; 
+    }
+
+    .invalid-feedback {
+        display: block;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        color: #e74a3b;
+    }
+
+    /* Buttons */
+    .btn-submit {
+        background: linear-gradient(135deg, #4e73df, #224abe);
+        border: none;
+        font-weight: 600;
+        transition: 0.2s;
+        padding: 10px 24px;
+    }
+    
+    .btn-submit:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #224abe, #4e73df);
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: #fff;
+        padding: 10px 24px;
+        font-weight: 500;
+        transition: 0.2s;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        transform: scale(1.05);
+    }
+</style>
 @endpush
 
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             @if(session('success'))
             Swal.fire({
                 toast: true,
@@ -75,8 +138,12 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: '#1cc88a',
-                color: '#fff'
+                background: '#4e73df',
+                color: '#fff',
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
             });
             @endif
 
@@ -90,9 +157,30 @@
                 timer: 3000,
                 timerProgressBar: true,
                 background: '#e74a3b',
-                color: '#fff'
+                color: '#fff',
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
             });
             @endif
+
+            @if($errors->any())
+            let errorMessages = '<ul class="text-start mb-0">';
+            @foreach($errors->all() as $error)
+                errorMessages += '<li>{{ $error }}</li>';
+            @endforeach
+                errorMessages += '</ul>';
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur de validation',
+                html: errorMessages,
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#4e73df'
+            });
+            @endif
+
         });
     </script>
 @endpush

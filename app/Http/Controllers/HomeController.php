@@ -43,4 +43,15 @@ class HomeController extends Controller
             'commentairesParContenu'
         ));
     }
+    public function redirectCustomize()
+    {
+        $user = auth()->user();
+
+        // Rediriger en fonction du rôle de l'utilisateur
+        return match ($user->id_role) {
+            4 => redirect()->route('home'), // Admin
+            5 => redirect()->route('home'), // Manager
+            default => redirect()->route('accueil'), // Utilisateur standard
+        };
+    }
 }

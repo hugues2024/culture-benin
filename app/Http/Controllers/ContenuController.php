@@ -63,7 +63,11 @@ class ContenuController extends Controller
     public function edit(Contenu $contenu)
     {
         //
-        return view('contenus.edit',compact('contenu'));
+        $users = User::all();
+        $regions = Region::all();
+        $langues = Langue::all();
+        $types = TypeContenu::all();
+        return view('contenus.edit',compact('contenu','regions','langues','types','users'));
     }
 
     /**
