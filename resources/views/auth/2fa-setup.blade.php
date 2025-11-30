@@ -1,5 +1,4 @@
 @extends('layouts.app1')
-
 @section('content')
 <style>
     :root {
@@ -524,7 +523,7 @@
 
 <div class="setup-page">
     <div class="setup-container">
-        
+
         <!-- Header -->
         <div class="page-header">
             <div class="page-logo">🔐</div>
@@ -535,7 +534,7 @@
         <!-- Main Card - Two Columns -->
         <div class="setup-card">
             <div class="two-column-layout">
-                
+
                 <!-- Left Column - QR Code -->
                 <div class="qr-column">
                     <div class="qr-content">
@@ -544,12 +543,12 @@
                         <p class="qr-description">
                             Utilisez votre application d'authentification pour scanner ce code. Une fois configuré, vous recevrez des codes de sécurité temporaires pour protéger votre compte.
                         </p>
-                        
+
                         <div class="qr-code-wrapper">
                             @if(isset($qrCodeImage))
                                 {!! $qrCodeImage !!}
                             @else
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data={{ urlencode($qrCodeUrl) }}&bgcolor=ffffff" 
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data={{ urlencode($qrCodeUrl) }}&bgcolor=ffffff"
                                      alt="QR Code 2FA"
                                      onerror="this.src='https://chart.googleapis.com/chart?chs=220x220&cht=qr&chl={{ urlencode($qrCodeUrl) }}';">
                             @endif
@@ -600,15 +599,15 @@
 
                             <div class="form-group">
                                 <label class="form-label" for="code">Code de vérification</label>
-                                <input type="text" 
-                                       name="code" 
+                                <input type="text"
+                                       name="code"
                                        id="code"
                                        class="code-input"
-                                       placeholder="000000" 
-                                       maxlength="6" 
+                                       placeholder="000000"
+                                       maxlength="6"
                                        pattern="[0-9]{6}"
                                        inputmode="numeric"
-                                       required 
+                                       required
                                        autofocus>
                                 <div class="input-hint">
                                     <span>⏱</span>
@@ -654,11 +653,11 @@
     function copySecret() {
         const secret = document.getElementById('secretCode').textContent;
         const btn = event.target;
-        
+
         navigator.clipboard.writeText(secret).then(() => {
             btn.textContent = '✓ Copié';
             btn.classList.add('copied');
-            
+
             setTimeout(() => {
                 btn.textContent = 'Copier';
                 btn.classList.remove('copied');
@@ -670,10 +669,10 @@
             textArea.select();
             document.execCommand('copy');
             document.body.removeChild(textArea);
-            
+
             btn.textContent = '✓ Copié';
             btn.classList.add('copied');
-            
+
             setTimeout(() => {
                 btn.textContent = 'Copier';
                 btn.classList.remove('copied');
@@ -683,7 +682,7 @@
 
     codeInput.addEventListener('input', function(e) {
         this.value = this.value.replace(/[^0-9]/g, '');
-        
+
         if (this.value.length === 6) {
             this.classList.add('valid');
         } else {
@@ -694,7 +693,7 @@
     form.addEventListener('submit', function(e) {
         if (codeInput.value.length !== 6) {
             e.preventDefault();
-            
+
             if (typeof Swal !== 'undefined') {
                 Swal.fire({
                     icon: 'warning',
@@ -705,7 +704,7 @@
             } else {
                 alert('Veuillez saisir les 6 chiffres du code de vérification');
             }
-            
+
             codeInput.focus();
         }
     });
@@ -719,7 +718,7 @@
                 confirmButtonColor: '#008751'
             });
         }
-        
+
         setTimeout(() => {
             codeInput.focus();
             codeInput.select();

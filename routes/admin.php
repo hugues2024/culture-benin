@@ -22,6 +22,7 @@ Route::prefix('/admin')->middleware(['auth','admin.ou.manager','2fa'])->group(fu
     Route::resource('users', UserController::class);
     Route::resource('regions', RegionController::class);
     Route::resource('contenus', ContenuController::class);
+
     Route::resource('medias', MediaController::class);
     Route::resource('commentaires', CommentaireController::class);
 });

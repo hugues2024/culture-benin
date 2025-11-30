@@ -190,7 +190,7 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: '#2563eb',
+                background: '#10b981',
                 color: '#fff',
                 iconColor: '#fff'
             });

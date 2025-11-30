@@ -36,22 +36,7 @@
                         @enderror
                     </div>
 
-                    <!-- Description optionnelle -->
-                    <div class="mb-3">
-                        <label for="description" class="form-label fw-semibold">
-                            <i class="fas fa-align-left me-1"></i> Description
-                        </label>
-                        <textarea name="description" 
-                                  id="description"
-                                  rows="3"
-                                  class="form-control @error('description') is-invalid @enderror"
-                                  placeholder="Description du rôle..."
-                        >{{ old('description', $role->description ?? '') }}</textarea>
-                        @error('description')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
+                   
                     <div class="d-flex justify-content-end mt-4">
                         <a href="{{ route('roles.index') }}" class="btn btn-secondary me-2">
                             <i class="fas fa-arrow-left me-1"></i> Annuler

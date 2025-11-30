@@ -35,7 +35,7 @@ class LangueController extends Controller
     {
         //
         Langue::create($request->all());
-        return redirect()->route('langues.index');
+        return redirect()->back()->with("success","la langue a été crée avec sucess");
     }
 
     /**

@@ -29,35 +29,33 @@ class StoreMediaRequest extends FormRequest
 
         // Si c'est la création (store), chemin est obligatoire
         if ($this->isMethod('post')) {
-            $rules['chemin'] = 'required|file|mimes:jpg,jpeg,png,gif,mp4,mov,avi|max:102400';
+            $rules['chemin'] = 'required|file|mimes:jpg,jpeg,png,gif,webp,mp4,mov,avi,mkv,mp3,wav,ogg,m4a,aac,flac|max:102400';
         }
 
         // Si c'est update, chemin devient facultatif
         if ($this->isMethod('put') || $this->isMethod('patch')) {
-            $rules['chemin'] = 'nullable|file|mimes:jpg,jpeg,png,gif,mp4,mov,avi|max:102400';
+            $rules['chemin'] = 'nullable|file|mimes:jpg,jpeg,png,gif,webp,mp4,mov,avi,mkv,mp3,wav,ogg,m4a,aac,flac|max:102400';
         }
 
         return $rules;
     }
-
 
     public function messages(): array
     {
         return [
             'chemin.required' => 'Veuillez sélectionner un fichier.',
             'chemin.file'     => 'Le fichier est invalide.',
-            'chemin.max'      => 'Le fichier ne doit pas dépasser 20MB.',
-            'chemin.mimes'    => 'Seuls les fichiers jpg, jpeg, png, gif, mp4, mov et avi sont autorisés.',
+            'chemin.max'      => 'Le fichier ne doit pas dépasser 100MB.',
+            'chemin. mimes'    => 'Formats acceptés : Images (jpg, png, gif, webp), Vidéos (mp4, mov, avi, mkv), Audio (mp3, wav, ogg, m4a, aac, flac).',
 
             'description.string' => 'La description doit être un texte valide.',
             'description.max'    => 'La description ne doit pas dépasser 500 caractères.',
 
-            'id_contenu.required' => 'Veuillez choisir un contenu.',
-            'id_contenu.exists'   => 'Le contenu sélectionné est introuvable.',
+            'id_contenu. required' => 'Veuillez choisir un contenu.',
+            'id_contenu. exists'   => 'Le contenu sélectionné est introuvable.',
 
             'id_type_media.required' => 'Veuillez choisir un type de média.',
             'id_type_media.exists'   => 'Le type de média sélectionné est invalide.',
         ];
     }
-
 }

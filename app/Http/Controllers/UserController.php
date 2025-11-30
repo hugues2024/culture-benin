@@ -110,7 +110,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->back()
+        return redirect()->route('users.index')
             ->with('success', 'Utilisateur mis à jour avec succès !');
     }
     /**

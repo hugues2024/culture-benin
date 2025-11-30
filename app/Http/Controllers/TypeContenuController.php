@@ -79,7 +79,7 @@ class TypeContenuController extends Controller
             'nom.unique' => 'ce type media existe deja'
         ]);
         $typeContenu->update($data);
-        return redirect()->back()->with("success","le Type de contenu  a été mise a jour avec succes");
+        return redirect()->route('type_contenu.index')->with("success","le Type de contenu  a été mise a jour avec succes");
     }
 
     /**

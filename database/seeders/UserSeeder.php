@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         User::create([
             'nom' => 'Manager',
             'prenom' => 'Platform',
-            'sexe' => 'Masculin',
+            'sexe' => 'masculin',
             'date_naissance' => '1990-01-01',
             'email' => 'xthedev@gmail.com',
             'password' => Hash::make('Manager123'),

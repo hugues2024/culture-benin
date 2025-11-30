@@ -107,19 +107,19 @@
                                                     class="btn btn-sm btn-warning btn-action" title="Modifier">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
-                                             @can('delete-users')
-                                                <!-- Supprimer -->
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                                    class="d-inline delete-form">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-danger btn-action btn-delete"
-                                                        title="Supprimer">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-                                            @endcan
+                                                @can('delete-users')
+                                                    <!-- Supprimer -->
+                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                        class="d-inline delete-form">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button"
+                                                            class="btn btn-sm btn-danger btn-action btn-delete"
+                                                            title="Supprimer">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>
@@ -197,19 +197,53 @@
             background: linear-gradient(135deg, #2980b9, #2573a7);
         }
 
+        /* AUGMENTATION DE LA TAILLE DE POLICE POUR LES BADGES */
+        .badge {
+            font-size: 0.85rem !important;
+            /* Augmenté de 0.75rem à 0.85rem */
+            font-weight: 500;
+            padding: 0.5em 0.75em;
+            /* Légèrement plus de padding */
+        }
+
+        /* Styles spécifiques pour chaque type de badge */
         .custom-badge-active {
             background: linear-gradient(135deg, #2ecc71, #27ae60);
             color: white;
+            font-size: 0.85rem !important;
         }
 
         .custom-badge-inactive {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
+            font-size: 0.85rem !important;
         }
 
-        .custom-badge-pending {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            color: white;
+        /* Styles pour les cellules spécifiques */
+        .table td:nth-child(5),
+        /* Colonne Sexe */
+        .table td:nth-child(6),
+        /* Colonne Rôle */
+        .table td:nth-child(7),
+        /* Colonne Langue */
+        .table td:nth-child(8)
+
+        /* Colonne Statut */
+            {
+            font-size: 0.9rem;
+            /* Taille de police augmentée */
+        }
+
+        /* Style supplémentaire pour s'assurer que le texte est bien lisible */
+        .table td {
+            vertical-align: middle;
+            padding: 12px;
+        }
+
+        /* Assurer que les badges dans ces colonnes sont bien visibles */
+        .table td .badge {
+            font-size: 0.85rem !important;
+            font-weight: 600;
         }
 
         .card-body {
@@ -219,16 +253,6 @@
         .container {
             max-width: 100%;
             padding: 0 20px;
-        }
-
-        .table td {
-            vertical-align: middle;
-            padding: 12px;
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            font-weight: 500;
         }
 
         /* Styles corrigés pour DataTables */
@@ -252,10 +276,8 @@
             margin-bottom: 15px;
         }
 
-        /* 👉 Ajoute ceci juste après */
         .dataTables_length select {
             width: 100px !important;
-            /* élargit */
             min-width: 100px !important;
         }
 
@@ -277,7 +299,6 @@
 
         .dataTables_length select {
             width: 80px !important;
-            /* élargit le select */
             min-width: 80px !important;
         }
 
@@ -299,7 +320,6 @@
             border: none !important;
         }
 
-
         /* Responsive */
         @media (max-width: 768px) {
 
@@ -312,6 +332,27 @@
             .dataTables_info,
             .dataTables_paginate {
                 text-align: center !important;
+            }
+
+            /* Ajustement responsive pour la lisibilité */
+            .badge {
+                font-size: 0.8rem !important;
+            }
+
+            .table td:nth-child(5),
+            .table td:nth-child(6),
+            .table td:nth-child(7),
+            .table td:nth-child(8) {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            /* Encore plus visible sur mobile */
+            .badge {
+                font-size: 0.75rem !important;
+                padding: 0.4em 0.6em;
             }
         }
     </style>
@@ -394,7 +435,7 @@
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
-                    background: '#3498db',
+                    background: '#10b981', // Vert vif
                     color: '#fff',
                     iconColor: '#fff'
                 });

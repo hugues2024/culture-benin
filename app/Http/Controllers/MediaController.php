@@ -37,18 +37,37 @@ class MediaController extends Controller
      */
     public function store(StoreMediaRequest $request)
     {
-
         $data = $request->validated();
 
         // Upload du fichier
         if ($request->hasFile('chemin')) {
-            $data['chemin'] = $request->file('chemin')->store('medias', 'public');
+            $file = $request->file('chemin');
+
+            // Déterminer le dossier selon le type de fichier
+            $mimeType = $file->getMimeType();
+            $folder = 'medias/';
+
+            if (str_starts_with($mimeType, 'image/')) {
+                $folder .= 'images';
+        } elseif (str_starts_with($mimeType, 'video/')) {
+                $folder .= 'videos';
+            } elseif (str_starts_with($mimeType, 'audio/')) {
+                $folder .= 'audios';
+            } else {
+                $folder .= 'autres';
+            }
+
+            // Générer un nom unique
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // Stocker le fichier
+            $data['chemin'] = $file->storeAs($folder, $filename, 'public');
         }
 
         Media::create($data);
 
         return redirect()->back()
-            ->with('success', 'Media ajouté avec succès !');
+            ->with('success', 'Média ajouté avec succès !  ');
     }
 
     /**
@@ -75,6 +94,9 @@ class MediaController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(StoreMediaRequest $request, Media $media)
     {
         // Récupérer les données validées
@@ -82,22 +104,35 @@ class MediaController extends Controller
 
         // Vérifier si un nouveau fichier a été uploadé
         if ($request->hasFile('chemin')) {
-
             $file = $request->file('chemin');
 
-            // Générer un nom unique pour éviter les collisions
-            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            // Déterminer le dossier selon le type de fichier
+            $mimeType = $file->getMimeType();
+            $folder = 'medias/';
 
-            // Déplacer le fichier dans storage/app/public/media
-            $file->storeAs('public/media', $filename);
+            if (str_starts_with($mimeType, 'image/')) {
+                $folder .= 'images';
+            } elseif (str_starts_with($mimeType, 'video/')) {
+                $folder .= 'videos';
+            } elseif (str_starts_with($mimeType, 'audio/')) {
+                $folder .= 'audios';
+        } else {
+                $folder .= 'autres';
+        }
+
+            // Générer un nom unique pour éviter les collisions
+            $filename = time() . '_' .  uniqid() . '.' .  $file->getClientOriginalExtension();
+
+            // Stocker le nouveau fichier
+            $newPath = $file->storeAs($folder, $filename, 'public');
 
             // Supprimer l'ancien fichier si il existe
-            if ($media->chemin && Storage::exists('public/media/' . $media->chemin)) {
-                Storage::delete('public/media/' . $media->chemin);
+            if ($media->chemin && Storage::disk('public')->exists($media->chemin)) {
+                Storage::disk('public')->delete($media->chemin);
             }
 
-            // Mettre à jour le chemin dans les données
-            $data['chemin'] = $filename;
+            // Mettre à jour le chemin dans les données (chemin complet)
+            $data['chemin'] = $newPath;
         } else {
             // Si aucun nouveau fichier, ne pas modifier le champ 'chemin'
             unset($data['chemin']);
@@ -107,7 +142,8 @@ class MediaController extends Controller
         $media->update($data);
 
         // Retour avec succès
-        return redirect()->back()->with('success', 'Le média a été mis à jour avec succès !');
+        return redirect()->route('medias.index', $media->id)
+            ->with('success', 'Le média a été mis à jour avec succès !');
     }
 
     /**

@@ -64,7 +64,7 @@ class RegionController extends Controller
         //
         $region->update($request->validated());
 
-        return back()->with('success', 'La région a été modifiée avec succès !');
+        return redirect()->route('regions.index')->with('success', 'La région a été modifiée avec succès !');
     }
 
     /**

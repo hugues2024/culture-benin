@@ -156,3 +156,41 @@
     </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toast succès pour l'ajout de langue
+        @if(session('success'))
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                background: '#10b981', // Vert émeraude
+                color: '#fff',
+                iconColor: '#fff'
+            });
+        @endif
+
+        // Toast d'erreur
+        @if(session('error'))
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: "{{ session('error') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                background: '#ef4444', // Rouge
+                color: '#fff',
+                iconColor: '#fff'
+            });
+        @endif
+    });
+</script>
+@endpush

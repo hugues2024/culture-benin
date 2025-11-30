@@ -75,7 +75,7 @@ class TypeMediaController extends Controller
             'nom.unique' => 'ce type media existe deja'
         ]);
         $typeMedia->update($data);
-        return redirect()->back()->with("success","le Type media a été mise a jour avec succes");
+        return redirect()->route('type_media.index')->with("success","le Type media a été mise a jour avec succes");
 
     }
 

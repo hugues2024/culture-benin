@@ -270,7 +270,7 @@
                                    title="Modifier">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-+                         @can('delete-contenus')
+                         @can('delete-contenus')
                                 <!-- Bouton Supprimer avec icône -->
                                 <button type="button" class="icon-btn btn-delete mx-1 btn-delete"
                                         title="Supprimer"
@@ -278,7 +278,7 @@
                                         data-name="{{ $contenu->titre }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
-+                         @endcan
+                        @endcan
                             </td>
                         </tr>
                     @endforeach
@@ -341,7 +341,7 @@
             $('.btn-delete').on('click', function() {
                 const contenuId = $(this).data('id');
                 const contenuTitre = $(this).data('name');
-                
+
                 Swal.fire({
                     title: 'Supprimer le contenu ?',
                     html: `Êtes-vous sûr de vouloir supprimer <strong>"${contenuTitre}"</strong> ?<br>Cette action est irréversible !`,
@@ -363,19 +363,19 @@
                         // Créer un formulaire de suppression dynamique
                         const form = document.createElement('form');
                         form.method = 'POST';
-                        form.action = `{{ url('contenus') }}/${contenuId}`;
+                        form.action = `{{ url('/admin/contenus') }}/${contenuId}`;
                         form.style.display = 'none';
-                        
+
                         const csrfToken = document.createElement('input');
                         csrfToken.type = 'hidden';
                         csrfToken.name = '_token';
                         csrfToken.value = '{{ csrf_token() }}';
-                        
+
                         const methodField = document.createElement('input');
                         methodField.type = 'hidden';
                         methodField.name = '_method';
                         methodField.value = 'DELETE';
-                        
+
                         form.appendChild(csrfToken);
                         form.appendChild(methodField);
                         document.body.appendChild(form);
@@ -394,7 +394,7 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: '#1cc88a',
+                background: '#10b981',
                 color: '#fff',
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)

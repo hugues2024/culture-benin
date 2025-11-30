@@ -97,7 +97,7 @@ class CommentaireController extends Controller
 
         // 3️⃣ Retour avec succès
         return redirect()
-            ->back()
+            ->route('commentaires.index')
             ->with('success', 'Le commentaire a été mis à jour avec succès !');
     }
 

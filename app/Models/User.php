@@ -7,9 +7,11 @@
 namespace App\Models;
 
 use App\Enums\StatutUser;
+use App\Notifications\VerifyEmailCustom;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,7 +42,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @package App\Models
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
 	use HasFactory, Notifiable;
 	protected $table = 'users';
@@ -81,6 +83,13 @@ class User extends Authenticatable
 
 
 
+	/**
+	 * Send the email verification notification (personnalisé).
+	 */
+	public function sendEmailVerificationNotification()
+	{
+		$this->notify(new VerifyEmailCustom());
+	}
 	public function langue()
 	{
 		return $this->belongsTo(Langue::class, 'id_langue');
@@ -100,6 +109,21 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Contenu::class, 'id_moderateur');
 	}
+    public function aPaye(Contenu $contenu): bool
+    {
+        return $this->paiements()
+            ->where('contenu_id', $contenu->id)
+            ->where('statut', 'success')
+            ->exists();
+    }
+
+    /**
+     * Relation avec les paiements
+     */
+    public function paiements()
+    {
+        return $this->hasMany(Paiement::class);
+    }
 
 	// app/Models/User.php
 

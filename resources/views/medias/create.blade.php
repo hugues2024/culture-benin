@@ -19,10 +19,12 @@
                     {{-- Contenu associé --}}
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Contenu associé</label>
-                        <select name="id_contenu" class="form-select @error('id_contenu') is-invalid @enderror" required>
+                        <select name="id_contenu" class="form-select @error('id_contenu') is-invalid @enderror"
+                                required>
                             <option value="">-- Sélectionnez --</option>
                             @foreach($contenus as $contenu)
-                                <option value="{{ $contenu->id }}" {{ old('id_contenu') == $contenu->id ? 'selected' : '' }}>
+                                <option
+                                    value="{{ $contenu->id }}" {{ old('id_contenu') == $contenu->id ? 'selected' : '' }}>
                                     {{ $contenu->titre }}
                                 </option>
                             @endforeach
@@ -35,10 +37,12 @@
                     {{-- Type de média --}}
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Type de média</label>
-                        <select name="id_type_media" class="form-select @error('id_type_media') is-invalid @enderror" required>
+                        <select name="id_type_media" class="form-select @error('id_type_media') is-invalid @enderror"
+                                required>
                             <option value="">-- Sélectionnez --</option>
                             @foreach($types as $type)
-                                <option value="{{ $type->id }}" {{ old('id_type_media') == $type->id ? 'selected' : '' }}>
+                                <option
+                                    value="{{ $type->id }}" {{ old('id_type_media') == $type->id ? 'selected' : '' }}>
                                     {{ $type->nom }}
                                 </option>
                             @endforeach
@@ -51,7 +55,8 @@
                     {{-- Description --}}
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Description</label>
-                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="3" placeholder="Description du média...">{{ old('description') }}</textarea>
+                        <textarea name="description" class="form-control @error('description') is-invalid @enderror"
+                                  rows="3" placeholder="Description du média...">{{ old('description') }}</textarea>
                         @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -65,7 +70,13 @@
                              style="cursor: pointer; background: #f8f9fa; transition: all 0.3s; border-color: #d1d3e2;">
                             <i class="bi bi-cloud-arrow-up-fill fs-1 text-primary"></i>
                             <p class="mt-2 mb-1">Glissez un fichier ici ou cliquez pour sélectionner</p>
-                            <small class="text-muted">Formats acceptés : JPG, PNG, GIF, MP4, MOV, AVI (Max: 20MB)</small>
+                            <small class="text-muted">
+                                <strong>Formats acceptés :</strong><br>
+                                📷 Images : JPG, PNG, GIF, WEBP<br>
+                                🎥 Vidéos : MP4, MOV, AVI, MKV<br>
+                                🎵 Audio : MP3, WAV, OGG, M4A, AAC, FLAC<br>
+                                <span class="badge bg-info mt-1">Max: 100MB</span>
+                            </small>
                         </div>
                         @error('chemin')
                         <div class="text-danger mt-2"><i class="bi bi-exclamation-circle me-1"></i>{{ $message }}</div>
@@ -77,8 +88,7 @@
                            name="chemin"
                            id="fileInput"
                            class="d-none"
-                           accept="image/jpeg,image/jpg,image/png,image/gif,video/mp4,video/quicktime,video/x-msvideo">
-
+                           accept="image/jpeg,image/jpg,image/png,image/gif,image/webp,video/mp4,video/quicktime,video/x-msvideo,video/x-matroska,audio/mpeg,audio/wav,audio/ogg,audio/x-m4a,audio/aac,audio/flac">
                     {{-- Aperçu du fichier sélectionné --}}
                     <div id="filePreview" class="alert alert-info d-none mb-3">
                         <i class="bi bi-file-earmark-check me-2"></i>
@@ -115,112 +125,112 @@
 @endsection
 
 @push('styles')
-<style>
-    /* Card modern */
-    .custom-card {
-        border-radius: 12px;
-        overflow: hidden;
-        border: none;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
+    <style>
+        /* Card modern */
+        .custom-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
 
-    /* HEADER BLEU UNIFORME */
-    .custom-card-header {
-        background: linear-gradient(135deg, #4e73df, #224abe);
-        padding: 20px;
-    }
+        /* HEADER BLEU UNIFORME */
+        .custom-card-header {
+            background: linear-gradient(135deg, #4e73df, #224abe);
+            padding: 20px;
+        }
 
-    .custom-card-header h4 {
-        margin: 0;
-        font-weight: 600;
-        color: #fff !important;
-    }
+        .custom-card-header h4 {
+            margin: 0;
+            font-weight: 600;
+            color: #fff !important;
+        }
 
-    /* Form */
-    .form-label { 
-        color: #4e4e4e; 
-        font-weight: 600;
-    }
-    
-    .form-control, .form-select {
-        border-radius: 8px;
-        border: 1px solid #d1d3e2;
-        padding: 10px 12px;
-        transition: 0.25s;
-    }
-    
-    .form-control:focus, .form-select:focus {
-        border-color: #4e73df;
-        box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25);
-    }
+        /* Form */
+        .form-label {
+            color: #4e4e4e;
+            font-weight: 600;
+        }
 
-    .is-invalid { 
-        border-color: #e74a3b !important; 
-    }
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #d1d3e2;
+            padding: 10px 12px;
+            transition: 0.25s;
+        }
 
-    .invalid-feedback {
-        display: block;
-        width: 100%;
-        margin-top: 0.25rem;
-        font-size: 0.875rem;
-        color: #e74a3b;
-    }
+        .form-control:focus, .form-select:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        }
 
-    /* Zone de drag & drop */
-    .border-dashed {
-        border-style: dashed !important;
-    }
+        .is-invalid {
+            border-color: #e74a3b !important;
+        }
 
-    /* Buttons */
-    .btn-submit {
-        background: linear-gradient(135deg, #4e73df, #224abe);
-        border: none;
-        font-weight: 600;
-        transition: 0.2s;
-        padding: 10px 24px;
-    }
-    
-    .btn-submit:hover {
-        transform: scale(1.05);
-        background: linear-gradient(135deg, #224abe, #4e73df);
-    }
+        .invalid-feedback {
+            display: block;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            color: #e74a3b;
+        }
 
-    .btn-secondary {
-        background-color: #6c757d;
-        border: none;
-        color: #fff;
-        padding: 10px 24px;
-        font-weight: 500;
-        transition: 0.2s;
-    }
+        /* Zone de drag & drop */
+        .border-dashed {
+            border-style: dashed !important;
+        }
 
-    .btn-secondary:hover {
-        background-color: #5a6268;
-        transform: scale(1.05);
-    }
+        /* Buttons */
+        .btn-submit {
+            background: linear-gradient(135deg, #4e73df, #224abe);
+            border: none;
+            font-weight: 600;
+            transition: 0.2s;
+            padding: 10px 24px;
+        }
 
-    .btn-outline-secondary {
-        border: 1px solid #6c757d;
-        color: #6c757d;
-        padding: 10px 24px;
-        font-weight: 500;
-        transition: 0.2s;
-    }
+        .btn-submit:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #224abe, #4e73df);
+        }
 
-    .btn-outline-secondary:hover {
-        background-color: #6c757d;
-        color: #fff;
-        transform: scale(1.05);
-    }
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            color: #fff;
+            padding: 10px 24px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
 
-    /* Alert personnalisée */
-    .alert-info {
-        background-color: #e8f4fd;
-        border-color: #4e73df;
-        color: #224abe;
-        border-radius: 8px;
-    }
-</style>
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+        }
+
+        .btn-outline-secondary {
+            border: 1px solid #6c757d;
+            color: #6c757d;
+            padding: 10px 24px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Alert personnalisée */
+        .alert-info {
+            background-color: #e8f4fd;
+            border-color: #4e73df;
+            color: #224abe;
+            border-radius: 8px;
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -247,12 +257,12 @@
         });
 
         // Drag over
-        dropZone.addEventListener("dragover", (e) => {
+        dropZone. addEventListener("dragover", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            dropZone.classList.add("bg-light");
-            dropZone.style.borderColor = "#4e73df";
-            dropZone.style.transform = "scale(1.02)";
+            dropZone. classList.add("bg-light");
+            dropZone.style. borderColor = "#4e73df";
+            dropZone.style.transform = "scale(1. 02)";
         });
 
         // Drag leave
@@ -270,31 +280,61 @@
             e.stopPropagation();
             dropZone.classList.remove("bg-light");
             dropZone.style.borderColor = "#d1d3e2";
-            dropZone.style.transform = "scale(1)";
+            dropZone.style. transform = "scale(1)";
 
             const files = e.dataTransfer.files;
             if (files.length > 0) {
                 const dt = new DataTransfer();
                 dt.items.add(files[0]);
-                fileInput.files = dt.files;
+                fileInput.files = dt. files;
 
-                const changeEvent = new Event('change', { bubbles: true });
-                fileInput.dispatchEvent(changeEvent);
+                const changeEvent = new Event('change', {bubbles: true});
+                fileInput. dispatchEvent(changeEvent);
             }
         });
 
         // Changement de fichier
         fileInput.addEventListener("change", (e) => {
-            if (e.target.files && e.target.files.length > 0) {
+            if (e.target.files && e. target.files.length > 0) {
                 const file = e.target.files[0];
 
-                // Vérifier la taille (20MB max)
-                const maxSize = 20 * 1024 * 1024;
+                // Vérifier la taille (100MB max)
+                const maxSize = 100 * 1024 * 1024; // 100MB
                 if (file.size > maxSize) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Fichier trop volumineux',
-                        text: 'Le fichier ne doit pas dépasser 20MB',
+                        text: 'Le fichier ne doit pas dépasser 100MB',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#4e73df'
+                    });
+                    fileInput.value = "";
+                    return;
+                }
+
+                // Vérifier le type de fichier
+                const validTypes = [
+                    // Images
+                    'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp',
+                    // Vidéos
+                    'video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-matroska',
+                    // Audio
+                    'audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/x-m4a', 'audio/aac', 'audio/flac'
+                ];
+
+                if (!validTypes.includes(file.type)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Format non accepté',
+                        html: `
+                            <p class="mb-2">Ce type de fichier n'est pas accepté. </p>
+                            <p class="small text-muted mb-0">
+                                <strong>Formats acceptés :</strong><br>
+                                📷 Images : JPG, PNG, GIF, WEBP<br>
+                                🎥 Vidéos : MP4, MOV, AVI, MKV<br>
+                                🎵 Audio : MP3, WAV, OGG, M4A, AAC, FLAC
+                            </p>
+                        `,
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#4e73df'
                     });
@@ -308,17 +348,38 @@
             }
         });
 
-        // Afficher les infos du fichier
+        // Afficher les infos du fichier avec icône selon le type
         function displayFileInfo(file) {
             const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+            const fileType = file.type;
+
+            // Déterminer l'icône et la couleur selon le type
+            let icon = 'bi-file-earmark-check';
+            let iconColor = 'text-success';
+            let typeLabel = 'Fichier';
+
+            if (fileType.startsWith('image/')) {
+                icon = 'bi-file-earmark-image-fill';
+                iconColor = 'text-primary';
+                typeLabel = '📷 Image';
+            } else if (fileType.startsWith('video/')) {
+                icon = 'bi-file-earmark-play-fill';
+                iconColor = 'text-danger';
+                typeLabel = '🎥 Vidéo';
+            } else if (fileType.startsWith('audio/')) {
+                icon = 'bi-file-earmark-music-fill';
+                iconColor = 'text-warning';
+                typeLabel = '🎵 Audio';
+            }
 
             fileName.textContent = file.name;
             fileSize.textContent = sizeInMB + ' MB';
             filePreview.classList.remove("d-none");
 
             dropZone.innerHTML = `
-                <i class="bi bi-file-earmark-check fs-1 text-success"></i>
+                <i class="bi ${icon} fs-1 ${iconColor}"></i>
                 <p class="mt-2 mb-1"><strong>${file.name}</strong></p>
+                <span class="badge bg-secondary mb-2">${typeLabel}</span>
                 <p class="text-muted small mb-0">${sizeInMB} MB</p>
                 <p class="text-primary small mb-0"><i class="bi bi-cursor me-1"></i>Cliquez pour changer</p>
             `;
@@ -332,13 +393,13 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Préparation...';
             progressContainer.classList.remove("d-none");
-            progressBar.style.width = "0%";
+            progressBar.style. width = "0%";
             progressBar.classList.remove("bg-success");
-            progressBar.classList.add("bg-info");
+            progressBar. classList.add("bg-info");
 
             let percent = 0;
             const interval = setInterval(() => {
-                percent += Math.floor(Math.random() * 8) + 5;
+                percent += Math. floor(Math.random() * 8) + 5;
                 if (percent > 100) percent = 100;
 
                 progressBar.style.width = percent + "%";
@@ -363,19 +424,25 @@
             dropZone.innerHTML = `
                 <i class="bi bi-cloud-arrow-up-fill fs-1 text-primary"></i>
                 <p class="mt-2 mb-1">Glissez un fichier ici ou cliquez pour sélectionner</p>
-                <small class="text-muted">Formats acceptés : JPG, PNG, GIF, MP4, MOV, AVI (Max: 20MB)</small>
+                <small class="text-muted">
+                    <strong>Formats acceptés :</strong><br>
+                    📷 Images : JPG, PNG, GIF, WEBP<br>
+                    🎥 Vidéos : MP4, MOV, AVI, MKV<br>
+                    🎵 Audio : MP3, WAV, OGG, M4A, AAC, FLAC<br>
+                    <span class="badge bg-info mt-1">Max: 100MB</span>
+                </small>
             `;
             filePreview.classList.add("d-none");
-            progressContainer.classList.add("d-none");
+            progressContainer. classList.add("d-none");
             progressBar.style.width = "0%";
             resetBtn.classList.add("d-none");
             submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Créer le média';
+            submitBtn. innerHTML = 'Créer le média';
             isUploadReady = false;
         });
 
         // Validation avant soumission
-        mediaForm.addEventListener("submit", function(e) {
+        mediaForm.addEventListener("submit", function (e) {
             if (!fileInput.files || fileInput.files.length === 0) {
                 e.preventDefault();
                 Swal.fire({
@@ -389,13 +456,13 @@
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Envoi en cours...';
+            submitBtn. innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Envoi en cours...';
             return true;
         });
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
 
             @if(session('success'))
             Swal.fire({
@@ -404,10 +471,11 @@
                 icon: 'success',
                 title: "{{ session('success') }}",
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 3500,
                 timerProgressBar: true,
-                background: '#4e73df',
+                background: '#10b981',  // 🟢 Vert moderne
                 color: '#fff',
+                iconColor: '#fff',
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -422,10 +490,11 @@
                 icon: 'error',
                 title: "{{ session('error') }}",
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 3500,
                 timerProgressBar: true,
-                background: '#e74a3b',
+                background: '#ef4444',  // 🔴 Rouge moderne
                 color: '#fff',
+                iconColor: '#fff',
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)

@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
         $validated = $request->validate([
             'nom' => ['required', 'string', 'max:255', 'min:2', 'regex:/^[a-zA-ZÀ-ÿ\s\-]+$/u'],
             'prenom' => ['required', 'string', 'max:255', 'min:2', 'regex:/^[a-zA-ZÀ-ÿ\s\-]+$/u'],
-            'sexe' => ['required', 'string', 'in:Masculin,Féminin'],
+            'sexe' => ['required', 'string', 'in:masculin,feminin'],
             'date_naissance' => [
                 'required',
                 'date',
@@ -150,7 +150,7 @@ class RegisteredUserController extends Controller
             }
 
             // ✅ Déterminer le statut en fonction du rôle
-       
+
 
             // ✅ Création de l'utilisateur avec toutes les données
             $user = User::create([
@@ -169,9 +169,11 @@ class RegisteredUserController extends Controller
             // ✅ Déclencher l'événement d'inscription (envoie l'email de vérification)
             event(new Registered($user));
 
-            // ✅ Redirection vers la page de connexion avec toast
-            return redirect()->route('login')
-                ->with('success', 'Votre compte a été créé avec succès !');
+            // ✅ Connecter l'utilisateur
+            Auth::login($user);
+
+            // ✅ Rediriger vers la page de vérification (BLOQUANTE)
+            return redirect()->route('verification.notice');
         } catch (\Exception $e) {
             // ✅ En cas d'erreur, supprimer la photo uploadée
             if (isset($photoPath) && Storage::disk('public')->exists($photoPath)) {
@@ -186,7 +188,7 @@ class RegisteredUserController extends Controller
             ]);
 
             return back()->withErrors([
-                'email' => 'Une erreur inattendue est survenue lors de l\'inscription. Veuillez réessayer.'
+                'email' => 'Une erreur est survenue: ' . $e->getMessage()
             ])->withInput();
         }
     }

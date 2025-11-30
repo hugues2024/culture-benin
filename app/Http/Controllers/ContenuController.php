@@ -91,7 +91,7 @@ class ContenuController extends Controller
 
         // 3. Message de succès + redirection
         return redirect()
-            ->back()
+            ->route('contenus.index')
             ->with('success', 'Le contenu a été mis à jour avec succès.');
     }
 

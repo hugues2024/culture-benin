@@ -278,7 +278,7 @@
                                 </a>
                               @can('delete-commentaires')
                                 <!-- Bouton Supprimer avec icône -->
-                                <button type="button" 
+                                <button type="button"
                                         class="icon-btn btn-delete mx-1 btn-delete"
                                         title="Supprimer"
                                         data-id="{{ $commentaire->id }}"
@@ -347,7 +347,7 @@ $(document).ready(function() {
         const commentId = $(this).data('id');
         const author = $(this).data('author');
         const content = $(this).data('content');
-        
+
         Swal.fire({
             title: 'Supprimer le commentaire ?',
             html: `Êtes-vous sûr de vouloir supprimer le commentaire de <strong>${author}</strong> ?<br>
@@ -371,19 +371,19 @@ $(document).ready(function() {
                 // Créer un formulaire de suppression dynamique
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = `{{ url('commentaires') }}/${commentId}`;
+                form.action = `{{ url('/admin/commentaires') }}/${commentId}`;
                 form.style.display = 'none';
-                
+
                 const csrfToken = document.createElement('input');
                 csrfToken.type = 'hidden';
                 csrfToken.name = '_token';
                 csrfToken.value = '{{ csrf_token() }}';
-                
+
                 const methodField = document.createElement('input');
                 methodField.type = 'hidden';
                 methodField.name = '_method';
                 methodField.value = 'DELETE';
-                
+
                 form.appendChild(csrfToken);
                 form.appendChild(methodField);
                 document.body.appendChild(form);

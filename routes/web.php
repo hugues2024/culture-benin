@@ -11,6 +11,7 @@ Route::get('/dashboard',[HomeController::class,'redirectCustomize'])->middleware
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/2fa/enable', [Google2FAController::class, 'enable'])->name('2fa.enable');
     Route::post('/2fa/verify', [Google2FAController::class, 'verify'])->name('2fa.verify');

@@ -81,7 +81,7 @@ class RoleController extends Controller
             ]
         );
         $role->update($data);
-        return redirect()->back()->with('success',"le role mise a été  jour avec succès");
+        return redirect()->route('roles.index')->with('success',"le role mise a été  jour avec succès");
     }
 
     /**

@@ -130,14 +130,14 @@
                     </a>
                     <ul class="nav nav-treeview bg-light rounded-3 mx-2 mt-1 py-2">
                         <li class="nav-item">
-                            <a href="{{ route('medias.create') }}" 
+                            <a href="{{ route('medias.create') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('medias.create') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-plus-circle me-3 fs-7"></i>
                                 <p class="mb-0">Créer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('medias.index') }}" 
+                            <a href="{{ route('medias.index') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('medias.index') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-list-ul me-3 fs-7"></i>
                                 <p class="mb-0">Liste</p>
@@ -157,14 +157,14 @@
                     </a>
                     <ul class="nav nav-treeview bg-light rounded-3 mx-2 mt-1 py-2">
                         <li class="nav-item">
-                            <a href="{{ route('contenus.create') }}" 
+                            <a href="{{ route('contenus.create') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('contenus.create') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-plus-circle me-3 fs-7"></i>
                                 <p class="mb-0">Créer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('contenus.index') }}" 
+                            <a href="{{ route('contenus.index') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('contenus.index') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-list-ul me-3 fs-7"></i>
                                 <p class="mb-0">Liste</p>
@@ -211,14 +211,14 @@
                     </a>
                     <ul class="nav nav-treeview bg-light rounded-3 mx-2 mt-1 py-2">
                         <li class="nav-item">
-                            <a href="{{ route('regions.create') }}" 
+                            <a href="{{ route('regions.create') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('regions.create') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-plus-circle me-3 fs-7"></i>
                                 <p class="mb-0">Créer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('regions.index') }}" 
+                            <a href="{{ route('regions.index') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('regions.index') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-list-ul me-3 fs-7"></i>
                                 <p class="mb-0">Liste</p>
@@ -238,14 +238,14 @@
                     </a>
                     <ul class="nav nav-treeview bg-light rounded-3 mx-2 mt-1 py-2">
                         <li class="nav-item">
-                            <a href="{{ route('commentaires.create') }}" 
+                            <a href="{{ route('commentaires.create') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('commentaires.create') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-plus-circle me-3 fs-7"></i>
                                 <p class="mb-0">Créer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('commentaires.index') }}" 
+                            <a href="{{ route('commentaires.index') }}"
                                class="nav-link rounded-2 {{ request()->routeIs('commentaires.index') ? 'active bg-primary text-white' : 'text-dark' }}">
                                 <i class="nav-icon bi bi-list-ul me-3 fs-7"></i>
                                 <p class="mb-0">Liste</p>

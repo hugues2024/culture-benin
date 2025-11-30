@@ -294,7 +294,7 @@
             btn.addEventListener("click", function () {
                 const typeId = this.getAttribute('data-id');
                 const typeName = this.getAttribute('data-name');
-                
+
                 Swal.fire({
                     title: 'Supprimer le type de contenu ?',
                     html: `Êtes-vous sûr de vouloir supprimer <strong>"${typeName}"</strong> ?<br>Cette action est irréversible !`,
@@ -316,19 +316,19 @@
                         // Créer un formulaire de suppression dynamique
                         const form = document.createElement('form');
                         form.method = 'POST';
-                        form.action = `{{ url('type_contenu') }}/${typeId}`;
+                        form.action = `{{ url('/admin/type_contenu') }}/${typeId}`;
                         form.style.display = 'none';
-                        
+
                         const csrfToken = document.createElement('input');
                         csrfToken.type = 'hidden';
                         csrfToken.name = '_token';
                         csrfToken.value = '{{ csrf_token() }}';
-                        
+
                         const methodField = document.createElement('input');
                         methodField.type = 'hidden';
                         methodField.name = '_method';
                         methodField.value = 'DELETE';
-                        
+
                         form.appendChild(csrfToken);
                         form.appendChild(methodField);
                         document.body.appendChild(form);
@@ -348,7 +348,7 @@
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
-            background: '#1cc88a',
+            background: '#10b981',
             color: '#fff',
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
