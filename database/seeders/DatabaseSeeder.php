@@ -24,14 +24,14 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
              // 1. TABLES SANS DÉPENDANCE
-            RolesSeeder::class,
-            LanguesSeeder::class,
-            RegionsSeeder::class,
+            RoleSeeder::class,
+            LangueSeeder::class,
+            RegionSeeder::class,
             TypeContenusSeeder::class,
-            TypeMediasSeeder::class,
+            TypeMediaSeeder::class,
             
             // 2. USERS (dépend de roles + langues)
-            UsersSeeder::class,
+            UserSeeder::class,
             
             // 3. CONTENUS (dépend de users + regions + langues + type_contenus)
             ContenusSeeder::class,
