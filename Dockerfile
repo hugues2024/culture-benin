@@ -18,7 +18,6 @@ COPY . .
 RUN composer install --optimize-autoloader --no-interaction
 
 # 5) Laravel (DB APRÈS .env Render)
-RUN php artisan key:generate
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
 
