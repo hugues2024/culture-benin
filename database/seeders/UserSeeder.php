@@ -17,12 +17,12 @@ class UserSeeder extends Seeder
         
         //Créer l'administrateur (id_role = 1)
         User::create([
-        'nom' => 'Admin',
+        'nom' => 'Mr Maurice',
         'prenom' => 'System',
         'sexe' => 'Masculin',
         'date_naissance' => '1990-01-01',
         'email' => 'maurice.comlan@uac.bj',
-        'password' => Hash::make('Eneam123!'),
+        'password' => Hash::make('Eneam123'),
         'email_verified_at' => now(),
         'id_role' => 4, // Admin
         'id_langue' => 3,
@@ -57,6 +57,23 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        // AJOUTE CET UTILISATEUR dans ton UserSeeder.php après Hugue HOUNKPATIN
+User::create([
+    'id' => 4, // ← AJOUTE id=4
+    'nom' => 'Hounkpatin', 
+    'prenom' => 'Hugues',
+    'sexe' => 'masculin',
+    'date_naissance' => '2012-11-28',
+    'email' => 'huguesmariehounkpatin1@gmail.com',
+    'password' => Hash::make('password123'),
+    'email_verified_at' => now(),
+    'id_role' => 7, // Utilisateur
+    'id_langue' => 2,
+    'photo' => 'users/photos/kwM19KdTYRfaLqGYAxqghDfmPI4lgmiEOjnrXZOo.webp',
+    'created_at' => now(),
+    'updated_at' => now(),
+]);
 
     }
 }

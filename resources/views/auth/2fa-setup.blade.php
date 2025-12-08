@@ -2,10 +2,10 @@
 @section('content')
 <style>
     :root {
-        --benin-primary: #008751;
-        --benin-primary-dark: #006b3f;
+        --benin-primary: #F0C43B;
+        --benin-primary-dark: #F0C43B;
         --benin-light: #e8f5e9;
-        --benin-gradient: linear-gradient(135deg, #008751 0%, #00a862 100%);
+        --benin-gradient: linear-gradient(135deg, #F0C43B 0%, #F0C43B 100%);
     }
 
     * {
@@ -699,7 +699,7 @@
                     icon: 'warning',
                     title: 'Code incomplet',
                     text: 'Veuillez saisir les 6 chiffres du code de vérification',
-                    confirmButtonColor: '#008751'
+                    confirmButtonColor: '#F0C43B'
                 });
             } else {
                 alert('Veuillez saisir les 6 chiffres du code de vérification');
@@ -715,7 +715,7 @@
                 icon: 'error',
                 title: 'Code invalide',
                 text: '{{ $errors->first() }}',
-                confirmButtonColor: '#008751'
+                confirmButtonColor: '#F0C43B'
             });
         }
 
