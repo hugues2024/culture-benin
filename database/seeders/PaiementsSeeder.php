@@ -12,7 +12,7 @@ class PaiementsSeeder extends Seeder
         $paiements = [
             // Paiement pour le conte Pokou (contenu ID=1)
             [
-                'user_id' => 4, // Hugues Hounkpatin
+                'user_id' => 3, // Hugues Hounkpatin
                 'contenu_id' => 1,
                 'montant' => 500.00,
                 'statut' => 'payé',
@@ -21,7 +21,7 @@ class PaiementsSeeder extends Seeder
                 'transaction_id' => 'TXN_ABC123456',
             ],
             [
-                'user_id' => 5, // Dewanou Hounkpatin
+                'user_id' => 3, // Dewanou Hounkpatin
                 'contenu_id' => 1,
                 'montant' => 500.00,
                 'statut' => 'payé',
@@ -31,7 +31,7 @@ class PaiementsSeeder extends Seeder
             ],
             // Paiement pour le proverbe (contenu ID=2)
             [
-                'user_id' => 2, // Hugue HOUNKPATIN
+                'user_id' => 3, // Hugue HOUNKPATIN
                 'contenu_id' => 2,
                 'montant' => 250.00,
                 'statut' => 'payé',
@@ -41,7 +41,7 @@ class PaiementsSeeder extends Seeder
             ],
             // Paiement en attente
             [
-                'user_id' => 1, // Manager Platform
+                'user_id' => 3, // Manager Platform
                 'contenu_id' => 2,
                 'montant' => 250.00,
                 'statut' => 'en_attente',
@@ -50,7 +50,7 @@ class PaiementsSeeder extends Seeder
             ],
             // Paiement échoué
             [
-                'user_id' => 6, // Admin System
+                'user_id' => 3, // Admin System
                 'contenu_id' => 1,
                 'montant' => 500.00,
                 'statut' => 'échoué',

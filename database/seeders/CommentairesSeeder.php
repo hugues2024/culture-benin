@@ -16,26 +16,26 @@ class CommentairesSeeder extends Seeder
             [
                 'commentaire' => 'Excellente histoire ! La petite Pokou est un symbole de courage.',
                 'note' => 5,
-                'id_user' => 4, // Hugues Hounkpatin
+                'id_user' => 3, // Hugues Hounkpatin
                 'id_contenu' => 1,
             ],
             [
                 'commentaire' => 'Très beau conte traditionnel. Merci pour le partage !',
                 'note' => 4,
-                'id_user' => 5, // Dewanou Hounkpatin
+                'id_user' => 3, // Dewanou Hounkpatin
                 'id_contenu' => 1,
             ],
             [
                 'commentaire' => 'J\'adore cette histoire, elle me rappelle mon enfance à Nikki.',
                 'note' => 5,
-                'id_user' => 2, // Hugue HOUNKPATIN
+                'id_user' => 3, // Hugue HOUNKPATIN
                 'id_contenu' => 1,
             ],
             // Commentaires sur le contenu ID=2 (Proverbe)
             [
                 'commentaire' => 'Proverbe très sage. On l\'utilise souvent dans ma région.',
                 'note' => 5,
-                'id_user' => 1, // Manager Platform
+                'id_user' => 3, // Manager Platform
                 'id_contenu' => 2,
             ],
         ];
