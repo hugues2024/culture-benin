@@ -64,7 +64,7 @@
 
     /* HEADER BLEU UNIFORME */
     .custom-card-header {
-        background: linear-gradient(135deg, #4e73df, #224abe);
+        background: linear-gradient(135deg, #F0C43B, #F0C43B);
         padding: 20px;
     }
 
@@ -88,7 +88,7 @@
     }
     
     .form-control:focus {
-        border-color: #4e73df;
+        border-color: #F0C43B;
         box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25);
     }
 
@@ -106,7 +106,7 @@
 
     /* Buttons */
     .btn-submit {
-        background: linear-gradient(135deg, #4e73df, #224abe);
+        background: linear-gradient(135deg, #F0C43B, #F0C43B);
         border: none;
         font-weight: 600;
         transition: 0.2s;
@@ -115,7 +115,7 @@
     
     .btn-submit:hover {
         transform: scale(1.05);
-        background: linear-gradient(135deg, #224abe, #4e73df);
+        background: linear-gradient(135deg, #F0C43B, #F0C43B);
     }
 
     .btn-secondary {
@@ -147,7 +147,7 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: '#4e73df',
+                background: '#F0C43B',
                 color: '#fff',
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -186,7 +186,7 @@
                 title: 'Erreur de validation',
                 html: errorMessages,
                 confirmButtonText: 'OK',
-                confirmButtonColor: '#4e73df'
+                confirmButtonColor: '#F0C43B'
             });
             @endif
 

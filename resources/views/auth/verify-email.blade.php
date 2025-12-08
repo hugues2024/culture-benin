@@ -7,7 +7,7 @@
         <div class="card shadow-sm custom-card mx-auto">
             <!-- Header avec Logo -->
             <div class="card-header text-white custom-card-header bg-success">
-                <div class="text-center">
+                <div class="text-center" style="backgrounf-color: #F0C43B;">
                     <img src="{{ asset('img/logo1.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
                     <h4 class="mb-0 fw-bold">Vérifiez votre email</h4>
                     <p class="mb-0 small opacity-90">Dernière étape</p>
@@ -32,7 +32,7 @@
 
                 <!-- Message principal -->
                 <div class="text-center mb-3">
-                    <h6 class="mb-2" style="color: #1b5e20;">
+                    <h6 class="mb-2" style="color: #F0C43B;">
                         <i class="bi bi-check-circle-fill text-success"></i> Inscription réussie ! 
                     </h6>
                     <p class="text-muted small mb-0">
@@ -108,7 +108,7 @@
     }
 
     . custom-card-header {
-        background: linear-gradient(135deg, #008751, #006b40);
+        background: linear-gradient(135deg, #F0C43B, #F0C43B);
         padding: 1rem 0.875rem;
     }
 
@@ -135,7 +135,7 @@
     /* Email Icon */
     .email-icon {
         font-size: 3. 5rem;
-        color: #008751;
+        color: #F0C43B;
         animation: bounce 2s infinite;
     }
 
@@ -146,7 +146,7 @@
 
     /* Buttons */
     .btn-primary {
-        background: linear-gradient(135deg, #008751, #006b40);
+        background: linear-gradient(135deg, #F0C43B, #F0C43B);
         border: none;
         font-weight: 700;
         font-size: 0.875rem;
@@ -160,20 +160,20 @@
     }
 
     .btn-link {
-        color: #008751 !important;
+        color: #F0C43B !important;
         font-weight: 600;
         font-size: 0.8125rem;
     }
 
     .btn-link:hover {
-        color: #006b40 !important;
+        color: #F0C43B !important;
     }
 
     /* Alerts */
     .alert-success {
         background: linear-gradient(135deg, #d4edda, #c3e6cb);
-        border-left: 3px solid #28a745;
-        color: #155724;
+        border-left: 3px solid #F0C43B;
+        color: #F0C43B;
         font-size: 0.8125rem;
         padding: 0.625rem 0.875rem;
     }

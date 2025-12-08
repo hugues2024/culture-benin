@@ -16,7 +16,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             padding: 20px 20px;
         }
@@ -46,7 +46,7 @@
         }
 
         .btn-primary-custom {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             border: none;
             padding: 10px 20px;
             border-radius: 8px;
@@ -56,7 +56,7 @@
         }
         .btn-primary-custom:hover {
             transform: scale(1.05);
-            background: #1e40af;
+            background: #F0C43B;
         }
 
         .btn-cancel-custom {

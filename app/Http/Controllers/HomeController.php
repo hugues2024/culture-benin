@@ -77,7 +77,7 @@ class HomeController extends Controller
 
     public function ShowContents()
     {
-        // ✅ APRÈS (pagination complète)
+        //APRÈS (pagination complète)
         $contents = Contenu::with(['region', 'langue', 'type_contenu'])
             ->where('statut', 'actif')
             ->latest()

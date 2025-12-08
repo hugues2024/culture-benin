@@ -50,7 +50,7 @@
                         @error('photo')<div class="text-danger small mt-1"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>@enderror
                     </div>
 
-                    <!-- Nom / Prénom -->
+                    <!-- Nom / Prénom -->  
                     <div class="row g-2 mb-3">
                         <div class="col-md-6">
                             <label for="nom" class="form-label fw-semibold small"><i class="bi bi-person"></i> Nom <span class="text-danger">*</span></label>
@@ -198,7 +198,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #008751, #006b40);
+            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
             padding: 1. 25rem 1rem;
         }
 
@@ -222,12 +222,12 @@
             height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            border: 2px dashed #008751;
+            border: 2px dashed #ceb772ff;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2. 5rem;
-            color: #008751;
+            color: #ceb772ff;
         }
 
         .photo-preview-img {
@@ -235,7 +235,7 @@
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #008751;
+            border: 2px solid #ceb772ff;
             position: absolute;
             top: 0;
             left: 0;
@@ -243,7 +243,7 @@
 
         /* Form Controls - Plus compacts */
         .form-label {
-            color: #1b5e20;
+            color: #ceb772ff;
             font-size: 0.8125rem;
             margin-bottom: 0.25rem;
             font-weight: 600;
@@ -264,7 +264,7 @@
         }
 
         .form-control:focus, . form-select:focus {
-            border-color: #008751;
+            border-color: #ceb772ff;
             box-shadow: 0 0 0 0.2rem rgba(0,135,81,0.15);
             background: white;
         }
@@ -289,28 +289,28 @@
         }
 
         .form-check-input {
-            border-color: #008751;
+            border-color: #ceb772ff;
         }
 
         . form-check-input:checked {
-            background-color: #008751;
-            border-color: #008751;
+            background-color: #ceb772ff;
+            border-color: #ceb772ff;
         }
 
         .form-check-input:checked ~ .form-check-label {
-            color: #006b40;
+            color: #ceb772ff;
             font-weight: 700;
         }
 
         . form-check-inline:has(. form-check-input:checked) {
-            border-color: #008751;
+            border-color: #ceb772ff;
             background: linear-gradient(135deg, rgba(0,135,81,0.1), rgba(0,135,81,0.05));
             box-shadow: 0 2px 6px rgba(0,135,81,0.12);
         }
 
         /* Buttons - Plus compacts */
         . btn-primary {
-            background: linear-gradient(135deg, #008751, #006b40);
+            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
             border: none;
             font-weight: 700;
             font-size: 0.875rem;
@@ -327,7 +327,7 @@
         .btn-primary:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0,135,81,0.35);
-            background: linear-gradient(135deg, #006b40, #004d2e);
+            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
         }
 
         .btn-outline-primary, .btn-outline-danger {
@@ -337,16 +337,16 @@
         }
 
         .btn-outline-secondary {
-            border-color: #008751;
-            color: #008751;
+            border-color: #ceb772ff;
+            color: #ceb772ff;
             font-weight: 600;
             background: rgba(0,135,81,0.05);
         }
 
         .btn-outline-secondary:hover {
-            background: #008751;
+            background: #ceb772ff;
             color: white;
-            border-color: #008751;
+            border-color: #ceb772ff;
         }
 
         /* Alerts - Plus compacts */
@@ -385,19 +385,19 @@
 
         .password-strength .progress-bar[data-strength="strong"] {
             width: 100%;
-            background: linear-gradient(90deg, #66bb6a, #43a047);
+            background: linear-gradient(90deg, #ceb772ff, #ceb772ff);
         }
 
         /* Form Text - Plus compact */
         .form-text {
-            color: #2e7d32;
+            color: #ceb772ff;
             font-weight: 500;
             font-size: 0.7rem;
             margin-top: 0.125rem;
         }
 
         . text-muted {
-            color: #1b5e20 !important;
+            color: #ceb772ff !important;
             font-size: 0.75rem;
         }
 
@@ -410,7 +410,7 @@
         . input-group-sm . btn-outline-secondary {
             border: 1.5px solid #a5d6a7;
             border-left: 1.5px solid #a5d6a7 !important;
-            color: #008751 !important;
+            color: #ceb772ff !important;
             background: #ffffff !important;
             font-weight: 700;
             padding: 0.25rem 0.5rem;
@@ -418,13 +418,13 @@
         }
 
         .input-group . btn-outline-secondary:hover {
-            background: #008751 !important;
+            background: #ceb772ff !important;
             color: white !important;
-            border-color: #008751 !important;
+            border-color: #ceb772ff !important;
         }
 
         . input-group . btn-outline-secondary i {
-            color: #008751 !important;
+            color: #ceb772ff !important;
             font-size: 1rem ! important;
         }
 
@@ -434,30 +434,30 @@
 
         /* Checkbox - Plus compact */
         .form-check-input {
-            border: 1.5px solid #008751;
+            border: 1.5px solid #ceb772ff;
             width: 1rem;
             height: 1rem;
         }
 
         .form-check-input:checked {
-            background-color: #008751;
-            border-color: #008751;
+            background-color: #ceb772ff;
+            border-color: #ceb772ff;
         }
 
         /* Links */
         a. text-decoration-none {
-            color: #008751;
+            color: #ceb772ff;
             font-weight: 600;
         }
 
         a. text-decoration-none:hover {
-            color: #006b40;
+            color: #ceb772ff;
             text-decoration: underline ! important;
         }
 
         /* Security Notice */
         .text-success {
-            color: #2e7d32 !important;
+            color: #ceb772ff !important;
         }
 
         /* Responsive */

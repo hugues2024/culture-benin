@@ -18,7 +18,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #224abe);
             color: white;
             padding: 18px 20px;
         }
@@ -82,7 +82,7 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #4e73df !important;
+            background: #F0C43B !important;
             color: white !important;
         }
 
@@ -94,12 +94,12 @@
             justify-content: center;
         }
         .btn-info {
-            background: #36b9cc; /* bleu clair */
+            background: #F0C43B; /* bleu clair */
             color: white;
         }
 
         .btn-info:hover {
-            background: #2c9faf;
+            background: #F0C43B;
             transform: scale(1.1);
         }
 

@@ -6,8 +6,8 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card shadow-lg" style="border: none; border-radius: 15px; overflow: hidden;">
-                    <div class="card-header text-white text-center py-4" style="background: #008751; border: none;">
-                        <h4 class="mb-1 fw-bold">🔐 Code de Vérification</h4>
+                    <div class="card-header text-white text-center py-4" style="background: #F0C43B; border: none;">
+                        <h4 class="mb-1 fw-bold">Code de Vérification</h4>
                         <p class="mb-0 small">Authentification à Deux Facteurs</p>
                     </div>
 
@@ -19,7 +19,7 @@
                         </div>
 
                         <p class="text-center text-muted mb-4">
-                            Ouvrez votre application <strong style="color: #008751;">Google Authenticator</strong> et entrez le code à 6 chiffres
+                            Ouvrez votre application <strong style="color: #F0C43B;">Google Authenticator</strong> et entrez le code à 6 chiffres
                         </p>
 
                         <form method="POST" action="{{ route('2fa.verify.login') }}" id="challenge2faForm">
@@ -29,25 +29,25 @@
                                        name="code"
                                        id="code2faChallenge"
                                        class="form-control form-control-lg text-center"
-                                       style="border: 3px solid #008751; font-size: 32px; letter-spacing: 12px; font-weight: bold; color: #008751; background: #e8f5e9;"
+                                       style="border: 3px solid #F0C43B; font-size: 32px; letter-spacing: 12px; font-weight: bold; color: #F0C43B; background: #e8f5e9;"
                                        placeholder="000000"
                                        maxlength="6"
                                        pattern="[0-9]{6}"
                                        required
                                        autofocus>
                                 <small class="d-block text-center text-muted mt-2">
-                                    ⏱️ Le code change toutes les 30 secondes
+                                    Le code change toutes les 30 secondes
                                 </small>
                             </div>
 
                             @if($errors->any())
                                 <div class="alert alert-danger text-center">
-                                    <strong>❌</strong> {{ $errors->first() }}
+                                    <strong></strong> {{ $errors->first() }}
                                 </div>
                             @endif
 
-                            <button type="submit" class="btn btn-lg w-100 text-white fw-bold" style="background: #008751; border: none;">
-                                ✅ Vérifier le Code
+                            <button type="submit" class="btn btn-lg w-100 text-white fw-bold" style="background: #F0C43B; border: none;">
+                                Vérifier le Code
                             </button>
                         </form>
 
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="card-footer text-center py-3" style="background: #f8f9fa; border: none;">
-                        <small style="color: #008751;">🇧🇯 Culture Béninoise - Connexion Sécurisée</small>
+                        <small style="color: #F0C43B;">Culture Béninoise - Connexion Sécurisée</small>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
             icon: 'error',
             title: 'Code invalide',
             text: '{{ $errors->first() }}',
-            confirmButtonColor: '#008751'
+            confirmButtonColor: '#F0C43B'
         });
     @endif
 </script>

@@ -11,7 +11,7 @@
 
             <li class="nav-item d-none d-md-block">
                 <a href="{{ route('home') }}" class="nav-link text-dark fw-semibold">
-                    <i class="bi bi-house-door me-2 text-primary"></i> Tableau de Bord Culturel
+                    <i class="bi bi-house-door me-2 text-primary"></i> Tableau de Bord Bénin-culture
                 </a>
             </li>
         </ul>
@@ -134,13 +134,28 @@ $initials = implode(
 </nav>
 
 <style>
+    /* Variables de couleurs pour le header */
+    :root {
+        --header-bg-white: #ffffff;
+        --header-bg-light: #f8f9fa;
+        --header-text-black: #000000;
+        --header-link-gold: #f7c948;
+        --header-link-gold-dark: #d4a72d;
+        --header-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        --header-border-light: #e9ecef;
+        --header-hover-light: #f8f9fa;
+    }
+
     .app-header {
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        background: linear-gradient(135deg, var(--header-bg-white) 0%, var(--header-bg-light) 100%);
         backdrop-filter: blur(10px);
         transition: all 0.3s ease;
+        box-shadow: var(--header-shadow); /* Shadow en bas pour séparer */
+        border-bottom: 1px solid var(--header-border-light);
     }
 
     .navbar-nav .nav-link {
+        color: var(--header-text-black) !important;
         transition: all 0.3s ease;
         border-radius: 8px;
         padding: 0.5rem 0.75rem;
@@ -148,8 +163,8 @@ $initials = implode(
     }
 
     .navbar-nav .nav-link:hover {
-        background-color: #e3f2fd;
-        color: #1976d2 !important;
+        background-color: var(--header-hover-light);
+        color: var(--header-link-gold) !important;
         transform: translateY(-1px);
     }
 
@@ -158,8 +173,9 @@ $initials = implode(
     }
 
     .dropdown-menu {
-        border: 1px solid #e9ecef;
+        border: 1px solid var(--header-border-light);
         animation: dropdownFadeIn 0.2s ease;
+        background-color: var(--header-bg-white);
     }
 
     @keyframes dropdownFadeIn {
@@ -167,7 +183,6 @@ $initials = implode(
             opacity: 0;
             transform: translateY(-10px);
         }
-
         to {
             opacity: 1;
             transform: translateY(0);
@@ -177,9 +192,12 @@ $initials = implode(
     .dropdown-header {
         border-radius: 8px 8px 0 0 !important;
         padding: 1rem;
+        color: var(--header-text-black);
+        background-color: var(--header-bg-light);
     }
 
     .dropdown-item {
+        color: var(--header-text-black);
         transition: all 0.2s ease;
         border-radius: 6px;
         margin: 2px 8px;
@@ -187,31 +205,34 @@ $initials = implode(
     }
 
     .dropdown-item:hover {
-        background-color: #f8f9fa;
+        background-color: var(--header-hover-light);
+        color: var(--header-link-gold) !important;
         transform: translateX(5px);
     }
 
     .user-image {
-        border: 2px solid #e9ecef;
+        border: 2px solid var(--header-border-light);
         transition: all 0.3s ease;
     }
 
     .user-menu:hover .user-image {
-        border-color: #1976d2;
+        border-color: var(--header-link-gold);
         transform: scale(1.05);
     }
 
     .badge {
         font-size: 0.6rem;
         padding: 0.25em 0.4em;
+        background-color: var(--header-link-gold);
+        color: var(--header-text-black);
     }
 
     .bg-gradient-primary {
-        background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%) !important;
+        background: linear-gradient(135deg, var(--header-link-gold) 0%, var(--header-link-gold-dark) 100%) !important;
     }
 
     .bg-gradient-warning {
-        background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%) !important;
+        background: linear-gradient(135deg, var(--header-link-gold) 0%, var(--header-link-gold-dark) 100%) !important;
     }
 
     .navbar-search-wrapper {
@@ -223,7 +244,6 @@ $initials = implode(
             opacity: 0;
             transform: translateX(20px);
         }
-
         to {
             opacity: 1;
             transform: translateX(0);
@@ -237,29 +257,37 @@ $initials = implode(
     }
 
     .user-header {
-        background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%) !important;
+        background: linear-gradient(135deg, var(--header-link-gold) 0%, var(--header-link-gold-dark) 100%) !important;
+        color: var(--header-text-black) !important;
     }
 
     .btn-outline-primary {
-        border-color: #1976d2;
-        color: #1976d2;
+        border-color: var(--header-link-gold);
+        color: var(--header-link-gold);
     }
 
     .btn-outline-primary:hover {
-        background-color: #1976d2;
-        border-color: #1976d2;
+        background-color: var(--header-link-gold);
+        border-color: var(--header-link-gold);
+        color: var(--header-text-black) !important;
     }
 
     /* Style pour le bouton de déconnexion dans le formulaire */
     .user-footer form button {
         transition: all 0.3s ease;
+        color: var(--header-text-black);
+        border-color: var(--header-link-gold);
     }
 
     .user-footer form button:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(25, 118, 210, 0.3);
+        box-shadow: 0 4px 8px var(--header-link-gold-shadow);
+        background-color: var(--header-link-gold);
+        color: var(--header-text-black);
     }
 </style>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

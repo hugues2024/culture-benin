@@ -124,7 +124,7 @@
                                                      alt="Photo actuelle"
                                                      id="photo-preview"
                                                      class="rounded-circle"
-                                                     style="width: 80px; height: 80px; object-fit: cover; border: 3px solid #1976d2;">
+                                                     style="width: 80px; height: 80px; object-fit: cover; border: 3px solid #F0C43B;">
                                             @else
                                                 <div id="photo-preview" class="bg-secondary text-white d-flex align-items-center justify-content-center rounded-circle"
                                                      style="width: 80px; height: 80px; font-size: 24px; border: 3px solid #6c757d;">
@@ -433,17 +433,17 @@
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #1976d2;
+            border-color: #F0C43B;
             box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
         }
 
         . input-group:focus-within .input-group-text {
-            border-color: #1976d2;
+            border-color: #F0C43B;
             background-color: #e3f2fd ! important;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            background: linear-gradient(135deg, #F0C43B 0%, #F0C43B 100%);
             border: none;
             transition: all 0.3s ease;
         }
@@ -510,7 +510,7 @@
                         const img = document.createElement('img');
                         img.id = 'photo-preview';
                         img.className = 'rounded-circle';
-                        img.style.cssText = 'width: 80px; height: 80px; object-fit: cover; border: 3px solid #1976d2;';
+                        img.style.cssText = 'width: 80px; height: 80px; object-fit: cover; border: 3px solid #F0C43B;';
                         img.src = e.target.result;
                         preview.parentNode.replaceChild(img, preview);
                     } else {

@@ -16,7 +16,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             padding: 18px 20px;
         }
@@ -129,7 +129,7 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #4e73df !important;
+            background: #F0C43B !important;
             color: white !important;
         }
 

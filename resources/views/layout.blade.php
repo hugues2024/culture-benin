@@ -3,23 +3,23 @@
 <!--begin::Head-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title>Bénin-culture | Dashboard</title>
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#F0C43B" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
     <!--end::Accessibility Meta Tags-->
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="AdminLTE v4 | Dashboard" />
+    <meta name="title" content="Bénin-culture | Dashboard" />
     <meta name="author" content="ColorlibHQ" />
     <meta
         name="description"
-        content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS. Fully accessible with WCAG 2.1 AA compliance."
+        content="Bénin-culture"
     />
     <meta
         name="keywords"
-        content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel, WCAG compliant"
+        content="bénin, culture, contenus culturels, langues, commentaires, utilisateurs, dashboard"
     />
     <!--end::Primary Meta Tags-->
     <!--begin::Accessibility Features-->
@@ -114,8 +114,8 @@
                     <div class="col-sm-6"><h3 class="mb-0">@yield('title')</h3></div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Tableau de bord</li>
                         </ol>
                     </div>
                 </div>
@@ -236,7 +236,7 @@
         legend: {
             show: false,
         },
-        colors: ['#0d6efd', '#20c997'],
+        colors: ['#F0C43B', '#F0C43B'],
         dataLabels: {
             enabled: false,
         },

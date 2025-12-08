@@ -1,8 +1,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description"
-    content="Plateforme participative pour préserver et promouvoir la culture et les langues du Bénin">
-<title>@yield('title', 'Culture Bénin - Plateforme de promotion de la culture et des langues')</title>
+    content="Bénin-culture est une plateforme dédiée à la promotion et à la valorisation de la richesse culturelle du Bénin à travers des contenus variés dans différentes langues.">
+<title>@yield('title', 'Bénin-culture')</title>
 
 <!-- Preconnect for performance -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -17,11 +17,11 @@
     ======================================== */
     :root {
         /* Colors - Bénin Theme */
-        --benin-green: #008751;
-        --benin-green-dark: #006b40;
-        --benin-green-light: #00a862;
-        --benin-yellow: #FCD116;
-        --benin-yellow-dark: #e6b800;
+        --benin-green: #ceb772ff;
+        --benin-green-dark: #ceb772ff;
+        --benin-green-light: #ceb772ff;
+        --benin-yellow: #fff;
+        --benin-yellow-dark: #fff;
         --benin-red: #E8112D;
 
         /* Neutral Colors */

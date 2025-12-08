@@ -18,16 +18,16 @@ class RegionSeeder extends Seeder
         'nom_region' =>'NIKKI',
         'description_region'=>"c'est une region",
         'population'=>100000,
-        'superficie'=>23340,9,
-        'localisation'=>"Nord Atacora"
+        'superficie'=>23340,
+        'localisation'=>"Nord Atacora",
       ]);
 
         Region::create([
             'nom_region' => 'Ouidah',
             'description_region' => "c'est une region",
             'population' => 100000,
-            'superficie' => 23340,9,
-            'localisation' => "Atlantique"
+            'superficie' => 23340,
+            'localisation' => "Atlantique",
 
         ]);
 
@@ -36,18 +36,14 @@ class RegionSeeder extends Seeder
             'description_region' => "c'est une region",
             'population' => 100000,
             'superficie' => 23340,
-            9,
-            'localisation' => "Atacora"
-
+            'localisation' => "Atacora",
         ]);
         Region::create([
             'nom_region' => 'TchaTou',
             'description_region' => "c'est une region",
             'population' => 100000,
             'superficie' => 23340,
-            9,
-            'localisation' => "Atacora"
-
+            'localisation' => "Atacora",
         ]);
 
 

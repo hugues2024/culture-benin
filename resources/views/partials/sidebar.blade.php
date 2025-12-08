@@ -12,7 +12,7 @@
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-bold text-primary fs-6">CULTURE BENIN</span>
+            <span class="brand-text fw-bold text-primary fs-6">BÉNIN-CULTURE</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
@@ -325,13 +325,13 @@
 
 .sidebar-menu .nav-link:hover {
     background-color: #e3f2fd !important;
-    color: #1976d2 !important;
+    color: #F0C43B !important;
     transform: translateX(5px);
 }
 
 .sidebar-menu .nav-link.active {
-    background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
-    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    background: linear-gradient(135deg, #F0C43B 0%, #F0C43B 100%);
+    box-shadow: 0 4px 12px #F0C43B;
     border: none;
 }
 
@@ -349,8 +349,8 @@
 }
 
 .nav-treeview .nav-link.active {
-    background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
-    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.2);
+    background: linear-gradient(135deg, #F0C43B 0%, #F0C43B 100%);
+    box-shadow: 0 2px 8px #F0C43B;
 }
 
 .nav-icon {

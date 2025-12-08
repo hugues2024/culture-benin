@@ -147,7 +147,7 @@
     }
 
     .custom-card-header {
-        background: linear-gradient(135deg, #2563eb, #1e40af);
+        background: linear-gradient(135deg, #F0C43B, #F0C43B);
         color: white;
         padding: 20px;
     }
@@ -186,7 +186,7 @@
 
     .user-avatar i {
         font-size: 5rem;
-        color: #2563eb;
+        color: #F0C43B;
     }
 
     .user-name {
@@ -200,7 +200,7 @@
         display: inline-block;
         padding: 4px 12px;
         background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-        color: #1e40af;
+        color: #F0C43B;
         border-radius: 20px;
         font-size: 0.75rem;
         font-weight: 600;
@@ -247,14 +247,14 @@
         display: block;
         font-size: 1.25rem;
         font-weight: 700;
-        color: #1e40af;
+        color: #F0C43B;
     }
 
     /* ========================================
        SECTION TITLE
     ======================================== */
     .section-title {
-        color: #1e40af;
+        color: #F0C43B;
         font-weight: 700;
         font-size: 1rem;
         margin-bottom: 1rem;
@@ -271,7 +271,7 @@
         padding: 20px;
         background: linear-gradient(135deg, #f8f9fa, #ffffff);
         border-radius: 10px;
-        border-left: 4px solid #2563eb;
+        border-left: 4px solid #F0C43B;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
@@ -305,7 +305,7 @@
         left: 0;
         width: 4px;
         height: 100%;
-        background: linear-gradient(180deg, #2563eb, #1e40af);
+        background: linear-gradient(180deg, #F0C43B, #F0C43B);
         transform: scaleY(0);
         transition: transform 0.3s ease;
         transform-origin: top;
@@ -316,7 +316,7 @@
     }
 
     .info-item-modern:hover {
-        border-color: #2563eb;
+        border-color: #F0C43B;
         background: linear-gradient(135deg, #ffffff, #dbeafe);
         box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
         transform: translateY(-4px) translateX(4px);
@@ -327,7 +327,7 @@
         width: 50px;
         height: 50px;
         border-radius: 12px;
-        background: linear-gradient(135deg, #2563eb, #1e40af);
+        background: linear-gradient(135deg, #F0C43B, #F0C43B);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -365,7 +365,7 @@
         content: '';
         width: 20px;
         height: 2px;
-        background: linear-gradient(90deg, #2563eb, transparent);
+        background: linear-gradient(90deg, #F0C43B, transparent);
         display: inline-block;
     }
 
@@ -378,7 +378,7 @@
     }
 
     . info-item-modern:hover . info-value-large {
-        color: #1e40af;
+        color: #F0C43B;
     }
 
     /* ========================================

@@ -16,7 +16,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             padding: 18px 20px;
         }
@@ -73,11 +73,11 @@
         }
 
         .btn-info {
-            background: #36b9cc;
+            background: #F0C43B;
         }
 
         .btn-info:hover {
-            background: #2c9faf;
+            background: #F0C43B;
             transform: scale(1.1);
         }
 
@@ -129,7 +129,7 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #4e73df !important;
+            background: #F0C43B !important;
             color: white !important;
         }
 
@@ -173,7 +173,7 @@
             align-items: center;
             gap: 6px;
             background: #e8f4fd;
-            color: #1976d2;
+            color: #F0C43B;
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 0.85rem;

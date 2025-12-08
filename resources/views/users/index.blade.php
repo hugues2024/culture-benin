@@ -143,7 +143,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             padding: 18px 25px;
             color: white;
         }
@@ -155,7 +155,7 @@
         }
 
         .custom-table-header {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
         }
 
@@ -186,7 +186,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             border: none;
             font-weight: 600;
             transition: 0.2s;
@@ -194,7 +194,7 @@
 
         .btn-primary:hover {
             transform: scale(1.03);
-            background: linear-gradient(135deg, #2980b9, #2573a7);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
         }
 
         /* AUGMENTATION DE LA TAILLE DE POLICE POUR LES BADGES */
@@ -208,13 +208,13 @@
 
         /* Styles spécifiques pour chaque type de badge */
         .custom-badge-active {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             font-size: 0.85rem !important;
         }
 
         .custom-badge-inactive {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             font-size: 0.85rem !important;
         }
@@ -309,13 +309,13 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: linear-gradient(135deg, #3498db, #2980b9) !important;
+            background: linear-gradient(135deg, #F0C43B, #F0C43B) !important;
             border: none !important;
             color: white !important;
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            background: #3498db !important;
+            background: #F0C43B !important;
             color: white !important;
             border: none !important;
         }

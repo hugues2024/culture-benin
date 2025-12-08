@@ -192,7 +192,7 @@
 
         /* HEADER BLEU UNIFORME */
         .custom-card-header {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             padding: 20px;
         }
 
@@ -331,7 +331,7 @@
         }
 
         . badge-image {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
         }
 
@@ -352,7 +352,7 @@
 
         /* Buttons */
         .btn-submit {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             border: none;
             font-weight: 600;
             transition: 0.2s;
@@ -361,7 +361,7 @@
 
         .btn-submit:hover {
             transform: scale(1.05);
-            background: linear-gradient(135deg, #224abe, #4e73df);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
         }
 
         . btn-secondary {
@@ -381,8 +381,8 @@
         /* Alert Info */
         .alert-info {
             background-color: #e8f4fd;
-            border-color: #4e73df;
-            color: #224abe;
+            border-color: #F0C43B;
+            color: #F0C43B;
             border-radius: 8px;
         }
     </style>

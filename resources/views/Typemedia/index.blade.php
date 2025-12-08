@@ -16,7 +16,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             padding: 18px 20px;
         }
@@ -92,7 +92,7 @@
 
         /* Bouton Ajouter moderne */
         .btn-add-modern {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             border: none;
             border-radius: 8px;
             padding: 10px 18px;
@@ -104,7 +104,7 @@
         .btn-add-modern:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(78, 115, 223, 0.4);
-            background: linear-gradient(135deg, #224abe, #4e73df);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
         }
 
         /* Datatable - Alignement horizontal */
@@ -147,7 +147,7 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #4e73df !important;
+            background: #F0C43B !important;
             color: white !important;
         }
 

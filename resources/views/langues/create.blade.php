@@ -16,7 +16,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             padding: 20px 20px;
         }
@@ -41,12 +41,12 @@
         }
 
         .form-control:focus {
-            border-color: #4e73df !important;
+            border-color: #F0C43B !important;
             box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25);
         }
 
         .btn-primary-custom {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             border: none;
             padding: 8px 18px;
             border-radius: 8px;
@@ -56,7 +56,7 @@
         }
         .btn-primary-custom:hover {
             transform: scale(1.05);
-            background: linear-gradient(135deg, #224abe, #1a3a8f);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
         }
 
         .btn-cancel-custom {

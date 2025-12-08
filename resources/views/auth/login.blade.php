@@ -138,7 +138,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #008751, #006b40);
+            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
             padding: 1.25rem 1rem;
         }
 
@@ -164,7 +164,7 @@
 
         /* Form Controls */
         .form-label {
-            color: #1b5e20;
+            color: #ceb772ff;
             font-size: 0.9rem;
             margin-bottom: 0.375rem;
             font-weight: 600;
@@ -173,7 +173,7 @@
         .form-control,
         . form-select {
             border-radius: 8px;
-            border: 2px solid #a5d6a7;
+            border: 2px solid #ceb772ff;
             padding: 0.625rem 0.875rem;
             transition: all 0.2s;
             font-size: 0.9375rem;
@@ -182,7 +182,7 @@
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #008751;
+            border-color: #ceb772ff;
             box-shadow: 0 0 0 0.25rem rgba(0, 135, 81, 0.2);
             background: white;
         }
@@ -200,36 +200,36 @@
 
         /* Checkbox */
         .form-check-input {
-            border: 2px solid #008751;
+            border: 2px solid #ceb772ffceb772ffceb772ffceb772ffceb772ffceb772ff;
         }
 
         .form-check-input:checked {
-            background-color: #008751;
-            border-color: #008751;
+            background-color: #ceb772ffceb772ffceb772ffceb772ffceb772ffceb772ff;
+            border-color: #ceb772ffceb772ffceb772ffceb772ffceb772ffceb772ff;
         }
 
         /* Buttons */
         .btn-green {
-            background: linear-gradient(135deg, #008751, #006b40);
+            background: linear-gradient(135deg, #ceb772ffceb772ffceb772ffceb772ffceb772ff, #ceb772ffceb772ffceb772ffceb772ffceb772ff);
             border: none;
             font-weight: 700;
             font-size: 0.9375rem;
             padding: 0.75rem 1.75rem;
             transition: all 0.2s;
-            box-shadow: 0 3px 10px rgba(0, 135, 81, 0.3);
+            box-shadow: 0 3px 10px #ceb772ff
         }
 
         .btn-green:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 135, 81, 0.4);
-            background: linear-gradient(135deg, #006b40, #004d2e);
+            box-shadow: 0 5px 15px ceb772ff;
+            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
         }
 
         /* Input Group - Icône visible */
         .input-group . btn-outline-secondary {
             border: 2px solid #a5d6a7;
             border-left: 2px solid #a5d6a7 !important;
-            color: #008751 !important;
+            color: #ceb772ffceb772ffceb772ffceb772ff !important;
             background: #ffffff ! important;
             font-weight: 700;
             padding: 0.625rem 0.875rem;
@@ -237,13 +237,13 @@
         }
 
         . input-group .btn-outline-secondary:hover {
-            background: #008751 !important;
+            background: #ceb772ffceb772ffceb772ff !important;
             color: white !important;
-            border-color: #008751 !important;
+            border-color: #ceb772ffceb772ffceb772ff !important;
         }
 
         . input-group .btn-outline-secondary i {
-            color: #008751 !important;
+            color: #ceb772ffceb772ff !important;
             font-size: 1.25rem !important;
         }
 
@@ -254,7 +254,7 @@
         /* Alerts */
         .alert-success {
             background: linear-gradient(135deg, #d4edda, #c3e6cb);
-            border-left: 4px solid #28a745;
+            border-left: 4px solid #ceb772ff;
             color: #155724;
         }
 
@@ -266,12 +266,12 @@
 
         /* Links */
         a. text-decoration-none {
-            color: #008751;
+            color: #ceb772ff;
             font-weight: 600;
         }
 
         a.text-decoration-none:hover {
-            color: #006b40;
+            color: #ceb772ff;
             text-decoration: underline ! important;
         }
 
@@ -282,7 +282,7 @@
 
         /* Security Notice */
         .text-success {
-            color: #2e7d32 !important;
+            color: #ceb772ff !important;
         }
 
         /* Responsive */

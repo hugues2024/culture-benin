@@ -224,7 +224,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             padding: 20px 20px;
         }
@@ -354,7 +354,7 @@
 
         /* Section Title */
         .section-title {
-            color: #1e40af;
+            color: #F0C43B;
             font-weight: 700;
             font-size: 1rem;
             margin-bottom: 1rem;
@@ -378,7 +378,7 @@
         }
 
         .info-item-modern:hover {
-            border-color: #2563eb;
+            border-color: #F0C43B;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
             transform: translateY(-2px);
         }
@@ -392,7 +392,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #2563eb;
+            color: #F0C43B;
             font-size: 1.2rem;
         }
 

@@ -9,15 +9,15 @@
     <style>
         /* ----- Card modern ----- */
         .custom-card { border-radius: 12px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.06); overflow: hidden; }
-        .custom-card-header { background: linear-gradient(135deg, #4e73df, #224abe); color: white; padding: 20px 20px; }
+        .custom-card-header { background: linear-gradient(135deg, #F0C43B, #F0C43B); color: white; padding: 20px 20px; }
         .custom-card-header .card-title { font-size: 19px; font-weight: 600; margin: 0; }
         .form-label { font-weight: 600; color: #4e4e4e; margin-bottom: 6px; }
         .form-control { border-radius: 8px !important; border: 1px solid #d1d3e2; padding: 10px 12px; transition: 0.25s ease-in-out; }
-        .form-control:focus { border-color: #4e73df !important; box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25); }
+        .form-control:focus { border-color: #F0C43B !important; box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25); }
         .is-invalid { border-color: #e74a3b !important; }
         .invalid-feedback { color: #e74a3b; font-size: 0.875rem; margin-top: 5px; }
-        .btn-primary-custom { background: linear-gradient(135deg, #4e73df, #224abe); border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; transition: 0.2s ease-in-out; color: white; }
-        .btn-primary-custom:hover { transform: scale(1.05); background: linear-gradient(135deg, #224abe, #1a3a8f); }
+        .btn-primary-custom { background: linear-gradient(135deg, #F0C43B, #F0C43B); border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; transition: 0.2s ease-in-out; color: white; }
+        .btn-primary-custom:hover { transform: scale(1.05); background: linear-gradient(135deg, #F0C43B, #F0C43B); }
         .btn-cancel-custom { background: #6c757d; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; color: white; transition: 0.2s ease-in-out; }
         .btn-cancel-custom:hover { transform: scale(1.05); background: #5a6268; color: white; }
         .custom-footer { padding: 15px 20px; background: #f8f9fc; border-top: 1px solid #e3e6f0; }
@@ -101,7 +101,7 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: '#4e73df',
+                background: '#F0C43B',
                 color: '#fff'
             });
             @endif

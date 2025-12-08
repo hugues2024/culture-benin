@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Dashboard Culture Bénin
+    Bénin-culture | Tableau de bord
 @endsection
 
 @section('content')

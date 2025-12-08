@@ -22,12 +22,12 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="nom" class="form-label fw-semibold"><i class="bi bi-person"></i> Nom</label>
-                            <input type="text" name="nom" id="nom" class="form-control @error('nom') is-invalid @enderror" placeholder="Ex: Coco" value="{{ old('nom') }}">
+                            <input type="text" name="nom" id="nom" class="form-control @error('nom') is-invalid @enderror" placeholder="Ex: HOUNKPATIN" value="{{ old('nom') }}">
                             @error('nom')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                         <div class="col-md-6">
                             <label for="prenom" class="form-label fw-semibold"><i class="bi bi-person"></i> Prénom</label>
-                            <input type="text" name="prenom" id="prenom" class="form-control @error('prenom') is-invalid @enderror" placeholder="Ex: Alexandro" value="{{ old('prenom') }}">
+                            <input type="text" name="prenom" id="prenom" class="form-control @error('prenom') is-invalid @enderror" placeholder="Ex: Hugues" value="{{ old('prenom') }}">
                             @error('prenom')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                     </div>
@@ -130,7 +130,7 @@
             width: 100%;
         }
         .custom-card-header { 
-            background: linear-gradient(135deg, #3498db, #2980b9); 
+            background: linear-gradient(135deg, #F0C43B, #F0C43B); 
             padding: 18px 25px; 
         }
         .custom-card-header h4 { 
@@ -139,7 +139,7 @@
             font-size: 1.3rem; 
         }
         .form-label { 
-            color: #2c3e50; 
+            color: #F0C43B; 
             font-size: 0.92rem; 
             margin-bottom: 6px;
         }
@@ -152,17 +152,17 @@
             width: 100%;
         }
         .form-control:focus, .form-select:focus { 
-            border-color: #3498db; 
+            border-color: #F0C43B; 
             box-shadow: 0 0 0 0.2rem rgba(52,152,219,0.2); 
         }
         .is-invalid { 
-            border-color: #e74c3c !important; 
+            border-color: #F0C43B !important; 
         }
         .invalid-feedback { 
             font-size: 0.8rem; 
         }
         .btn-primary { 
-            background: linear-gradient(135deg, #3498db, #2980b9); 
+            background: linear-gradient(135deg, #F0C43B, #F0C43B); 
             border: none; 
             font-weight: 600; 
             font-size: 0.95rem; 
@@ -171,7 +171,7 @@
         }
         .btn-primary:hover { 
             transform: scale(1.03); 
-            background: linear-gradient(135deg, #2980b9, #2573a7);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
         }
         .card-body {
             padding: 30px !important;

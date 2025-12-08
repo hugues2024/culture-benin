@@ -22,7 +22,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #4e73df, #224abe);
+            background: linear-gradient(135deg, #F0C43B, #F0C43B);
             color: white;
             padding: 22px 25px;
             font-size: 20px;
@@ -57,7 +57,7 @@
         }
 
         .lang-info i {
-            color: #4e73df;
+            color: #F0C43B;
         }
 
         .lang-description {
@@ -66,14 +66,14 @@
             line-height: 1.6;
             padding: 15px;
             background-color: #f1f3f6;
-            border-left: 4px solid #4e73df;
+            border-left: 4px solid #F0C43B;
             border-radius: 6px;
             margin-bottom: 20px;
         }
 
         .btn-back-custom {
             display: inline-block;
-            background: #4e73df;
+            background: #F0C43B;
             color: white;
             padding: 10px 22px;
             border-radius: 8px;
