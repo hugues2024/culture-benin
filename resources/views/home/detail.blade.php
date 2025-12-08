@@ -273,7 +273,7 @@
                                 <!-- Comment 1 -->
                                 <div class="comment-item">
                                     <div class="comment-item__avatar">
-                                        <img src="https://ui-avatars.com/api/? name=Marie+Kossou&background=008751&color=fff" alt="Marie Kossou">
+                                        <img src="https://ui-avatars.com/api/? name=Marie+Kossou&background=F0C43B&color=fff" alt="Marie Kossou">
                                     </div>
                                     <div class="comment-item__content">
                                         <div class="comment-item__header">
@@ -387,8 +387,8 @@
            VARIABLES
         ======================================== */
         :root {
-            --benin-green: #008751;
-            --benin-green-dark: #006b40;
+            --benin-green: #F0C43B;
+            --benin-green-dark: #F0C43B;
             --benin-yellow: #FCD116;
             --benin-yellow-dark: #e6b800;
 
