@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\TypeContenu;
 
 class TypeContenusSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class TypeContenusSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            TypeContenus::updateOrCreate(['id' => $type['id']], $type);
+            TypeContenu::updateOrCreate(['id' => $type['id']], $type);
         }
     }
 }

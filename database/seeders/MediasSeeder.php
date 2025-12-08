@@ -10,7 +10,7 @@ class MediasSeeder extends Seeder
 {
     public function run(): void
     {
-        Medias::create([
+        Media::create([
             'chemin' => 'medias/pokou.jpg',
             'description' => 'Illustration du conte Pokou',
             'id_contenu' => 1,

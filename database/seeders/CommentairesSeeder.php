@@ -41,7 +41,7 @@ class CommentairesSeeder extends Seeder
         ];
 
         foreach ($commentaires as $commentaire) {
-            Commentaires::create([
+            Commentaire::create([
                 'commentaire' => $commentaire['commentaire'],
                 'note' => $commentaire['note'],
                 'id_user' => $commentaire['id_user'],

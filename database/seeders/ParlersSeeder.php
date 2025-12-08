@@ -10,7 +10,7 @@ class ParlersSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Parlers::create([
+        \App\Models\Parler::create([
             'id_langue' => 2, 'id_region' => 1
         ]);
     }

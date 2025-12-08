@@ -61,7 +61,7 @@ class PaiementsSeeder extends Seeder
         ];
 
         foreach ($paiements as $paiement) {
-            Paiements::create([
+            Paiement::create([
                 'user_id' => $paiement['user_id'],
                 'contenu_id' => $paiement['contenu_id'],
                 'montant' => $paiement['montant'],

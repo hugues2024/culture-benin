@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Contenus;
 
 class ContenusSeeder extends Seeder
 {
@@ -28,7 +29,7 @@ class ContenusSeeder extends Seeder
         ];
 
         foreach ($contenus as $contenu) {
-            Contenus::updateOrCreate(['id' => $contenu['id']], $contenu);
+            Contenu::updateOrCreate(['id' => $contenu['id']], $contenu);
         }
     }
 }
