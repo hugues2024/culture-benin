@@ -28,7 +28,7 @@ class ContenusSeeder extends Seeder
         ];
 
         foreach ($contenus as $contenu) {
-            Contenu::updateOrCreate(['id' => $contenu['id']], $contenu);
+            Contenus::updateOrCreate(['id' => $contenu['id']], $contenu);
         }
     }
 }

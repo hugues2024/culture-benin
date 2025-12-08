@@ -20,7 +20,7 @@ class TypeContenusSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            TypeContenu::updateOrCreate(['id' => $type['id']], $type);
+            TypeContenus::updateOrCreate(['id' => $type['id']], $type);
         }
     }
 }
