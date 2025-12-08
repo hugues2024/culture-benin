@@ -11,7 +11,7 @@ ENV PHP_ERRORS_STDERR=1
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Script de déploiement Laravel automatique
-COPY scripts/00-laravel-deploy.sh /var/www/html/scripts/00-laravel-deploy.sh
-RUN chmod +x /var/www/html/scripts/00-laravel-deploy.sh
+COPY scripts/00-laravel-deploy.sh /var/www/html/start.sh
+RUN chmod +x /var/www/html/start.sh
 
 CMD ["/start.sh"]
