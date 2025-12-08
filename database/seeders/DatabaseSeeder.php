@@ -23,8 +23,30 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            //RoleSeeder::class
-            UserSeeder::class
+             // 1. TABLES SANS DÉPENDANCE
+            RolesSeeder::class,
+            LanguesSeeder::class,
+            RegionsSeeder::class,
+            TypeContenusSeeder::class,
+            TypeMediasSeeder::class,
+            
+            // 2. USERS (dépend de roles + langues)
+            UsersSeeder::class,
+            
+            // 3. CONTENUS (dépend de users + regions + langues + type_contenus)
+            ContenusSeeder::class,
+            
+            // 4. MEDIAS (dépend de contenus + type_medias)
+            MediasSeeder::class,
+            
+            // 5. PARLERS (dépend de langues + regions)
+            ParlersSeeder::class,
+            
+            // 6. COMMENTAIRES (dépend de users + contenus)
+            CommentairesSeeder::class,
+            
+            // 7. PAIEMENTS (dépend de users + contenus)
+            PaiementsSeeder::class,
         ]);
     }
 }

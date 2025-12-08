@@ -30,6 +30,18 @@ RUN php artisan migrate --force || true
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
+# ... ton Dockerfile existant ...
+
+# Laravel : migrations + cache + seeders
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
+RUN php artisan migrate --force
+RUN php artisan db:seed --force
+
+EXPOSE 8000
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+
 # 7) Exposer le port utilisé par Render
 EXPOSE 8000
 

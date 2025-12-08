@@ -13,25 +13,14 @@ class LangueSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        Langue::create([
+        $langues = [
+            ['id' => 1, 'nom_langue' => 'Minan', 'code_langue' => 'MN', 'description' => 'Langue du Togo'],
+            ['id' => 2, 'nom_langue' => 'Minan1', 'code_langue' => 'MN1', 'description' => 'Variante Minan'],
+            ['id' => 3, 'nom_langue' => 'FONGBE', 'code_langue' => 'FN', 'description' => 'Langue du Bénin'],
+        ];
 
-            'nom_langue'=>"Minan",
-            'code_langue'=>"MN",
-            'description'=>"je suis une langue de togo"
-        ]);
-        Langue::create([
-
-            'nom_langue' => "Minan1",
-            'code_langue' => "MN1",
-            'description' => "je suis une langue de togo"
-        ]);
-        Langue::create([
-
-            'nom_langue' => "FONGBE",
-            'code_langue' => "FN",
-            'description' => "je suis une langue de togo"
-        ]);
-
+        foreach ($langues as $langue) {
+            Langue::updateOrCreate(['id' => $langue['id']], $langue);
+        }
     }
 }

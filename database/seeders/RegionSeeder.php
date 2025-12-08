@@ -13,40 +13,15 @@ class RegionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-      Region::create([
-        'nom_region' =>'NIKKI',
-        'description_region'=>"c'est une region",
-        'population'=>100000,
-        'superficie'=>23340,
-        'localisation'=>"Nord Atacora",
-      ]);
+        $regions = [
+            ['id' => 1, 'nom_region' => 'NIKKI', 'description_region' => 'Région culturelle', 'population' => 100000, 'localisation' => 'Nord Atacora', 'superficie' => 23340],
+            ['id' => 2, 'nom_region' => 'Ouidah', 'description_region' => 'Région vodoun', 'population' => 100000, 'localisation' => 'Atlantique', 'superficie' => 23340],
+            ['id' => 3, 'nom_region' => 'Parakou', 'description_region' => 'Capitale économique', 'population' => 100000, 'localisation' => 'Borgou', 'superficie' => 23340],
+            ['id' => 4, 'nom_region' => 'TchaTou', 'description_region' => 'Région rurale', 'population' => 100000, 'localisation' => 'Atacora', 'superficie' => 23340],
+        ];
 
-        Region::create([
-            'nom_region' => 'Ouidah',
-            'description_region' => "c'est une region",
-            'population' => 100000,
-            'superficie' => 23340,
-            'localisation' => "Atlantique",
-
-        ]);
-
-        Region::create([
-            'nom_region' => 'Parakou',
-            'description_region' => "c'est une region",
-            'population' => 100000,
-            'superficie' => 23340,
-            'localisation' => "Atacora",
-        ]);
-        Region::create([
-            'nom_region' => 'TchaTou',
-            'description_region' => "c'est une region",
-            'population' => 100000,
-            'superficie' => 23340,
-            'localisation' => "Atacora",
-        ]);
-
-
-
+        foreach ($regions as $region) {
+            Region::updateOrCreate(['id' => $region['id']], $region);
+        }
     }
 }

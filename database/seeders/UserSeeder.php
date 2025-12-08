@@ -31,20 +31,20 @@ class UserSeeder extends Seeder
         ]);
 
         // Créer le manager (id_role = 5)
-        // User::create([
-        //     'nom' => 'Manager',
-        //     'prenom' => 'Platform',
-        //     'sexe' => 'masculin',
-        //     'date_naissance' => '1990-01-01',
-        //     'email' => 'xthedev@gmail.com',
-        //     'password' => Hash::make('Manager123'),
-        //     'email_verified_at' => now(),
-        //     'id_role' => 5, // Manager
-        //     'id_langue' =>3,
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-        /*User::create([
+        User::create([
+            'nom' => 'Manager',
+            'prenom' => 'Platform',
+            'sexe' => 'masculin',
+            'date_naissance' => '1990-01-01',
+            'email' => 'xthedev@gmail.com',
+            'password' => Hash::make('Manager123'),
+            'email_verified_at' => now(),
+            'id_role' => 5, // Manager
+            'id_langue' =>3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        User::create([
             'nom' => 'HOUNKPATIN',
             'prenom' => 'Hugue',
             'sexe' => 'masculin',
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
             'id_langue' =>3,
             'created_at' => now(),
             'updated_at' => now(),
-        ]);*/
+        ]);
 
     }
 }
