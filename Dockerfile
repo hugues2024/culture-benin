@@ -29,7 +29,6 @@ RUN php artisan db:seed --force
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
-RUN php artisan optimize
 
 # 6) Donner les droits à storage et bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
