@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'prenom' => 'Hugue',
             'sexe' => 'masculin',
             'date_naissance' => '2007-06-19',
-            'email' => 'huguesmariehounkpatin11@gmail.com',
+            'email' => 'huguesmariehounkpatin1@gmail.com',
             'password' => Hash::make('Manager123'),
             'email_verified_at' => now(),
             'id_role' => 5, // Manager
