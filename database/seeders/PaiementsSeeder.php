@@ -32,7 +32,7 @@ class PaiementsSeeder extends Seeder
             // Paiement pour le proverbe (contenu ID=2)
             [
                 'user_id' => 3, // Hugue HOUNKPATIN
-                'contenu_id' => 2,
+                'contenu_id' => 1,
                 'montant' => 250.00,
                 'statut' => 'payé',
                 'numero' => 'PAI-2025-003',
@@ -42,7 +42,7 @@ class PaiementsSeeder extends Seeder
             // Paiement en attente
             [
                 'user_id' => 3, // Manager Platform
-                'contenu_id' => 2,
+                'contenu_id' => 1,
                 'montant' => 250.00,
                 'statut' => 'en_attente',
                 'numero' => 'PAI-2025-004',
