@@ -58,22 +58,5 @@ class UserSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // AJOUTE CET UTILISATEUR dans ton UserSeeder.php après Hugue HOUNKPATIN
-User::create([
-    'id' => 4, // ← AJOUTE id=4
-    'nom' => 'Hounkpatin', 
-    'prenom' => 'Hugues',
-    'sexe' => 'masculin',
-    'date_naissance' => '2012-11-28',
-    'email' => 'huguesmariehounkpatin1@gmail.com',
-    'password' => Hash::make('password123'),
-    'email_verified_at' => now(),
-    'id_role' => 7, // Utilisateur
-    'id_langue' => 2,
-    'photo' => 'users/photos/kwM19KdTYRfaLqGYAxqghDfmPI4lgmiEOjnrXZOo.webp',
-    'created_at' => now(),
-    'updated_at' => now(),
-]);
-
     }
 }
