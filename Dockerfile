@@ -25,7 +25,6 @@ COPY . .
 # 5) Installer les dépendances Laravel (créera vendor/autoload.php) Laravel : migrations + cache + seeders
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 RUN php artisan migrate --force || true
-RUN php artisan db:seed --force
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
