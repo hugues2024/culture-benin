@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL; // Importez la façade URL
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Forcer HTTPS pour tous les assets et URLs en production
+        // Force le schéma HTTPS si l'application est en production
+        // Cela résout les problèmes de "mixed content" sur les plateformes PaaS comme Render
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }
