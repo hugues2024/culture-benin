@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libssl-dev \
-    && docker-php-ext-install pdo pdo_mysql zip mbstring
+    && docker-php-ext-install pdo_mysql zip
 
 # 2) Installer Composer
 RUN curl -sS https://getcomposer.org/installer | php -- \
@@ -24,7 +24,9 @@ COPY . .
 
 # 5) Installer les dépendances Laravel (créera vendor/autoload.php) Laravel : migrations + cache + seeders
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+RUN php artisan migrate:fresh --force || true
 RUN php artisan migrate --force || true
+RUN php artisan db:seed --force
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
