@@ -36,7 +36,7 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # 7) Exposer le port utilisé par Render
-EXPOSE 8000
+EXPOSE 10000
 
 # 8) Commande de démarrage Laravel
 CMD php artisan serve --host=0.0.0.0 --port=$PORT
