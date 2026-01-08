@@ -3,240 +3,179 @@
 @section('title', 'Vérification Email - Culture Bénin')
 
 @section('content')
-    <div class="container mt-5 mb-5">
-        <div class="card shadow-sm custom-card mx-auto">
-            <!-- Header avec Logo -->
-            <div class="card-header text-white custom-card-header bg-success">
-                <div class="text-center" style="backgrounf-color: #F0C43B;">
-                    <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
-                    <h4 class="mb-0 fw-bold">Vérifiez votre email</h4>
-                    <p class="mb-0 small opacity-90">Dernière étape</p>
-                </div>
+<div class="register-full-wrapper d-flex flex-column h-100 py-5">
+    <div class="container-fluid flex-grow-1 d-flex align-items-center justify-content-center px-lg-5">
+        <div class="card shadow-lg border-0 w-100 rounded-4 overflow-hidden bg-white" style="max-width: 500px;">
+            
+            <div class="card-header border-0 pt-4 pb-0 text-center bg-white">
+                <img src="{{ asset('img/send-emailwbg.png') }}" alt="Logo Culture Bénin" class="header-logo-compact mb-2">
+                <h2 class="fw-bold h5 mb-0 text-dark">Vérifiez votre email</h2>
+                <p class="text-muted x-small mb-0">Dernière étape pour rejoindre l'aventure</p>
             </div>
 
-            <!-- Contenu -->
-            <div class="card-body p-4">
-                <!-- Icon Email -->
-                <div class="text-center mb-3">
-                    <i class="bi bi-envelope-check email-icon"></i>
+            <div class="card-body px-4 py-4">
+                <div class="text-center mb-4">
+                    <div class="email-icon-wrapper mx-auto shadow-sm">
+                        <i class="bi bi-envelope-open-heart"></i>
+                    </div>
                 </div>
 
-                <!-- Message de statut -->
                 @if (session('status') == 'verification-link-sent')
-                    <div class="alert alert-success alert-dismissible fade show">
+                    <div class="alert alert-benin-green alert-dismissible fade show py-2 px-3 mb-4 border-0 rounded-3 x-small">
                         <i class="bi bi-check-circle-fill me-2"></i>
-                        <strong>Email envoyé !  </strong> Vérifiez votre boîte mail. 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <strong>Lien envoyé !</strong> Vérifiez votre boîte de réception.
+                        <button type="button" class="btn-close small" data-bs-dismiss="alert"></button>
                     </div>
                 @endif
 
-                <!-- Message principal -->
-                <div class="text-center mb-3">
-                    <h6 class="mb-2" style="color: #F0C43B;">
-                        <i class="bi bi-check-circle-fill text-success"></i> Inscription réussie ! 
+                <div class="text-center mb-4">
+                    <h6 class="fw-bold text-benin-green mb-2">
+                        <i class="bi bi-person-check-fill me-1"></i> Inscription presque terminée !
                     </h6>
-                    <p class="text-muted small mb-0">
-                        Un email de vérification a été envoyé à <strong>{{ auth()->user()->email }}</strong>
+                    <p class="text-muted small">
+                        Un lien de validation vient d'être envoyé à :<br>
+                        <span class="fw-bold text-dark">{{ auth()->user()->email }}</span>
                     </p>
                 </div>
 
-                <!-- Warning Box -->
-                <div class="alert alert-warning py-2 px-3 mb-3">
-                    <small>
-                        <i class="bi bi-exclamation-triangle-fill me-1"></i>
-                        <strong>Pas reçu ?  </strong> Vérifiez vos spams. 
-                    </small>
+                <div class="info-box p-3 rounded-4 mb-4">
+                    <h6 class="x-small fw-bold text-uppercase tracking-wider mb-2 text-dark">
+                        <i class="bi bi-lightbulb-fill text-benin-yellow me-1"></i> Comment faire ?
+                    </h6>
+                    <ul class="x-small text-muted mb-0 ps-3">
+                        <li class="mb-1">Ouvrez l'email envoyé par <strong>Culture Bénin</strong>.</li>
+                        <li class="mb-1">Cliquez sur le bouton <strong>"Vérifier mon adresse email"</strong>.</li>
+                        <li>Si vous ne le voyez pas, vérifiez vos <strong>spams</strong>.</li>
+                    </ul>
                 </div>
 
-                <!-- Formulaire renvoyer -->
                 <form method="POST" action="{{ route('verification.send') }}" class="mb-3">
                     @csrf
-                    <button type="submit" class="btn btn-primary w-100">
-                        <i class="bi bi-arrow-repeat"></i> Renvoyer l'email
+                    <button type="submit" class="btn btn-benin-green w-100 py-2 rounded-pill fw-bold shadow-sm transition-smooth">
+                        <i class="bi bi-send-fill me-2"></i> Renvoyer le lien de vérification
                     </button>
                 </form>
 
-                <!-- Instructions -->
-                <div class="p-3 bg-light rounded mb-3">
-                    <h6 class="mb-2 small">
-                        <i class="bi bi-lightbulb text-warning"></i> Comment vérifier ? 
-                    </h6>
-                    <ol class="small mb-0 ps-3">
-                        <li>Ouvrez votre boîte mail</li>
-                        <li>Cherchez l'email de Culture Bénin</li>
-                        <li>Cliquez sur "Vérifier mon email"</li>
-                    </ol>
-                </div>
-
-                <!-- Déconnexion -->
-                <div class="text-center pt-2 border-top">
+                <div class="text-center pt-3 border-top mt-4">
                     <form method="POST" action="{{ route('logout') }}" class="d-inline">
                         @csrf
-                        <button type="submit" class="btn btn-link btn-sm text-decoration-none">
-                            <i class="bi bi-box-arrow-right"></i> Se déconnecter
+                        <button type="submit" class="btn text-decoration-none x-small text-muted fw-bold p-0 btn-benin-red">
+                            <i class="bi bi-box-arrow-left me-1"></i> Se déconnecter pour changer de compte
                         </button>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!-- Security Notice -->
-        <div class="text-center mt-3">
-            <small class="text-muted">
-                <i class="bi bi-shield-check text-success"></i>
-                Vos données sont sécurisées
-            </small>
-        </div>
     </div>
+</div>
 @endsection
 
 @push('styles')
 <style>
-    body {
-        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-        min-height: 100vh;
+:root {
+        --black: #000000;
+        --dark-gray: #1a1a1a;
+        --overlay-black-50: rgba(0, 0, 0, 0.5);
+        --overlay-black-60: rgba(0, 0, 0, 0.6);
+        --overlay-orange-70-1: rgba(255, 107, 0, 0.7);
+        --overlay-orange-70-2: rgba(204, 85, 0, 0.7);
+        --white-transparent-20: rgba(255, 255, 255, 0.2);
+        --white-transparent-30: rgba(255, 255, 255, 0.3);
+        --white-transparent-15: rgba(255, 255, 255, 0.15);
+        --black-shadow-50: rgba(0, 0, 0, 0.5);
+        --black-shadow-20: rgba(0, 0, 0, 0.2);
+        --black-shadow-30: rgba(0, 0, 0, 0.3);
+        --green-80: #F0C43B;
+        --green-100: #F0C43B;
+        --green-solid: #F0C43B;
+        /* Colors - Culture-Bénin Theme */
+        --benin-white-color: #F9FBF9 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-dark-color: #2D2D2D /*Un gris très foncé (mieux que le noir pur) pour la lecture.*/;
+        --benin-green-color: #008751 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-green-dark-color: #006b40 /*Pour les survols de boutons, les accents.*/;
+        --benin-green-light-color: #cbf8e9ff /*Pour les survols des boutons, les accents.*/;
+        --benin-yellow-color: #FCD116 /*Pour les icônes, les mises en évidence, les étoiles.*/;
+        --benin-red-color: #E8112D /*Pour les alertes, les cœurs (favoris), les prix.*/;
+        --google-gray: #5f6368;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .custom-card {
-        border-radius: 16px;
-        overflow: hidden;
-        border: none;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        max-width: 480px;
-        margin-top: 2rem;
-        background: white;
-    }
+.register-full-wrapper {
+    background-color: #f8f9fa;
+    min-height: 80vh;
+}
 
-    . custom-card-header {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
-        padding: 1rem 0.875rem;
-    }
+.header-logo-compact {
+    height: 45px;
+    width: auto;
+}
 
-    .header-logo {
-        height: 40px;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        margin-bottom: 0.375rem ! important;
-    }
+/* Style de l'icône email */
+.email-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: var(--benin-white-color);
+    border: 2px solid var(--benin-green-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--benin-green-color);
+    animation: floating 3s ease-in-out infinite;
+}
 
-    .custom-card-header h4 {
-        font-size: 1rem !important;
-        margin-bottom: 0.125rem !important;
-    }
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
 
-    .custom-card-header p {
-        font-size: 0.75rem !important;
-    }
+/* Box d'instructions */
+.info-box {
+    background-color: rgba(252, 209, 22, 0.05);
+    border: 1px dashed var(--benin-yellow-color);
+}
 
-    .card-body {
-        padding: 1.5rem ! important;
-        background: #ffffff;
-    }
+/* Alertes personnalisées */
+.alert-benin-green {
+    background-color: #e6f3ed;
+    color: var(--benin-green-dark-color);
+}
 
-    /* Email Icon */
-    .email-icon {
-        font-size: 3. 5rem;
-        color: #F0C43B;
-        animation: bounce 2s infinite;
-    }
+/* Boutons et Textes */
+.btn-benin-green {
+    background-color: var(--benin-green-color);
+    color: white;
+    border: none;
+}
 
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
+.btn-benin-green:hover {
+    background-color: var(--benin-green-dark-color);
+    color: white;
+    transform: translateY(-2px);
+}
 
-    /* Buttons */
-    .btn-primary {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
-        border: none;
-        font-weight: 700;
-        font-size: 0.875rem;
-        padding: 0.625rem 1.25rem;
-        transition: all 0.2s;
-    }
+.btn-benin-red {
+    background-color: var(--benin-red-color);
+    color: white;
+    border: none;
+}
 
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,135,81,0.3);
-    }
+.btn-benin-red:hover {
+    background-color: var(--benin-red-color);
+    color: white;
+    transform: translateY(-2px);
+}
+.text-benin-green { color: var(--benin-green-color); }
+.text-benin-yellow { color: var(--benin-yellow-color); }
+.x-small { font-size: 0.75rem !important; }
 
-    .btn-link {
-        color: #F0C43B !important;
-        font-weight: 600;
-        font-size: 0.8125rem;
-    }
+.transition-smooth { transition: var(--transition-smooth); }
 
-    .btn-link:hover {
-        color: #F0C43B !important;
-    }
-
-    /* Alerts */
-    .alert-success {
-        background: linear-gradient(135deg, #d4edda, #c3e6cb);
-        border-left: 3px solid #F0C43B;
-        color: #F0C43B;
-        font-size: 0.8125rem;
-        padding: 0.625rem 0.875rem;
-    }
-
-    .alert-warning {
-        background: linear-gradient(135deg, #fff9e6, #fffbf0);
-        border-left: 3px solid #ffc107;
-        color: #856404;
-        font-size: 0.8125rem;
-    }
-
-    /* Instructions */
-    .bg-light {
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef) ! important;
-        border: 1px solid #dee2e6;
-    }
-
-    . bg-light ol {
-        margin-bottom: 0;
-        padding-left: 1.25rem;
-    }
-
-    .bg-light li {
-        margin-bottom: 0. 25rem;
-        color: #495057;
-    }
-
-    /* Border */
-    .border-top {
-        border-color: #a5d6a7 !important;
-    }
-
-    /* Responsive */
-    @media (max-width: 576px) {
-        .custom-card {
-            margin-top: 1rem;
-        }
-
-        .card-body {
-            padding: 1.25rem !important;
-        }
-
-        .email-icon {
-            font-size: 3rem;
-        }
-
-        .header-logo {
-            height: 35px;
-        }
-    }
+.tracking-wider {
+    letter-spacing: 0.05em;
+}
 </style>
-@endpush
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const alerts = document.querySelectorAll('. alert-dismissible');
-        alerts.forEach(alert => {
-            setTimeout(() => {
-                const closeBtn = alert.querySelector('.btn-close');
-                if (closeBtn) closeBtn.click();
-            }, 5000);
-        });
-    });
-</script>
 @endpush

@@ -81,11 +81,6 @@ class RegisteredUserController extends Controller
                         $fail('Les dimensions de l\'image ne peuvent pas dépasser 2000x2000 pixels.');
                     }
 
-                    // Ratio d'aspect approximatif (carré pour une photo de profil)
-                    $ratio = $width / $height;
-                    if ($ratio < 0.7 || $ratio > 1.3) {
-                        $fail('L\'image doit avoir un format carré ou proche du carré.');
-                    }
                 }
             ],
             'terms' => ['required', 'accepted'],

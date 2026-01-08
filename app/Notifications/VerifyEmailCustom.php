@@ -7,27 +7,23 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Carbon;
 
-class VerifyEmailCustom extends VerifyEmail
-{
+class VerifyEmailCustom extends VerifyEmail{
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable){
         $verificationUrl = $this->verificationUrl($notifiable);
 
         return (new MailMessage)
-            ->subject('🇧🇯 Vérifiez votre adresse email - Culture Bénin')
-            ->greeting('Bonjour ' . $notifiable->prenom . ' ' . $notifiable->nom .  ' !  👋')
-            ->line('Bienvenue sur **Culture Bénin**, la plateforme dédiée à la promotion et la préservation de notre riche patrimoine culturel béninois.')
-            ->line('Nous sommes ravis de vous compter parmi nous !')
-            ->line('Pour finaliser votre inscription et accéder à toutes les fonctionnalités, veuillez vérifier votre adresse email en cliquant sur le bouton ci-dessous :')
-            ->action('✅ Vérifier mon email', $verificationUrl)
-            ->line('Ce lien est valable pendant **60 minutes**.')
-            ->line('Si vous n\'avez pas créé de compte sur Culture Bénin, aucune action n\'est requise de votre part.')
-            ->salutation('Cordialement,
-L\'équipe Culture Bénin 🇧🇯');
-        // ❌ SUPPRIMÉ : ->with(['notifiable' => $notifiable]);
+            ->subject('Vérification de votre adresse email - Culture Bénin')
+            // Intégration du logo en haut du mail
+            ->greeting('Bonjour ' . $notifiable->prenom . ' ' . $notifiable->nom . ',')
+            ->line('Nous vous remercions de votre intérêt pour Culture Bénin, la plateforme officielle dédiée à la promotion et à la préservation du patrimoine culturel béninois.')
+            ->line('Pour finaliser la création de votre compte et garantir la sécurité de vos données, une validation de votre adresse email est nécessaire.')
+            ->action('Confirmer mon adresse email', $verificationUrl)
+            ->line('Ce lien de sécurité expirera dans 60 minutes.')
+            ->line('Si vous n\'êtes pas à l\'origine de cette demande, vous pouvez ignorer ce message en toute sécurité.')
+            ->salutation("Cordialement,\nL'équipe Culture Bénin");
     }
 
     /**

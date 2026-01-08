@@ -3,339 +3,174 @@
 @section('title', 'Connexion - Culture Bénin')
 
 @section('content')
-    <div class="container mt-5 mb-5">
-        <div class="card shadow-sm custom-card mx-auto">
-            <!-- Header avec Logo -->
-            <div class="card-header text-white custom-card-header">
-                <div class="text-center">
-                    <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
-                    <h4 class="mb-0 fw-bold">Connectez-vous</h4>
-                    <p class="mb-0 small opacity-90">Accédez à votre espace personnel</p>
-                </div>
+<div class="login-wrapper d-flex flex-column justify-content-center py-3">
+    <div class="container">
+        <div class="card shadow-sm border-0 mx-auto login-card rounded-4">
+            <div class="card-header bg-white border-0 pt-4 pb-0 text-center">
+                <img src="{{ asset('img/login-wbg.png') }}" alt="Logo" class="header-logo-mini mb-2">
+                <h2 class="fw-bold h5 mb-1">Connexion</h2>
+                <p class="text-muted x-small mb-0">Espace Culture-Bénin</p>
             </div>
 
-            <!-- Formulaire -->
-            <div class="card-body p-4">
-                <!-- Session Status -->
-                @if (session('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="bi bi-check-circle-fill me-2"></i>
-                        <strong>{{ session('status') }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
-
-                <!-- Validation Errors -->
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                        <strong>Erreur :</strong>
-                        <ul class="mb-0 mt-2">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="card-body px-4 py-3">
+                @if (session('status') || $errors->any())
+                    <div class="alert {{ session('status') ? 'alert-success' : 'alert-danger' }} py-2 px-3 mb-3 border-0 rounded-3 x-small">
+                        {{ session('status') ?? 'Identifiants incorrects.' }}
                     </div>
                 @endif
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
-                    <!-- Email -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label fw-semibold">
-                            <i class="bi bi-envelope"></i> Adresse Email <span class="text-danger">*</span>
-                        </label>
-                        <input type="email" name="email" id="email"
-                            class="form-control @error('email') is-invalid @enderror" placeholder="votre@email.com"
-                            value="{{ old('email') }}" required autofocus>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="mb-2">
+                        <label for="email" class="form-label x-small fw-bold mb-1 text-secondary">Email</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
+                            <input type="email" name="email" id="email" class="form-control form-control-sm border-start-0 bg-light" placeholder="votre@email.com" value="{{ old('email') }}" required autofocus>
+                        </div>
                     </div>
 
-                    <!-- Mot de passe -->
                     <div class="mb-3">
-                        <label for="password" class="form-label fw-semibold">
-                            <i class="bi bi-lock-fill"></i> Mot de passe <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <input type="password" name="password" id="password"
-                                class="form-control @error('password') is-invalid @enderror"
-                                placeholder="Votre mot de passe" required>
-                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <label for="password" class="form-label x-small fw-bold mb-1 text-secondary">Mot de passe</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
+                            <input type="password" name="password" id="password" class="form-control form-control-sm border-start-0 bg-light" placeholder="••••••••" required>
+                            <button class="btn btn-outline-light border border-start-0 bg-light text-muted" type="button" id="togglePassword">
                                 <i class="bi bi-eye" id="toggleIcon"></i>
                             </button>
                         </div>
-                        @error('password')
-                            <div class="text-danger small mt-1">
-                                <i class="bi bi-exclamation-circle"></i> {{ $message }}
-                            </div>
-                        @enderror
                     </div>
 
-                    <!-- Remember Me & Forgot Password -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember_me">
-                            <label class="form-check-label small" for="remember_me">
-                                Se souvenir de moi
-                            </label>
-                        </div>
-                        @if (Route::has('password. request'))
-                            <a href="{{ route('password.request') }}" class="text-decoration-none small">
-                                Mot de passe oublié ?
-                            </a>
-                        @endif
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me">
+                        <label class="form-check-label x-small text-muted" for="remember_me">Se souvenir de moi</label>
                     </div>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-green w-100 mb-3">
-                        <i class="bi bi-box-arrow-in-right"></i> Se connecter
+                    <button type="submit" class="btn btn-benin-green w-100 py-2 rounded-3 fw-bold mb-3 shadow-sm">
+                        Se connecter
                     </button>
 
-                    <!-- Register Link -->
                     @if (Route::has('register'))
-                        <div class="text-center pt-3 border-top">
-                            <small class="text-muted">
-                                Pas encore de compte ?
-                                <a href="{{ route('register') }}" class="text-decoration-none fw-semibold">
-                                    Créer un compte
-                                </a>
-                            </small>
+                        <div class="text-center pt-2 border-top">
+                            <p class="x-small text-muted mb-0">
+                                Nouveau ici ? <a href="{{ route('register') }}" class="text-benin-green fw-bold text-decoration-none">Créer un compte</a>
+                            </p>
                         </div>
                     @endif
                 </form>
             </div>
         </div>
-
-        <!-- Security Notice -->
-        <div class="text-center mt-4">
-            <small class="text-muted">
-                <i class="bi bi-shield-check text-success"></i>
-                Vos données sont protégées et sécurisées
-            </small>
-        </div>
     </div>
+</div>
 @endsection
 
 @push('styles')
-    <style>
-        body {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            min-height: 100vh;
-        }
+<style>
 
-        .custom-card {
-            border-radius: 16px;
-            overflow: hidden;
-            border: none;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            max-width: 420px;
-            margin: 2rem auto 0;
-            background: white;
-        }
+:root {
+        --black: #000000;
+        --dark-gray: #1a1a1a;
+        --overlay-black-50: rgba(0, 0, 0, 0.5);
+        --overlay-black-60: rgba(0, 0, 0, 0.6);
+        --overlay-orange-70-1: rgba(255, 107, 0, 0.7);
+        --overlay-orange-70-2: rgba(204, 85, 0, 0.7);
+        --white-transparent-20: rgba(255, 255, 255, 0.2);
+        --white-transparent-30: rgba(255, 255, 255, 0.3);
+        --white-transparent-15: rgba(255, 255, 255, 0.15);
+        --black-shadow-50: rgba(0, 0, 0, 0.5);
+        --black-shadow-20: rgba(0, 0, 0, 0.2);
+        --black-shadow-30: rgba(0, 0, 0, 0.3);
+        --green-80: #F0C43B;
+        --green-100: #F0C43B;
+        --green-solid: #F0C43B;
+        /* Colors - Culture-Bénin Theme */
+        --benin-white-color: #F9FBF9 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-dark-color: #2D2D2D /*Un gris très foncé (mieux que le noir pur) pour la lecture.*/;
+        --benin-green-color: #008751 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-green-dark-color: #006b40 /*Pour les survols de boutons, les accents.*/;
+        --benin-green-light-color: #cbf8e9ff /*Pour les survols des boutons, les accents.*/;
+        --benin-yellow-color: #FCD116 /*Pour les icônes, les mises en évidence, les étoiles.*/;
+        --benin-red-color: #E8112D /*Pour les alertes, les cœurs (favoris), les prix.*/;
+        --google-gray: #5f6368;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+/* Container de centrage pour éviter le scroll */
+.login-card {
+    max-width: 360px; /* Plus étroit pour le style Google */
+    border: 1px solid #efefef !important;
+}
 
-        .custom-card-header {
-            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
-            padding: 1.25rem 1rem;
-        }
+.header-logo-mini {
+    height: 45px; /* Logo réduit */
+    width: auto;
+}
 
-        .header-logo {
-            height: 45px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-            margin-bottom: 0.5rem ! important;
-        }
+/* Typographie réduite */
+.x-small {
+    font-size: 0.75rem !important;
+}
 
-        .custom-card-header h4 {
-            font-size: 1. 125rem !important;
-            margin-bottom: 0.25rem !important;
-        }
+/* Inputs condensés */
+.form-control-sm, .input-group-text {
+    border-color: var(--benin-dark-color);
+    font-size: 0.85rem;
+}
 
-        .custom-card-header p {
-            font-size: 0.8125rem !important;
-        }
+.form-control-sm:focus {
+    border-color: var(--benin-green-color);
+    box-shadow: none;
+}
 
-        .card-body {
-            padding: 2rem ! important;
-            background: #ffffff;
-        }
+/* Bouton vert béninois */
+.btn-benin-green {
+    background-color: var(--benin-green-color);
+    color: white;
+    border: none;
+    font-size: 0.9rem;
+}
 
-        /* Form Controls */
-        .form-label {
-            color: #ceb772ff;
-            font-size: 0.9rem;
-            margin-bottom: 0.375rem;
-            font-weight: 600;
-        }
+.btn-benin-green:hover {
+    background-color: var(--benin-green-color);
+    color: white;
+}
 
-        .form-control,
-        . form-select {
-            border-radius: 8px;
-            border: 2px solid #ceb772ff;
-            padding: 0.625rem 0.875rem;
-            transition: all 0.2s;
-            font-size: 0.9375rem;
-            background: #f1f8f4;
-        }
+/* Couleurs du texte */
+.text-benin-green {
+    color: var(--benin-green-color) !important;
+}
 
-        .form-control:focus,
-        .form-select:focus {
-            border-color: #ceb772ff;
-            box-shadow: 0 0 0 0.25rem rgba(0, 135, 81, 0.2);
-            background: white;
-        }
-
-        .is-invalid {
-            border-color: #d32f2f ! important;
-            background: #ffebee !important;
-        }
-
-        .invalid-feedback,
-        . text-danger {
-            font-size: 0.8125rem;
-            font-weight: 500;
-        }
-
-        /* Checkbox */
-        .form-check-input {
-            border: 2px solid #ceb772ffceb772ffceb772ffceb772ffceb772ffceb772ff;
-        }
-
-        .form-check-input:checked {
-            background-color: #ceb772ffceb772ffceb772ffceb772ffceb772ffceb772ff;
-            border-color: #ceb772ffceb772ffceb772ffceb772ffceb772ffceb772ff;
-        }
-
-        /* Buttons */
-        .btn-green {
-            background: linear-gradient(135deg, #ceb772ffceb772ffceb772ffceb772ffceb772ff, #ceb772ffceb772ffceb772ffceb772ffceb772ff);
-            border: none;
-            font-weight: 700;
-            font-size: 0.9375rem;
-            padding: 0.75rem 1.75rem;
-            transition: all 0.2s;
-            box-shadow: 0 3px 10px #ceb772ff
-        }
-
-        .btn-green:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px ceb772ff;
-            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
-        }
-
-        /* Input Group - Icône visible */
-        .input-group . btn-outline-secondary {
-            border: 2px solid #a5d6a7;
-            border-left: 2px solid #a5d6a7 !important;
-            color: #ceb772ffceb772ffceb772ffceb772ff !important;
-            background: #ffffff ! important;
-            font-weight: 700;
-            padding: 0.625rem 0.875rem;
-            transition: all 0.2s;
-        }
-
-        . input-group .btn-outline-secondary:hover {
-            background: #ceb772ffceb772ffceb772ff !important;
-            color: white !important;
-            border-color: #ceb772ffceb772ffceb772ff !important;
-        }
-
-        . input-group .btn-outline-secondary i {
-            color: #ceb772ffceb772ff !important;
-            font-size: 1.25rem !important;
-        }
-
-        .input-group .btn-outline-secondary:hover i {
-            color: white !important;
-        }
-
-        /* Alerts */
-        .alert-success {
-            background: linear-gradient(135deg, #d4edda, #c3e6cb);
-            border-left: 4px solid #ceb772ff;
-            color: #155724;
-        }
-
-        .alert-danger {
-            background: linear-gradient(135deg, #ffebee, #ffcdd2);
-            border-left: 4px solid #d32f2f;
-            color: #b71c1c;
-        }
-
-        /* Links */
-        a. text-decoration-none {
-            color: #ceb772ff;
-            font-weight: 600;
-        }
-
-        a.text-decoration-none:hover {
-            color: #ceb772ff;
-            text-decoration: underline ! important;
-        }
-
-        /* Borders */
-        .border-top {
-            border-color: #a5d6a7 !important;
-        }
-
-        /* Security Notice */
-        .text-success {
-            color: #ceb772ff !important;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .custom-card {
-                margin-top: 1rem;
-            }
-
-            . card-body {
-                padding: 1.5rem !important;
-            }
-
-            .header-logo {
-                height: 40px;
-            }
-
-            . custom-card-header {
-                padding: 1.5rem 1rem;
-            }
-        }
-    </style>
+#togglePassword {
+    z-index: 5;
+    border-color: var(--benin-dark-color) !important;
+}
+#togglePassword:focus {
+    box-shadow: none;
+}
+</style>
 @endpush
-
 @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Toggle Password Visibility
-            const togglePassword = document.getElementById('togglePassword');
-            const password = document.getElementById('password');
-            const toggleIcon = document.getElementById('toggleIcon');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password'); // Corrigé ici
+        const icon = document.getElementById('toggleIcon');
 
-            if (togglePassword) {
-                togglePassword.addEventListener('click', function() {
-                    if (password.type === 'password') {
-                        password.type = 'text';
-                        toggleIcon.classList.replace('bi-eye', 'bi-eye-slash');
-                    } else {
-                        password.type = 'password';
-                        toggleIcon.classList.replace('bi-eye-slash', 'bi-eye');
-                    }
-                });
-            }
-
-            // Auto-dismiss alerts
-            const alerts = document.querySelectorAll('.alert');
-            alerts.forEach(alert => {
-                setTimeout(() => {
-                    const closeButton = alert.querySelector('.btn-close');
-                    if (closeButton) {
-                        closeButton.click();
-                    }
-                }, 5000);
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function () {
+                // Basculer le type d'input
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Basculer l'icône Bootstrap
+                if (type === 'text') {
+                    icon.classList.remove('bi-eye');
+                    icon.classList.add('bi-eye-slash');
+                } else {
+                    icon.classList.remove('bi-eye-slash');
+                    icon.classList.add('bi-eye');
+                }
             });
-        });
-    </script>
+        }
+    });
+</script>
 @endpush

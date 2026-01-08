@@ -11,7 +11,7 @@
 
             <li class="nav-item d-none d-md-block">
                 <a href="{{ route('home') }}" class="nav-link text-dark fw-semibold">
-                    <i class="bi bi-house-door me-2 text-primary"></i> Tableau de Bord Bénin-culture
+                    <i class="bi bi-house-door me-2 text-primary"></i> Tableau de Bord Culture-Bénin
                 </a>
             </li>
         </ul>

@@ -1,13 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top" role="navigation" aria-label="Navigation principale">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('accueil') }}" aria-label="Culture Bénin - Accueil">
-            <!-- Logo CBJ avec masque africain -->
+        <a class="navbar-brand" href="{{ route('accueil') }}" aria-label="Culture-Bénin | Accueil">
+            <!-- Logo CB -->
             <div class="logo-wrapper">
                 <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="navbar-logo">
             </div>
             <div class="brand-text">
-                <span class="brand-name">Culture Bénin</span>
-                <span class="brand-tagline">Patrimoine & Traditions</span>
+                <span class="text-green">C</span><span class="text-yellow">u</span><span class="text-green">l</span><span class="text-red">t</span><span class="text-yellow">u</span><span class="text-green">r</span><span class="text-red">e</span><span class="text-yellow">-</span><span class="text-green">B</span><span class="text-red">é</span><span class="text-yellow">n</span><span class="text-red">i</span><span class="text-yellow">n</span>
             </div>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -24,21 +23,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contes">Contes & Histoires</a>
+                    <a class="nav-link" href="#contes">Régions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#cuisine">Cuisine</a>
+                    <a class="nav-link" href="#cuisine">Patrimoine </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#traditions">Traditions</a>
+                    <a class="nav-link" href="#traditions">Contribuer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#regions">Régions</a>
+                    <a class="nav-link" href="#regions">Avis</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center flex-wrap gap-2">
                 @auth
-                    <span class="navbar-text text-light me-3 d-none d-sm-block">
+                    <span class="navbar-text me-3 d-none d-sm-block" style="color: black;">
                         <i class="fas fa-user-circle me-1"></i>
                         Bonjour, {{ Auth::user()->nom }}
                     </span>
@@ -50,8 +49,8 @@
                         </button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-outline-light">Connexion</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary">S'inscrire</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-light">Créer un compte</a>
+                    <a href="{{ route('login') }}" class="btn btn-primary">Accéder au compte Bénin</a>
                 @endauth
             </div>
         </div>
@@ -62,27 +61,42 @@
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0. 5rem 0;
 }
 
-. logo-wrapper {
+.navbar-brand span {
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+/* Vert Bénin */
+.text-green {
+    color: #008751;
+}
+
+/* Jaune Or */
+.text-yellow {
+    color: #FCD116;
+}
+
+/* Rouge Éclat */
+.text-red {
+    color: #E8112D;
+}
+
+.logo-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.navbar-logo {
-    height: 70px;  /* Augmenté de 50px à 70px */
-    width: auto;   /* Auto pour garder les proportions */
-    display: block;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0. 25));
+.logo-wrapper img {
+    transform: scale(1.5); /* Augmente la taille de 50% */
+    transition: transform 0.3s; /* Rend l'agrandissement fluide */
 }
 
 /* Texte de marque */
 .brand-text {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0. 15rem;
 }
 
@@ -95,7 +109,7 @@
     line-height: 1.2;
 }
 
-. brand-tagline {
+.brand-tagline {
     font-size: 0.75rem;
     font-weight: 500;
     color: rgba(255, 215, 0, 0.95);

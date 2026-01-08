@@ -1,629 +1,232 @@
 @extends('layouts.app1')
+
 @section('title', 'Inscription - Culture Bénin')
+
 @section('content')
-    <div class="container mt-4 mb-4">
-        <div class="card shadow-sm custom-card mx-auto">
-            <!-- Header avec Logo -->
-            <div class="card-header text-white custom-card-header">
-                <div class="text-center">
-                    <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
-                    <h5 class="mb-0 fw-bold">Créer un compte</h5>
-                    <p class="mb-0 small opacity-90">Rejoignez notre communauté culturelle</p>
-                </div>
+<div class="register-full-wrapper d-flex flex-column h-100">
+    <div class="container-fluid flex-grow-1 d-flex align-items-center justify-content-center py-3 px-lg-5">
+        <div class="card shadow-lg border-0 w-100 rounded-4 overflow-hidden bg-white" style="max-width: 1200px;">
+            
+            <div class="card-header bg-white border-0 pt-3 pb-0 text-center">
+                <img src="{{ asset('img/register-wbg.png') }}" alt="Logo" class="header-logo-compact mb-1">
+                <h2 class="fw-bold h5 mb-0 text-dark">Créer un compte</h2>
+                <p class="text-muted x-small mb-1">Rejoignez l'aventure Culture-Bénin</p>
             </div>
 
-            <!-- Formulaire -->
-            <div class="card-body p-3 p-md-4">
-                <!-- Validation Errors -->
+            <div class="card-body px-4 py-2">
                 @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                        <strong>Veuillez corriger les erreurs suivantes :</strong>
-                        <ul class="mb-0 mt-2">
+                    <div class="alert alert-danger py-2 px-3 mb-3 border-0 rounded-3 x-small">
+                        <p class="fw-bold mb-1"><i class="bi bi-exclamation-triangle me-1"></i> Erreurs de validation :</p>
+                        <ul class="mb-0 ps-3">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 @endif
 
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <!-- Photo de profil -->
-                    <div class="text-center mb-3">
-                        <div class="photo-preview-wrapper">
-                            <div class="photo-preview" id="photoPreview">
-                                <i class="bi bi-person-circle"></i>
-                            </div>
-                            <img id="photoPreviewImage" class="photo-preview-img" style="display: none;">
-                        </div>
-                        <label for="photo" class="btn btn-sm btn-outline-primary mt-2">
-                            <i class="bi bi-cloud-upload"></i> Choisir une photo
-                        </label>
-                        <input type="file" name="photo" id="photo" accept="image/*" class="d-none">
-                        <button type="button" class="btn btn-sm btn-outline-danger mt-2" id="removePhoto" style="display: none;">
-                            <i class="bi bi-trash"></i> Supprimer
-                        </button>
-                        <div class="form-text small">JPG, PNG, WEBP • Max 2 Mo (optionnel)</div>
-                        @error('photo')<div class="text-danger small mt-1"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>@enderror
-                    </div>
-
-                    <!-- Nom / Prénom -->  
-                    <div class="row g-2 mb-3">
-                        <div class="col-md-6">
-                            <label for="nom" class="form-label fw-semibold small"><i class="bi bi-person"></i> Nom <span class="text-danger">*</span></label>
-                            <input type="text" name="nom" id="nom" class="form-control form-control-sm @error('nom') is-invalid @enderror" placeholder="Votre nom" value="{{ old('nom') }}" required>
-                            @error('nom')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="prenom" class="form-label fw-semibold small"><i class="bi bi-person"></i> Prénom <span class="text-danger">*</span></label>
-                            <input type="text" name="prenom" id="prenom" class="form-control form-control-sm @error('prenom') is-invalid @enderror" placeholder="Votre prénom" value="{{ old('prenom') }}" required>
-                            @error('prenom')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                    </div>
-
-                    <!-- Sexe -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold small"><i class="bi bi-gender-ambiguous"></i> Sexe <span class="text-danger">*</span></label>
-                        <div class="d-flex gap-2">
-                            <div class="form-check form-check-inline flex-fill">
-                                <input class="form-check-input" type="radio" name="sexe" id="homme" value="masculin" {{ old('sexe') == 'masculin' ? 'checked' : '' }} required>
-                                <label class="form-check-label w-100 small" for="homme">
-                                    <i class="bi bi-gender-male"></i> Masculin
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline flex-fill">
-                                <input class="form-check-input" type="radio" name="sexe" id="femme" value="feminin" {{ old('sexe') == 'feminin' ? 'checked' : '' }} required>
-                                <label class="form-check-label w-100 small" for="femme">
-                                    <i class="bi bi-gender-female"></i> Féminin
-                                </label>
-                            </div>
-                        </div>
-                        @error('sexe')<div class="text-danger small mt-1"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>@enderror
-                    </div>
-
-                    <!-- Date de naissance / Langue -->
-                    <div class="row g-2 mb-3">
-                        <div class="col-md-6">
-                            <label for="date_naissance" class="form-label fw-semibold small"><i class="bi bi-calendar"></i> Date de naissance <span class="text-danger">*</span></label>
-                            <input type="date" name="date_naissance" id="date_naissance" class="form-control form-control-sm @error('date_naissance') is-invalid @enderror" value="{{ old('date_naissance') }}" max="{{ date('Y-m-d', strtotime('-13 years')) }}" required>
-                            <div class="form-text small">Au moins 13 ans</div>
-                            @error('date_naissance')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="langue_id" class="form-label fw-semibold small"><i class="bi bi-translate"></i> Langue principale <span class="text-danger">*</span></label>
-                            <select name="langue_id" id="langue_id" class="form-select form-select-sm @error('langue_id') is-invalid @enderror" required>
-                                <option value="">-- Sélectionnez --</option>
-                                @forelse($langues ??  [] as $langue)
-                                    <option value="{{ $langue->id }}" {{ old('langue_id') == $langue->id ? 'selected' : '' }}>
-                                        {{ $langue->nom_langue }} ({{ $langue->code_langue }})
-                                    </option>
-                                @empty
-                                    <option value="" disabled>Aucune langue disponible</option>
-                                @endforelse
-                            </select>
-                            @error('langue_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label fw-semibold small"><i class="bi bi-envelope"></i> Adresse Email <span class="text-danger">*</span></label>
-                        <input type="email" name="email" id="email" class="form-control form-control-sm @error('email') is-invalid @enderror" placeholder="votre@email.com" value="{{ old('email') }}" required>
-                        @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
-
-                    <!-- Mot de passe / Confirmation -->
-                    <div class="row g-2 mb-3">
-                        <div class="col-md-6">
-                            <label for="password" class="form-label fw-semibold small"><i class="bi bi-lock-fill"></i> Mot de passe <span class="text-danger">*</span></label>
-                            <div class="input-group input-group-sm">
-                                <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Min.  8 caractères" minlength="8" required>
-                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                                    <i class="bi bi-eye" id="toggleIcon"></i>
-                                </button>
-                            </div>
-                            <div class="form-text small">Maj., min.  et chiffres</div>
-                            @error('password')<div class="text-danger small mt-1"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>@enderror
-                            <!-- Force du mot de passe -->
-                            <div class="password-strength mt-2">
-                                <div class="progress" style="height: 3px;">
-                                    <div class="progress-bar" id="strengthBar" role="progressbar" style="width: 0%"></div>
+                    <div class="row gx-4">
+                        <div class="col-lg-3 col-md-4 mb-3 text-center">
+                            <div class="h-100 p-3 bg-light rounded-4 border border-opacity-10">
+                                <label class="x-small fw-bold mb-3 d-block text-uppercase text-secondary">Photo de profil</label>
+                                <div class="position-relative d-inline-block mb-2">
+                                    <div class="photo-preview-small shadow-sm" id="photoPreview">
+                                        <i class="bi bi-person-fill fs-1 text-secondary"></i>
+                                    </div>
+                                    <img id="photoPreviewImage" class="photo-preview-small shadow-sm" style="display: none; object-fit: cover;">
+                                    <label for="photo" class="btn btn-benin-green btn-circle-sm position-absolute bottom-0 end-0 shadow">
+                                        <i class="bi bi-camera-fill"></i>
+                                    </label>
                                 </div>
-                                <small id="strengthText" class="text-muted">Force</small>
+                                <input type="file" name="photo" id="photo" accept="image/*" class="d-none">
+                                <p class="x-small text-muted mt-2 mb-0">Tous formats acceptés<br>Max 2 Mo</p>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="password_confirmation" class="form-label fw-semibold small"><i class="bi bi-lock-fill"></i> Confirmer <span class="text-danger">*</span></label>
-                            <div class="input-group input-group-sm">
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirmez" minlength="8" required>
-                                <button class="btn btn-outline-secondary" type="button" id="togglePasswordConfirm">
-                                    <i class="bi bi-eye" id="toggleIconConfirm"></i>
-                                </button>
+
+                        <div class="col-lg-5 col-md-8 mb-3 border-end-lg">
+                            <div class="px-2">
+                                <label class="x-small fw-bold mb-3 d-block text-uppercase text-benin-green">Informations Personnelles</label>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <label class="x-small fw-bold mb-1">Nom</label>
+                                        <input type="text" name="nom" class="form-control form-control-sm border-0 bg-light" placeholder="Nom" value="{{ old('nom') }}" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="x-small fw-bold mb-1">Prénom</label>
+                                        <input type="text" name="prenom" class="form-control form-control-sm border-0 bg-light" placeholder="Prénom" value="{{ old('prenom') }}" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="x-small fw-bold mb-1">Naissance</label>
+                                        <input type="date" name="date_naissance" class="form-control form-control-sm border-0 bg-light" value="{{ old('date_naissance') }}" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="x-small fw-bold mb-1">Sexe</label>
+                                        <select name="sexe" class="form-select form-select-sm border-0 bg-light" required>
+                                            <option value="masculin" {{ old('sexe') == 'masculin' ? 'selected' : '' }}>Masculin</option>
+                                            <option value="feminin" {{ old('sexe') == 'feminin' ? 'selected' : '' }}>Féminin</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="x-small fw-bold mb-1">Langue principale</label>
+                                        <select name="langue_id" class="form-select form-select-sm border-0 bg-light" required>
+                                            <option value="">Sélectionnez votre langue</option>
+                                            @foreach($langues ?? [] as $langue)
+                                                <option value="{{ $langue->id }}" {{ old('langue_id') == $langue->id ? 'selected' : '' }}>{{ $langue->nom_langue }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="passwordMatch" class="small mt-2"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12 mb-3">
+                            <div class="px-2">
+                                <label class="x-small fw-bold mb-3 d-block text-uppercase text-benin-green">Identifiants & Sécurité</label>
+                                <div class="mb-2">
+                                    <label class="x-small fw-bold mb-1">Adresse Email</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-0 bg-light text-muted"><i class="bi bi-envelope"></i></span>
+                                        <input type="email" name="email" class="form-control border-0 bg-light" placeholder="email@mail.com" value="{{ old('email') }}" required>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="x-small fw-bold mb-1">Mot de passe</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-0 bg-light text-muted"><i class="bi bi-lock"></i></span>
+                                        <input type="password" name="password" id="password" class="form-control border-0 bg-light" placeholder="••••••••" required>
+                                        <button class="btn btn-light border-0 toggle-password" type="button" data-target="password">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="x-small fw-bold mb-1">Confirmation</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-0 bg-light text-muted"><i class="bi bi-shield-check"></i></span>
+                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control border-0 bg-light" placeholder="••••••••" required>
+                                        <button class="btn btn-light border-0 toggle-password" type="button" data-target="password_confirmation">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input custom-check" type="checkbox" name="terms" id="terms" required>
+                                    <label class="form-check-label x-small text-muted" for="terms">
+                                        J'accepte les <a href="#" class="text-benin-green fw-bold">conditions d'utilisation</a>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Terms & Conditions -->
-                    <div class="mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
-                            <label class="form-check-label small" for="terms">
-                                J'accepte les <a href="#" class="text-decoration-none">conditions d'utilisation</a> et la <a href="#" class="text-decoration-none">politique de confidentialité</a> <span class="text-danger">*</span>
-                            </label>
+                    <div class="row align-items-center border-top pt-3 mt-1">
+                        <div class="col-md-4 d-none d-md-block">
+                             <a href="{{ route('login') }}" class="text-benin-green fw-bold text-decoration-none x-small">
+                                <i class="bi bi-arrow-left me-1"></i> Déjà inscrit ? Se connecter
+                             </a>
                         </div>
-                    </div>
-
-                    <!-- Boutons -->
-                    <div class="d-flex flex-column flex-sm-row justify-content-between gap-2 mt-3 pt-3 border-top">
-                        <a href="{{ route('login') }}" class="btn btn-outline-secondary btn-sm">
-                            <i class="bi bi-arrow-left"></i> Se connecter
-                        </a>
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="bi bi-check-circle"></i> Créer mon compte
-                        </button>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-benin-green w-100 py-2 rounded-pill fw-bold shadow-sm">
+                                Créer mon compte
+                            </button>
+                        </div>
+                        <div class="col-md-4 text-end d-none d-md-block">
+                             <span class="x-small text-muted"><i class="bi bi-shield-lock-fill me-1 text-success"></i>Données sécurisées</span>
+                        </div>
                     </div>
                 </form>
-
-                <!-- Security Notice -->
-                <div class="text-center mt-3 pt-3 border-top">
-                    <small class="text-muted">
-                        <i class="bi bi-shield-check text-success"></i>
-                        Vos données sont protégées
-                    </small>
-                </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @push('styles')
-    <style>
-        body {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            min-height: 100vh;
-        }
+<style>
+:root {
+    --benin-green-color: #008751;
+    --benin-green-dark-color: #006b40;
+    --benin-green-light-color: rgba(0, 135, 81, 0.1);
+}
 
-        .custom-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: none;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-            max-width: 650px;
-            margin-top: 1rem;
-            background: white;
-        }
+/* Suppression du contour bleu - Focus Vert Bénin */
+.form-control:focus, .form-select:focus, .custom-check:focus {
+    border-color: var(--benin-green-color) !important;
+    box-shadow: 0 0 0 0.25rem var(--benin-green-light-color) !important;
+    outline: none;
+}
 
-        .custom-card-header {
-            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
-            padding: 1. 25rem 1rem;
-        }
+.custom-check:checked {
+    background-color: var(--benin-green-color) !important;
+    border-color: var(--benin-green-color) !important;
+}
 
-        .header-logo {
-            height: 40px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
+/* Design Compact */
+.header-logo-compact { height: 40px; width: auto; }
+.photo-preview-small {
+    width: 80px; height: 80px;
+    background: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--benin-green-color);
+}
 
-        .card-body {
-            background: #ffffff;
-        }
+.btn-circle-sm {
+    width: 28px; height: 28px; border-radius: 50%; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+}
 
-        /* Photo Preview - Plus compact */
-        .photo-preview-wrapper {
-            position: relative;
-            display: inline-block;
-        }
+.x-small { font-size: 0.75rem !important; }
+.text-benin-green { color: var(--benin-green-color); }
+.btn-benin-green { background: var(--benin-green-color); color: white; border: none; }
+.btn-benin-green:hover { background: var(--benin-green-dark-color); color: white; }
 
-        .photo-preview {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            border: 2px dashed #ceb772ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2. 5rem;
-            color: #ceb772ff;
-        }
-
-        .photo-preview-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ceb772ff;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        /* Form Controls - Plus compacts */
-        .form-label {
-            color: #ceb772ff;
-            font-size: 0.8125rem;
-            margin-bottom: 0.25rem;
-            font-weight: 600;
-        }
-
-        .form-control, .form-select {
-            border-radius: 6px;
-            border: 1. 5px solid #a5d6a7;
-            padding: 0.375rem 0.625rem;
-            transition: all 0.2s;
-            font-size: 0.875rem;
-            background: #f1f8f4;
-        }
-
-        .form-control-sm, .form-select-sm {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.8125rem;
-        }
-
-        .form-control:focus, . form-select:focus {
-            border-color: #ceb772ff;
-            box-shadow: 0 0 0 0.2rem rgba(0,135,81,0.15);
-            background: white;
-        }
-
-        .is-invalid {
-            border-color: #d32f2f !important;
-            background: #ffebee !important;
-        }
-
-        .invalid-feedback, .text-danger {
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        /* Radio Buttons - Plus compacts */
-        .form-check-inline {
-            border: 1.5px solid #a5d6a7;
-            border-radius: 6px;
-            padding: 0.375rem 0.75rem;
-            transition: all 0.2s;
-            background: #f1f8f4;
-        }
-
-        .form-check-input {
-            border-color: #ceb772ff;
-        }
-
-        . form-check-input:checked {
-            background-color: #ceb772ff;
-            border-color: #ceb772ff;
-        }
-
-        .form-check-input:checked ~ .form-check-label {
-            color: #ceb772ff;
-            font-weight: 700;
-        }
-
-        . form-check-inline:has(. form-check-input:checked) {
-            border-color: #ceb772ff;
-            background: linear-gradient(135deg, rgba(0,135,81,0.1), rgba(0,135,81,0.05));
-            box-shadow: 0 2px 6px rgba(0,135,81,0.12);
-        }
-
-        /* Buttons - Plus compacts */
-        . btn-primary {
-            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
-            border: none;
-            font-weight: 700;
-            font-size: 0.875rem;
-            padding: 0. 5rem 1. 25rem;
-            transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(0,135,81,0.25);
-        }
-
-        .btn-sm {
-            padding: 0. 375rem 1rem;
-            font-size: 0.8125rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,135,81,0.35);
-            background: linear-gradient(135deg, #ceb772ff, #ceb772ff);
-        }
-
-        .btn-outline-primary, .btn-outline-danger {
-            font-weight: 600;
-            font-size: 0.8125rem;
-            padding: 0.375rem 0.875rem;
-        }
-
-        .btn-outline-secondary {
-            border-color: #ceb772ff;
-            color: #ceb772ff;
-            font-weight: 600;
-            background: rgba(0,135,81,0.05);
-        }
-
-        .btn-outline-secondary:hover {
-            background: #ceb772ff;
-            color: white;
-            border-color: #ceb772ff;
-        }
-
-        /* Alerts - Plus compacts */
-        . alert-danger {
-            background: linear-gradient(135deg, #ffebee, #ffcdd2);
-            border-left: 3px solid #d32f2f;
-            color: #b71c1c;
-            padding: 0.75rem 1rem;
-            font-size: 0.8125rem;
-        }
-
-        .alert ul {
-            margin-bottom: 0;
-            padding-left: 1.25rem;
-        }
-
-        /* Password Strength - Plus compact */
-        .password-strength . progress {
-            background: #e8f5e9;
-            height: 3px;
-        }
-
-        .password-strength . progress-bar {
-            transition: all 0.3s;
-        }
-
-        . password-strength . progress-bar[data-strength="weak"] {
-            width: 33%;
-            background: linear-gradient(90deg, #ff5252, #f44336);
-        }
-
-        .password-strength .progress-bar[data-strength="medium"] {
-            width: 66%;
-            background: linear-gradient(90deg, #ffb74d, #ffa726);
-        }
-
-        .password-strength .progress-bar[data-strength="strong"] {
-            width: 100%;
-            background: linear-gradient(90deg, #ceb772ff, #ceb772ff);
-        }
-
-        /* Form Text - Plus compact */
-        .form-text {
-            color: #ceb772ff;
-            font-weight: 500;
-            font-size: 0.7rem;
-            margin-top: 0.125rem;
-        }
-
-        . text-muted {
-            color: #ceb772ff !important;
-            font-size: 0.75rem;
-        }
-
-        /* Borders */
-        .border-top {
-            border-color: #a5d6a7 !important;
-        }
-
-        /* Input Group - Plus compact */
-        . input-group-sm . btn-outline-secondary {
-            border: 1.5px solid #a5d6a7;
-            border-left: 1.5px solid #a5d6a7 !important;
-            color: #ceb772ff !important;
-            background: #ffffff !important;
-            font-weight: 700;
-            padding: 0.25rem 0.5rem;
-            transition: all 0.2s;
-        }
-
-        .input-group . btn-outline-secondary:hover {
-            background: #ceb772ff !important;
-            color: white !important;
-            border-color: #ceb772ff !important;
-        }
-
-        . input-group . btn-outline-secondary i {
-            color: #ceb772ff !important;
-            font-size: 1rem ! important;
-        }
-
-        . input-group .btn-outline-secondary:hover i {
-            color: white !important;
-        }
-
-        /* Checkbox - Plus compact */
-        .form-check-input {
-            border: 1.5px solid #ceb772ff;
-            width: 1rem;
-            height: 1rem;
-        }
-
-        .form-check-input:checked {
-            background-color: #ceb772ff;
-            border-color: #ceb772ff;
-        }
-
-        /* Links */
-        a. text-decoration-none {
-            color: #ceb772ff;
-            font-weight: 600;
-        }
-
-        a. text-decoration-none:hover {
-            color: #ceb772ff;
-            text-decoration: underline ! important;
-        }
-
-        /* Security Notice */
-        .text-success {
-            color: #ceb772ff !important;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .custom-card {
-                margin: 0.5rem;
-                max-width: 100%;
-            }
-
-            .card-body {
-                padding: 1rem ! important;
-            }
-
-            . header-logo {
-                height: 35px;
-            }
-
-            . custom-card-header {
-                padding: 1rem 0.75rem;
-            }
-
-            . custom-card-header h5 {
-                font-size: 1rem;
-            }
-
-            .form-check-inline {
-                width: 100%;
-                text-align: center;
-                margin-bottom: 0.5rem;
-            }
-
-            .photo-preview, .photo-preview-img {
-                width: 70px;
-                height: 70px;
-            }
-
-            . photo-preview {
-                font-size: 2rem;
-            }
-
-            .btn-sm {
-                padding: 0. 375rem 0.875rem;
-                font-size: 0.75rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .custom-card {
-                border-radius: 8px;
-                margin: 0.25rem;
-            }
-
-            . card-body {
-                padding: 0.75rem !important;
-            }
-
-            .row. g-2 {
-                gap: 0.5rem !important;
-            }
-
-            .mb-3 {
-                margin-bottom: 0.75rem ! important;
-            }
-        }
-    </style>
+@media (min-width: 992px) {
+    .border-end-lg { border-right: 1px solid #eee !important; }
+}
+</style>
 @endpush
 
 @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Photo Preview
-            const photoInput = document.getElementById('photo');
-            const photoPreview = document.getElementById('photoPreview');
-            const photoPreviewImage = document.getElementById('photoPreviewImage');
-            const removePhotoBtn = document.getElementById('removePhoto');
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Photo Preview
+    const photoInput = document.getElementById('photo');
+    const previewImg = document.getElementById('photoPreviewImage');
+    const previewIcon = document.getElementById('photoPreview');
 
-            photoInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    if (file.size > 2 * 1024 * 1024) {
-                        alert('La taille du fichier ne doit pas dépasser 2 Mo');
-                        photoInput.value = '';
-                        return;
-                    }
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        photoPreviewImage.src = e.target. result;
-                        photoPreviewImage.style.display = 'block';
-                        photoPreview. style.display = 'none';
-                        removePhotoBtn.style.display = 'inline-block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
+    photoInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                previewImg.src = e.target.result;
+                previewImg.style.display = 'block';
+                previewIcon.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 
-            removePhotoBtn.addEventListener('click', function() {
-                photoInput.value = '';
-                photoPreviewImage.style.display = 'none';
-                photoPreview.style.display = 'flex';
-                this.style.display = 'none';
-            });
-
-            // Toggle Password Visibility
-            document.getElementById('togglePassword').addEventListener('click', function() {
-                const password = document.getElementById('password');
-                const icon = document.getElementById('toggleIcon');
-                if (password.type === 'password') {
-                    password.type = 'text';
-                    icon. classList.replace('bi-eye', 'bi-eye-slash');
-                } else {
-                    password.type = 'password';
-                    icon.classList.replace('bi-eye-slash', 'bi-eye');
-                }
-            });
-
-            document.getElementById('togglePasswordConfirm').addEventListener('click', function() {
-                const password = document.getElementById('password_confirmation');
-                const icon = document.getElementById('toggleIconConfirm');
-                if (password.type === 'password') {
-                    password.type = 'text';
-                    icon.classList.replace('bi-eye', 'bi-eye-slash');
-                } else {
-                    password. type = 'password';
-                    icon.classList.replace('bi-eye-slash', 'bi-eye');
-                }
-            });
-
-            // Password Strength
-            const passwordInput = document.getElementById('password');
-            const strengthBar = document.getElementById('strengthBar');
-            const strengthText = document.getElementById('strengthText');
-
-            passwordInput.addEventListener('input', function() {
-                const password = this.value;
-                let strength = 0;
-
-                if (password.length >= 8) strength++;
-                if (password.length >= 12) strength++;
-                if (/[a-z]/.test(password) && /[A-Z]/. test(password)) strength++;
-                if (/[0-9]/.test(password)) strength++;
-                if (/[^a-zA-Z0-9]/.test(password)) strength++;
-
-                const labels = ['', 'Faible', 'Moyen', 'Bon', 'Fort'];
-                const colors = ['', 'weak', 'medium', 'medium', 'strong'];
-
-                strengthBar.style.width = (strength * 25) + '%';
-                strengthBar.setAttribute('data-strength', colors[Math.min(strength, 3)]);
-                strengthText.textContent = password. length > 0 ? `${labels[Math.min(strength, 4)]}` : 'Force';
-            });
-
-            // Password Match
-            const passwordConfirm = document.getElementById('password_confirmation');
-            const passwordMatch = document.getElementById('passwordMatch');
-
-            passwordConfirm.addEventListener('input', function() {
-                if (this.value. length === 0) {
-                    passwordMatch. textContent = '';
-                    return;
-                }
-
-                if (this. value === passwordInput.value) {
-                    passwordMatch.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i> Correspond';
-                } else {
-                    passwordMatch. innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i> Ne correspond pas';
-                }
-            });
+    // 2. Toggle Password pour les deux champs
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('bi-eye', 'bi-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('bi-eye-slash', 'bi-eye');
+            }
         });
-    </script>
+    });
+});
+</script>
 @endpush

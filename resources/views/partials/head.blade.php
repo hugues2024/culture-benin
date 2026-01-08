@@ -1,8 +1,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description"
-    content="Bénin-culture est une plateforme dédiée à la promotion et à la valorisation de la richesse culturelle du Bénin à travers des contenus variés dans différentes langues.">
-<title>@yield('title', 'Bénin-culture')</title>
+    content="Culture-Bénin est une plateforme dédiée à la promotion et à la valorisation de la richesse culturelle du Bénin à travers des contenus variés dans différentes langues.">
+<title>@yield('title', 'Culture-Bénin')</title>
 
 <!-- Preconnect for performance -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -12,14 +12,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Favicons -->
-        <link rel="icon" type="image/png" href="{{asset('img/favicon/favicon-96x96.png')}}" sizes="96x96/>"/>
-
+<link rel="icon" type="image/png" href="{{asset('img/favicon/favicon-96x96.png')}}" sizes="96x96/>"/>
 <link rel="icon" type="image/svg+xml" href="{{asset('img/favicon/favicon.svg')}}" />
-
 <link rel="shortcut icon" href="{{asset('img/favicon/favicon.ico')}}" />
-
 <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/apple-touch-icon.png')}}" />
-
 <link rel="manifest" href="{{asset('/site.webmanifest')}}" />
 
 <style>
@@ -28,12 +24,20 @@
     ======================================== */
     :root {
         /* Colors - Bénin Theme */
-        --benin-green: #ceb772ff;
-        --benin-green-dark: #ceb772ff;
-        --benin-green-light: #ceb772ff;
-        --benin-yellow: #fff;
-        --benin-yellow-dark: #fff;
-        --benin-red: #E8112D;
+        --benin-green: #F9FBF9;
+        --benin-green-dark: #F9FBF9;
+        --benin-green-light: #F9FBF9;
+        --benin-yellow: #2D2D2D;
+        --benin-yellow-dark: #2D2D2D;
+        /* Colors - Culture-Bénin Theme */
+        --benin-white-color: #F9FBF9 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-dark-color: #2D2D2D /*Un gris très foncé (mieux que le noir pur) pour la lecture.*/;
+        --benin-green-color: #008751 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-green-dark-color: #006b40 /*Pour les survols de boutons, les accents.*/;
+        --benin-green-light-color: #cbf8e9ff /*Pour les survols des boutons, les accents.*/;
+        --benin-yellow-color: #FCD116 /*Pour les icônes, les mises en évidence, les étoiles.*/;
+        --benin-red-color: #E8112D /*Pour les alertes, les cœurs (favoris), les prix.*/;
+
 
         /* Neutral Colors */
         --color-white: #ffffff;
@@ -71,7 +75,7 @@
         /* Spacing */
         --spacing-xs: 0.25rem;
         --spacing-sm: 0.5rem;
-        --spacing-md: 1rem;
+        --spacing-md: 0.5rem;
         --spacing-lg: 1.5rem;
         --spacing-xl: 2rem;
         --spacing-2xl: 3rem;
@@ -114,7 +118,7 @@
         font-size: var(--font-size-base);
         line-height: var(--line-height-base);
         color: var(--color-text);
-        background-color: var(--color-bg);
+        background-color: var(--benin-white-color);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -125,22 +129,29 @@
     .navbar {
         background-color: var(--color-primary);
         box-shadow: var(--shadow-md);
-        padding: var(--spacing-md) 0;
+        padding: var(--spacing-md) 0 !important;
         transition: all var(--transition-base);
+    }
+
+    .navbar .container {
+        padding: 0 !important;
     }
 
     .navbar-brand {
         color: var(--color-white) !important;
         font-size: var(--font-size-xl);
-        font-weight: var(--font-weight-bold);
         display: flex;
         align-items: center;
         gap: var(--spacing-sm);
+        font-weight: bold;
+        font-size: 1.5rem; 
+        text-decoration: none;
     }
 
     .nav-link {
-        color: var(--color-white) !important;
-        font-weight: var(--font-weight-medium);
+        color: var( --benin-dark-color) !important;
+        font-weight: bold;
+        font-size: 1.1rem; 
         padding: var(--spacing-sm) var(--spacing-md) !important;
     }
 
@@ -158,8 +169,14 @@
     }
 
     .hero-section {
-        background: linear-gradient(135deg, rgba(0, 135, 81, 0.95), rgba(0, 107, 64, 0.95)),
-            url("{{ asset('img/Bio.jpg') }}") center/cover no-repeat;
+        background-color: var(--benin-white-color);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain; /* L'image s'affiche entièrement sans être coupée */
+        
+        /* Optionnel : pour rendre l'image plus nette sur les écrans haute résolution */
+        image-rendering: -webkit-optimize-contrast; 
+        height: 500px; /* Assure-toi que ton conteneur a une hauteur définie ! */
         color: var(--color-white);
         padding: var(--spacing-3xl) 0;
         text-align: center;
@@ -455,27 +472,36 @@
     }
 
     .navbar .btn-primary {
-        background-color: var(--benin-yellow) !important;
-        border-color: var(--benin-yellow) !important;
-        color: var(--color-text) !important;
+        border-color: var(--benin-green-color) !important;
+        color: var(--benin-white-color) !important;
+        background-color: var(--benin-green-color); /* Fond Vert */
+        border-radius: 50px !important; /* Pour l'effet très arrondi de l'image */
+        text-decoration: none;
+        font-weight: 500 !important;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 16px;
+        transition: background-color 0.3s !important;
     }
 
     .navbar .btn-primary:hover {
-        background-color: var(--benin-yellow-dark) !important;
-        border-color: var(--benin-yellow-dark) !important;
-        transform: translateY(-1px) !important;
+        border-color: var(--benin-green-dark-color) !important;
+        background-color: var(--benin-green-dark-color) !important; /* Un vert un peu plus sombre au survol */
     }
 
     .navbar .btn-outline-light {
         background-color: transparent !important;
         border-color: rgba(255, 255, 255, 0.5) !important;
-        color: var(--color-white) !important;
+        color: var(--benin-green-color) ;
+        text-decoration: none;
+        font-weight: 500;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 16px;
     }
 
     .navbar .btn-outline-light:hover {
-        background-color: var(--color-white) !important;
-        color: var(--color-primary) !important;
-        border-color: var(--color-white) !important;
+        background-color: var(--benin-green-light-color) !important;
+        color: var(--benin-green-color) !important;
+        border-radius: 50px !important;
     }
 
     /* Responsive */

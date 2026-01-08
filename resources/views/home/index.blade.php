@@ -1,381 +1,537 @@
 @extends('layouts.app1')
 
-@section('title', 'Bénin-culture')
+@section('title', 'Culture-Bénin')
 
 @section('content')
-    <!-- Hero Carousel Section -->
-    <section class="hero-carousel-section" role="banner">
-        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <!-- Indicateurs -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <!-- Hero Carousel Section starts -->
+    <section class="hero-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="hero-text-content">
+                        <h1 class="display-4 fw-bold mb-4">
+                            La Culture Béninoise, une <span class="text-benin-green">épopée vivante</span> à portée de clic.
+                        </h1>
+                        <p class="lead mb-4 text-muted">
+                            De l’éclat des Palais Royaux d’Abomey aux rythmes envoûtants du vaudou, explorez les trésors d’une terre d'histoire. Bienvenue sur Culture-Bénin, la fenêtre numérique sur l'âme du Quartier Latin de l'Afrique.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="video-pure-container shadow-lg rounded-4 overflow-hidden">
+                        <div class="video-overlay"></div>
+                        
+                        <iframe 
+                            src="https://www.youtube.com/embed/Y9KT5jIgfoY?autoplay=1&mute=1&loop=1&playlist=Y9KT5jIgfoY&controls=0&disablekb=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0" 
+                            title="Culture Bénin" 
+                            frameborder="0" 
+                            allow="autoplay"
+                            class="video-iframe">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Carousel Section ends -->
+
+    <!-- Regions Section starts -->
+<section class="regions-section py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-5">Les Richesses de nos Régions</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Explorez le Bénin à travers ses pôles culturels. Chaque territoire raconte une histoire unique à travers ses langues et ses traditions.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="region-card shadow-sm rounded-4 overflow-hidden">
+                    <div class="region-img" style="background-image: url('img/regions/atacora.jpg');"></div>
+                    <div class="region-overlay p-4 d-flex flex-column justify-content-end">
+                        <h3 class="h4 text-white mb-1">Atacora</h3>
+                        <div class="region-languages text-white-50 small mb-3">
+                            <i class="fas fa-language me-1"></i> Ditammari, Dendi, Waama
+                        </div>
+                        <div class="region-stats text-white bg-benin-green py-2 px-3 rounded-pill text-center opacity-0 translate-middle-y transition-all">
+                            128 Contenus
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="hero-slide slide-1"
-                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/image1.jpeg');">
-                        <div class="container">
-                            <div class="hero-content">
-                                <span class="hero-badge">Bénin Authentique</span>
-                                <h1 class="hero-title">Plongez au cœur des cultures du Bénin</h1>
-                                <p class="hero-description">Explorez, partagez et valorisez les savoirs, coutumes et arts qui font l'identité béninoise.</p>
-                                <div class="hero-actions">
-                                    <a href="#contenus" class="btn btn-primary btn-lg">
-                                        <i class="fas fa-book"></i>
-                                        <span>Voir les ressources</span>
-                                    </a>
-                                    <a href="#contribuer" class="btn btn-outline-light btn-lg">
-                                        <i class="fas fa-plus"></i>
-                                        <span>Ajouter un contenu</span>
-                                    </a>
-                                </div>
-                                <div class="hero-stats">
-                                    <div class="stat-item mx-3">
-                                        <strong>{{ $nbr_contenus }}</strong>
-                                        <span>Ressources</span>
+            <div class="col-md-6 col-lg-3">
+                <div class="region-card shadow-sm rounded-4 overflow-hidden">
+                    <div class="region-img" style="background-image: url('img/regions/abomey.jpg');"></div>
+                    <div class="region-overlay p-4 d-flex flex-column justify-content-end">
+                        <h3 class="h4 text-white mb-1">Abomey (Zou)</h3>
+                        <div class="region-languages text-white-50 small mb-3">
+                            <i class="fas fa-language me-1"></i> Fon, Mahi
+                        </div>
+                        <div class="region-stats text-white bg-benin-green py-2 px-3 rounded-pill text-center opacity-0 translate-middle-y transition-all">
+                            342 Contenus
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="region-card shadow-sm rounded-4 overflow-hidden">
+                    <div class="region-img" style="background-image: url('img/regions/ouidah.jpg');"></div>
+                    <div class="region-overlay p-4 d-flex flex-column justify-content-end">
+                        <h3 class="h4 text-white mb-1">Ouidah</h3>
+                        <div class="region-languages text-white-50 small mb-3">
+                            <i class="fas fa-language me-1"></i> Fon, Xweda
+                        </div>
+                        <div class="region-stats text-white bg-benin-green py-2 px-3 rounded-pill text-center opacity-0 translate-middle-y transition-all">
+                            215 Contenus
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="region-card shadow-sm rounded-4 overflow-hidden">
+                    <div class="region-img" style="background-image: url('img/regions/parakou.jpg');"></div>
+                    <div class="region-overlay p-4 d-flex flex-column justify-content-end">
+                        <h3 class="h4 text-white mb-1">Parakou (Borgou)</h3>
+                        <div class="region-languages text-white-50 small mb-3">
+                            <i class="fas fa-language me-1"></i> Bariba, Dendi, Peul
+                        </div>
+                        <div class="region-stats text-white bg-benin-green py-2 px-3 rounded-pill text-center opacity-0 translate-middle-y transition-all">
+                            189 Contenus
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Regions Section ends -->
+
+    <!-- Content Section starts -->
+<section class="regions-section py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-5">Patrimoine Immatériel et Arts Vivants</h2>
+            <div class="row mb-5 align-items-center">
+                <div class="col-lg-7">
+                    <p class="text-muted mx-auto" style="max-width: 600px;">
+                        Une immersion documentée au cœur de la création béninoise, des traditions séculaires aux expressions contemporaines. Accédez à une base de données unique regroupant contes, gastronomie et rituels sacrés.
+                    </p>
+                </div>
+                
+                <div class="col-lg-5 text-end d-none d-lg-block">
+                    <div class="p-4 bg-light text-center">
+                        <span class="d-block display-6 fw-bold text-benin-green">+1500</span>
+                        <span class="text-muted text-uppercase small fw-bold">Archives Culturelles</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs border-0 mb-5 gap-4" id="heritageTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold px-0 pb-3" id="contes-tab" data-bs-toggle="pill" data-bs-target="#contes-content" type="button">Littérature Orale</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold px-0 pb-3" id="cuisine-tab" data-bs-toggle="pill" data-bs-target="#cuisine-content" type="button">Gastronomie</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold px-0 pb-3" id="rites-tab" data-bs-toggle="pill" data-bs-target="#rites-content" type="button">Histoire & Rites</button>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-4" id="heritageTabsContent">
+            
+            <div class="tab-pane fade show active" id="contes-content" role="tabpanel">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="card bg-dark text-white border-0 rounded-4 overflow-hidden h-100 shadow-lg main-feature-card">
+                            <img src="{{ asset('img/patrimoine/littérature/araignee.jpg') }}" class="card-img opacity-50" alt="Tradition Orale">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end p-4 p-md-5">
+                                <span class="badge bg-benin-green mb-3 py-2 px-3">À LA UNE</span>
+                                <h3 class="display-5 fw-bold mb-3">Le Cycle de l'Araignée (Yéhoué Gbadogli)</h3>
+                                <p class="card-text fs-5 mb-4 opacity-75">Plongez dans l'univers de la ruse et de la sagesse populaire à travers les récits fondateurs du sud-Bénin.</p>
+                                <div class="d-flex flex-wrap align-items-center gap-3">
+                                    <div class="audio-widget bg-blur p-2 rounded-pill d-flex align-items-center px-4">
+                                        <button class="play-btn me-3 text-dark"><i class="fas fa-play"></i></button>
+                                        <span class="small fw-bold">Écouter en Fon</span>
                                     </div>
-                                    <div class="stat-item mx-3">
-                                        <strong>{{ $nbr_langues }}</strong>
-                                        <span>Langues</span>
-                                    </div>
-                                    <div class="stat-item mx-3">
-                                        <strong>150+</strong>
-                                        <span>Membres actifs</span>
-                                    </div>
+                                    <button class="btn btn-outline-light rounded-pill px-4">Consulter le manuscrit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="hero-slide slide-2"
-                         style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('/img/image2.jpeg');">
-                        <div class="container">
-                            <div class="hero-content">
-                                <span class="hero-badge">Héritage vivant</span>
-                                <h1 class="hero-title">Traditions, rituels et fêtes du Bénin</h1>
-                                <p class="hero-description">Découvrez les cérémonies, danses et croyances qui rythment la vie des communautés béninoises.</p>
-                                <div class="hero-actions">
-                                    <a href="#traditions" class="btn btn-light btn-lg">
-                                        <i class="fas fa-drum"></i>
-                                        <span>Explorer les traditions</span>
-                                    </a>
-                                    <a href="#videos" class="btn btn-outline-light btn-lg">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>Regarder les vidéos</span>
-                                    </a>
-                                </div>
+                    <div class="col-lg-4">
+                        <div class="list-group list-group-flush border rounded-4 overflow-hidden shadow-sm h-100 bg-white">
+                            <div class="list-group-item p-4 hover-bg-light transition">
+                                <span class="text-benin-green small fw-bold text-uppercase">Légende</span>
+                                <h5 class="fw-bold mt-1">Origine de la Jarre Trouée</h5>
+                                <p class="text-muted small mb-0">L'allégorie de l'unité nationale léguée par le Roi Ghézo.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="hero-slide slide-3"
-                         style="background-image: url('/img/image3.jpeg);">
-                        <div class="container">
-                            <div class="hero-content">
-                                <span class="hero-badge">Langues du Bénin</span>
-                                <h1 class="hero-title">Parlez et apprenez les langues locales</h1>
-                                <p class="hero-description">Fon, Yoruba, Dendi, Goun, Bariba... Initiez-vous à la diversité linguistique du pays.</p>
-                                <div class="hero-actions">
-                                    <a href="#langues" class="btn btn-light btn-lg">
-                                        <i class="fas fa-language"></i>
-                                        <span>Voir les langues</span>
-                                    </a>
-                                    <a href="#apprendre" class="btn btn-outline-light btn-lg">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <span>S'initier</span>
-                                    </a>
-                                </div>
+                            <div class="list-group-item p-4 hover-bg-light transition border-top">
+                                <span class="text-benin-green small fw-bold text-uppercase">Épopée</span>
+                                <h5 class="fw-bold mt-1">L'Exil du Roi Béhanzin</h5>
+                                <p class="text-muted small mb-0">Récit tragique de la résistance contre l'occupation coloniale.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="hero-slide slide-4"
-                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/img/image4.jpeg');">
-                        <div class="container">
-                            <div class="hero-content">
-                                <span class="hero-badge">Découverte régionale</span>
-                                <h1 class="hero-title">Explorez les contrées du Bénin</h1>
-                                <p class="hero-description">Partez à la rencontre des richesses et traditions propres à chaque région, du nord au sud.</p>
-                                <div class="hero-actions">
-                                    <a href="#regions" class="btn btn-light btn-lg">
-                                        <i class="fas fa-map-marked-alt"></i>
-                                        <span>Voir les régions</span>
-                                    </a>
-                                    <a href="#carte" class="btn btn-outline-light btn-lg">
-                                        <i class="fas fa-compass"></i>
-                                        <span>Carte interactive</span>
-                                    </a>
-                                </div>
+                            <div class="list-group-item p-4 hover-bg-light transition border-top">
+                                <span class="text-benin-green small fw-bold text-uppercase">Spiritualité</span>
+                                <h5 class="fw-bold mt-1">Les Oracles du Fa</h5>
+                                <p class="text-muted small mb-0">Comprendre la géomancie divinatoire et ses enseignements.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Contrôles -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Précédent</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Suivant</span>
-            </button>
-
-            <!-- Scroll down indicator -->
-            <div class="scroll-indicator">
-                <a href="#contenus" class="scroll-link">
-                    <i class="fas fa-chevron-down"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="section-title">Pourquoi cette plateforme ?</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <article class="feature-card card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <i class="fas fa-language"></i>
-                        </div>
-                        <h3 class="h5">Multilinguisme</h3>
-                        <p>Créez et consultez des contenus dans les langues nationales du Bénin : Fon, Yoruba, Dendi,
-                            Goun et bien d'autres.</p>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="feature-card card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3 class="h5">Communauté</h3>
-                        <p>Participez à la préservation de notre patrimoine en partageant vos connaissances et
-                            expériences.</p>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="feature-card card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <h3 class="h5">Régional</h3>
-                        <p>Découvrez les spécificités culturelles de chaque région du Bénin, de l'Atacora au Mono.</p>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recent Content Carousel Section -->
-    <section id="contenus" class="py-5 bg-light">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="section-title mb-0">Contenus récents</h2>
-
-                @if(($slides ?? collect())->count() > 1)
-                    <div class="carousel-controls d-none d-md-flex gap-2">
-                        <button class="btn btn-outline-primary" type="button" data-bs-target="#recentContentCarousel"
-                                data-bs-slide="prev">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="btn btn-outline-primary" type="button" data-bs-target="#recentContentCarousel"
-                                data-bs-slide="next">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+            <div class="tab-pane fade" id="cuisine-content" role="tabpanel">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/amiwo.jpg') }}" class="card-img-top" alt="Amiwo">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">L'Amiwo au Poulet</h5>
+                    <p class="text-muted small">La fameuse pâte de maïs rouge fermentée, pilier de la table royale d'Abomey.</p>
+                    <hr class="my-3 opacity-10">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-light text-dark border">Zou / Littoral</span>
+                        <a href="#" class="text-benin-green fw-bold text-decoration-none small">Recette →</a>
                     </div>
-                @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/agoun.jpg') }}" class="card-img-top" alt="Amiwo">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">L'Agoun (Igname Pilée)</h5>
+                    <p class="text-muted small">La noblesse culinaire du centre-Bénin, servie avec une sauce arachide ou graine.</p>
+                    <hr class="my-3 opacity-10">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-light text-dark border">Variantes régionales</span>
+                        <a href="#" class="text-benin-green fw-bold text-decoration-none small">Recette →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/atassi.jpg') }}" class="card-img-top" alt="Atassi">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">L'Atassi Classique</h5>
+                    <p class="text-muted small">Le mélange riz-haricots indissociable du piment noir (Dja) et du poisson frit.</p>
+                    <hr class="my-3 opacity-10">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-light text-dark border">National</span>
+                        <a href="#" class="text-benin-green fw-bold text-decoration-none small">Détails →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/wassa-wassa.jpg') }}" class="card-img-top" alt="Atassi">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Le Wassa-Wassa</h5>
+                    <p class="text-muted small">Le "couscous noir" à base de cossettes d'igname, une merveille du Nord-Bénin.</p>
+                    <hr class="my-3 opacity-10">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge rounded-pill bg-dark">Dendi</span>
+                        <span class="badge rounded-pill bg-dark">Bariba</span>
+                        <a href="#" class="text-benin-green fw-bold text-decoration-none small">Détails →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/toubani.jpg') }}" class="card-img-top" alt="Atassi">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Le Toubani</h5>
+                    <p class="text-muted small">Gâteau de farine de haricots ou de niébé cuit à la vapeur. Léger et nutritif.</p>
+                    <hr class="my-3 opacity-10">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge rounded-pill bg-dark">Dendi</span>
+                        <span class="badge rounded-pill bg-dark">Bariba</span>
+                        <a href="#" class="text-benin-green fw-bold text-decoration-none small">Découvrir la cuisson →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/dakouin.jpg') }}" class="card-img-top" alt="Dakouin">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-2">Le Dakouin</h5>
+                    <p class="text-muted small">La polenta de gari (manioc) cuite dans un bouillon de poisson frais du lac Ahémé.</p>
+                    <span class="badge bg-info text-dark">Mono / Couffo</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Découvrir la cuisson →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/massa.jpg') }}" class="card-img-top" alt="Dakouin">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-2">Les Massa</h5>
+                    <p class="text-muted small">Délicieuses galettes de riz sucrées, frites et croustillantes, spécialité du Nord.</p>
+                    <span class="badge bg-info text-dark">Mono / Couffo</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Découvrir la cuisson →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/tale-tale.jpg') }}" class="card-img-top" alt="Banane">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Talé-Talé</h5>
+                    <p class="text-muted small">Beignets de bananes plantains mûres, le goûter préféré des Béninois.</p>
+                    <span class="badge bg-info text-dark">National</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Recette →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/gombo.jpg') }}" class="card-img-top" alt="Banane">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Sauce Gombo (Fétri)</h5>
+                    <p class="text-muted small">Une sauce gluante riche en crabes, crevettes et fromage local (Wagashi).</p>
+                     <span class="text-benin-green small fw-bold">Accompagnement : Pâte de Maïs</span>
+                    <span class="badge bg-info text-dark">National</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Recette →</a>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/wagashi.jpg') }}" class="card-img-top" alt="Banane">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Wagashi Gasno</h5>
+                    <p class="text-muted small">L'unique fromage au lait de vache, teint en rouge grâce aux tiges de sorgho.</p>
+                    <span class="badge bg-white text-dark border">Borgou / Alibori</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Recette →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/yovo-doko.jpg') }}" class="card-img-top" alt="Banane">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Yovo-Doko</h5>
+                    <p class="text-muted small">Les beignets de farine de blé vendus à chaque coin de rue, symboles du "Street-Food".</p>
+                    <span class="badge bg-white text-dark border">Borgou / Alibori</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Où les trouver? →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600" class="card-img-top" alt="Poisson">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Le Djanman</h5>
+                    <p class="text-muted small">Poisson grillé ou braisé à la béninoise, mariné aux épices locales.</p>
+                    <span class="badge bg-white text-dark border">Borgou / Alibori</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Où les trouver? →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/kpetchi.jpg') }}" class="card-img-top" alt="Poisson">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Le Kpétchi</h5>
+                    <p class="text-muted small">Plat à base de sang de porc ou de mouton cuit, très apprécié dans le Sud.</p>
+                    <span class="badge bg-white text-dark border">Traditionel</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Découvrir? →</a>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/telibo.jpg') }}" class="card-img-top" alt="Banane">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Le Télibo</h5>
+                    <p class="text-muted small">La pâte noire obtenue à partir de la farine de cossettes d'igname.</p>
+                     <span class="text-benin-green small fw-bold">Idéal avec : Sauce Graine</span>
+                    <span class="badge bg-info text-dark">National</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Recette →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <img src="{{ asset('img/patrimoine/gastronomie/rafraichissement.jpg') }}" class="card-img-top" alt="Banane">
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">Rafraîchissements</h5>
+                    <p class="text-muted small">Bissap (fleurs d'hibiscus), jus de Baobab ou Ananas "Pain de Sucre".</p>
+                     <span class="text-benin-green small fw-bold">Idéal avec : Sauce Graine</span>
+                    <span class="badge bg-info text-dark">National</span><a href="#" class="text-benin-green fw-bold text-decoration-none small">Recette →</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+            <div class="tab-pane fade" id="rites-content" role="tabpanel">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100 bg-light">
+                             <div class="p-5">
+                                <span class="text-benin-green fw-bold text-uppercase ls-1">Figures Historiques</span>
+                                <h3 class="display-6 fw-bold mt-2">L'Amazone du Bénin</h3>
+                                <p class="text-secondary mt-3 fs-5">Inspirées par l'élite militaire féminine du Danxomè, elles incarnent aujourd'hui la force et l'émancipation de la femme béninoise.</p>
+                                <button class="btn btn-benin-green rounded-pill px-4 mt-3">Explorer le monument</button>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100 bg-dark text-white">
+                             <div class="p-5 d-flex flex-column justify-content-center h-100">
+                                <span class="text-benin-green fw-bold text-uppercase ls-1">Résistance</span>
+                                <h3 class="display-6 fw-bold mt-2">Bio Guéra : L'Immortel</h3>
+                                <p class="opacity-75 mt-3 fs-5">Prince guerrier et figure de la résistance anticoloniale dans le septentrion béninois. Un symbole de souveraineté.</p>
+                                <div class="mt-4">
+                                    <a href="#" class="text-white fw-bold text-decoration-none border-bottom border-benin-green pb-1">Découvrir sa biographie complète</a>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            @if(empty($slides) || $slides->isEmpty())
-                <div class="alert alert-info">Aucun contenu récent disponible pour l'instant.</div>
-            @else
-                <div id="recentContentCarousel" class="carousel slide" data-bs-ride="false">
-                    {{-- Indicators (render only when more than one slide) --}}
-                    @if($slides->count() > 1)
-                        <div class="carousel-indicators">
-                            @foreach($slides as $i => $s)
-                                <button type="button"
-                                        data-bs-target="#recentContentCarousel"
-                                        data-bs-slide-to="{{ $i }}"
-                                        class="{{ $i === 0 ? 'active' : '' }}"
-                                        aria-current="{{ $i === 0 ? 'true' : 'false' }}"
-                                        aria-label="Slide {{ $i + 1 }}"></button>
-                            @endforeach
+        </div>
+    </div>
+</section>
+    <!-- Content Section ends -->
+
+
+    <!-- Contribution section  starts-->
+    <section class="contribution-call py-5 bg-white border-top">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="contribution-illustration p-5 bg-light rounded-5 text-center">
+                    <i class="fas fa-feather-alt text-benin-green display-1 mb-4"></i>
+                    <div class="d-flex justify-content-center gap-3">
+                        <div class="avatar-stack shadow-sm bg-white p-2 rounded-pill px-3">
+                            <span class="small fw-bold">+250 Contributeurs</span>
                         </div>
-                    @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="display-5 fw-bold mb-4">Devenez Gardien <br><span class="text-benin-green">du Savoir.</span></h2>
+                <p class="lead text-secondary mb-4">
+                    Une histoire oubliée à raconter ? Une recette ancestrale à partager ? Ne laissez pas l'héritage de votre village s'éteindre. Documentez-le pour les générations futures.
+                </p>
+                <div class="d-grid d-md-flex gap-3">
+                    <a href="{{ route('login') }}" class="btn btn-benin-green btn-lg rounded-pill px-5 fw-bold shadow-sm">
+                        <i class="fas fa-plus-circle me-2"></i> Proposer un contenu
+                    </a>
+                    <a href="#" class="btn btn-outline-dark btn-lg rounded-pill px-4">
+                        En savoir plus
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Contribution section ends-->
 
-                    <div class="carousel-inner">
-                        @foreach($slides as $index => $chunk)
-                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                <div class="row g-4">
-                                    @foreach($chunk as $contenu)
-                                        <div class="col-md-4">
-                                            <article class="content-card card h-100">
-                                                <div class="card-img-wrapper">
-                                                    @php
-                                                        // safe access: first media path or placeholder
-                                                        $media = optional($contenu->media->first())->chemin;
-                                                        $imgSrc = $media ? asset("storage/{$media}") : "https://picsum.photos/400/250?random={$contenu->id}";
-                                                    @endphp
-                                                    <img src="{{ $imgSrc }}"
-                                                         class="card-img-top"
-                                                         alt="{{ $contenu->titre ?? 'Contenu culturel' }}">
+    <!-- Knowledge Wall Section starts -->
 
-                                                    <span class="badge-category">
-                                                        {{ optional($contenu->type_contenu)->nom ?? 'Contenu' }}
-                                                    </span>
-                                                </div>
+<section class="knowledge-wall py-5 bg-light">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-5">
+            <div>
+                <h2 class="fw-bold display-6">Le Mur des Savoirs</h2>
+                <p class="text-muted">Les derniers échanges de notre communauté de passionnés.</p>
+            </div>
+            <a href="#" class="btn btn-link text-benin-green fw-bold text-decoration-none p-0">Voir tous les avis →</a>
+        </div>
 
-                                                <div class="card-body">
-                                                    <div class="d-flex align-items-center mb-2">
-                                                        <span class="badge bg-primary me-2">
-                                                            {{ optional($contenu->langue)->nom_langue ?? '—' }}
-                                                        </span>
-                                                        <small class="text-muted">
-                                                            <i class="far fa-clock"></i>
-                                                            {{ optional($contenu->created_at)->diffForHumans() ?? '' }}
-                                                        </small>
-                                                    </div>
-
-                                                    <h3 class="h5 card-title">
-                                                        {{ $contenu->titre ?? 'Sans titre' }}
-                                                    </h3>
-
-                                                    <p class="card-text">
-                                                        {{ \Illuminate\Support\Str::limit($contenu->texte ?? '', 120) }}
-                                                    </p>
-
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <span class="text-muted small">
-                                                            <i class="fas fa-map-marker-alt"></i>
-                                                            {{ optional($contenu->region)->nom_region ?? '—' }}
-                                                        </span>
-
-
-                                                        @auth
-                                                            {{-- User connecté --}}
-                                                            @if(auth()->user()->isAdmin() || auth()->user()->aPaye($contenu))
-                                                                {{-- Admin OU a payé = Accès direct --}}
-                                                                <a href="{{ route('contenu.detail', $contenu->id) }}"
-                                                                   class="btn btn-sm btn-success">
-                                                                    <i class="fas fa-book-open me-1"></i>
-                                                                    Lire
-                                                                </a>
-                                                            @else
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-warning btn-pay-content"
-                                                                        data-contenu-id="{{ $contenu->id }}"
-                                                                        data-contenu-titre="{{ addslashes($contenu->titre) }}"
-                                                                >
-                                                                    <i class="fas fa-lock me-1"></i>
-                                                                    Payer 100 F
-                                                                </button>
-                                                            @endif
-                                                        @else
-                                                            {{-- Non connecté = Bouton Connexion --}}
-                                                            <a href="{{ route('login') }}"
-                                                               class="btn btn-sm btn-danger">
-                                                                <i class="fas fa-sign-in-alt me-1"></i>
-                                                                Se connecter pour lire
-                                                            </a>
-                                                        @endauth
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </div>
-                                    @endforeach
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 rounded-4 shadow-sm h-100 p-2">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-benin-green rounded-circle text-white d-flex align-items-center justify-content-center fw-bold" style="width: 45px; height: 45px;">KM</div>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold">Koffi Mensah</h6>
+                                <div class="text-warning small">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                        <p class="card-text text-secondary italic">"J'ai enfin retrouvé la variante exacte de la recette de l'Amiwo que ma grand-mère cuisinait à Savalou. Merci pour ce travail de documentation !"</p>
+                        <div class="border-top pt-3 mt-3">
+                            <span class="small text-muted">Sur : <a href="#" class="text-dark fw-bold text-decoration-none">L'Amiwo au Poulet</a></span>
+                        </div>
                     </div>
-
-                    {{-- Controls shown only when more than one slide --}}
-                    @if($slides->count() > 1)
-                        <button class="carousel-control-prev" type="button" data-bs-target="#recentContentCarousel"
-                                data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Précédent</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#recentContentCarousel"
-                                data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Suivant</span>
-                        </button>
-                    @endif
                 </div>
-            @endif
-
-            <div class="text-center mt-5">
-                <a href="{{route('contenus.all')}}" class="btn btn-primary btn-lg">Voir tous les contenus</a>
             </div>
-        </div>
-    </section>
 
-    <!-- Regions Section -->
-    <section id="regions" class="py-5">
-        <div class="container">
-            <h2 class="section-title">Explorez par région</h2>
-            <div class="row g-4">
-                @include('partials.region-cards')
+            <div class="col-md-4">
+                <div class="card border-0 rounded-4 shadow-sm h-100 p-2 border-start border-benin-green border-4">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-dark rounded-circle text-white d-flex align-items-center justify-content-center fw-bold" style="width: 45px; height: 45px;">AS</div>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold">Aminata S.</h6>
+                                <div class="text-warning small">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text text-secondary">"Les illustrations sur la légende de Bio Guéra sont magnifiques. Ce site est une mine d'or pour les enseignants."</p>
+                        <div class="border-top pt-3 mt-3">
+                            <span class="small text-muted">Sur : <a href="#" class="text-dark fw-bold text-decoration-none">Épopée de Bio Guéra</a></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section" aria-label="Statistiques de la plateforme">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stat-number" aria-label="250 contenus culturels">250+</div>
-                    <p>Contenus culturels</p>
-                </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stat-number" aria-label="12 langues représentées">12</div>
-                    <p>Langues représentées</p>
-                </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stat-number" aria-label="150 contributeurs actifs">150+</div>
-                    <p>Contributeurs actifs</p>
-                </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stat-number" aria-label="8 régions couvertes">8</div>
-                    <p>Régions couvertes</p>
+            <div class="col-md-4">
+                <div class="card border-0 rounded-4 shadow-sm h-100 p-2">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-light rounded-circle text-dark d-flex align-items-center justify-content-center fw-bold border" style="width: 45px; height: 45px;">JP</div>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold">Jean-Pierre G.</h6>
+                                <div class="text-warning small">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text text-secondary italic">"Incroyable de pouvoir écouter les contes en langue Fon directement dans le navigateur. Une vraie innovation !"</p>
+                        <div class="border-top pt-3 mt-3">
+                            <span class="small text-muted">Sur : <a href="#" class="text-dark fw-bold text-decoration-none">Contes de l'Araignée</a></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section id="contribuer" class="py-5">
-        <div class="container text-center">
-            <h2 class="section-title mx-auto">Participez à la préservation de notre patrimoine</h2>
-            <p class="lead mb-4 mx-auto" style="max-width: 700px;">Rejoignez notre communauté de contributeurs et
-                partagez vos connaissances sur la culture béninoise</p>
-            <div class="d-flex justify-content-center flex-wrap gap-3">
-                <a href="#devenir-contributeur" class="btn btn-primary btn-lg">
-                    <i class="fas fa-user-plus" aria-hidden="true"></i>
-                    <span>Devenir contributeur</span>
-                </a>
-                <a href="#en-savoir-plus" class="btn btn-outline-primary btn-lg">
-                    <i class="fas fa-info-circle" aria-hidden="true"></i>
-                    <span>En savoir plus</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
+<!-- Knowledge Wall Section starts -->
 @endsection
 
 @push('styles')
@@ -397,27 +553,102 @@
         --green-80: #F0C43B;
         --green-100: #F0C43B;
         --green-solid: #F0C43B;
+        /* Colors - Culture-Bénin Theme */
+        --benin-white-color: #F9FBF9 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-dark-color: #2D2D2D /*Un gris très foncé (mieux que le noir pur) pour la lecture.*/;
+        --benin-green-color: #008751 /*Pour les boutons principaux, la barre de navigation.*/;
+        --benin-green-dark-color: #006b40 /*Pour les survols de boutons, les accents.*/;
+        --benin-green-light-color: #cbf8e9ff /*Pour les survols des boutons, les accents.*/;
+        --benin-yellow-color: #FCD116 /*Pour les icônes, les mises en évidence, les étoiles.*/;
+        --benin-red-color: #E8112D /*Pour les alertes, les cœurs (favoris), les prix.*/;
+        --google-gray: #5f6368;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    
+/* Hero Section Styles
+    .hero-slide {
+        height: 100vh;
+        min-height: 600px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+
+    .hero-badge {
+        background-color: #FCD116; 
+        color: #000;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .hero-description {
+        font-size: 1.25rem;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        opacity: 0.9;
+    }
+
+    .btn-benin-green {
+        background-color: #008751; 
+        color: white;
+        padding: 15px 35px;
+        border-radius: 50px;
+        border: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-benin-green:hover {
+        background-color: #006b40;
+        color: white;
+        transform: translateY(-3px);
+    }
+
+    .hero-stats {
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        padding-top: 20px;
+    }
+    */
+
+    
+
     /* Hero Carousel Styles - AVEC PRELOAD ET TRANSITION FLUIDE */
-    .hero-carousel-section {
+    /*.hero-carousel-section {
         position: relative;
         height: 75vh;
         min-height: 500px;
         overflow: hidden;
-        background: var(--black); /* Fallback pendant le chargement */
-    }
+        background: var(--black); /* Fallback pendant le chargement *
+    }*/
 
-    #heroCarousel {
+    /*#heroCarousel {
         height: 100%;
-    }
+    }*/
 
-    .carousel-inner,
+   /* .carousel-inner,
     .carousel-item {
         height: 100%;
-    }
+    }*/
 
-    .hero-slide {
+    /*.hero-slide {
         height: 100%;
         background-size: cover;
         background-position: center;
@@ -425,23 +656,23 @@
         display: flex;
         align-items: center;
         position: relative;
-        /* IMPORTANT: Assure que l'image est chargée avant l'affichage */
+        /* IMPORTANT: Assure que l'image est chargée avant l'affichage *
         background-color: var(--dark-gray);
-    }
+    } */
 
     /* Pseudo-élément pour l'overlay - évite l'interférence */
-    .hero-slide::before {
+   /* .hero-slide::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: inherit; /* Hérite du background */
+        background: inherit; /* Hérite du background *
         z-index: 0;
-    }
+    }*/
 
-    .hero-slide::after {
+    /*.hero-slide::after {
         content: '';
         position: absolute;
         top: 0;
@@ -449,22 +680,22 @@
         right: 0;
         bottom: 0;
         z-index: 1;
-    }
+    }*/
 
     /* Overlays spécifiques pour chaque slide */
-    .hero-slide.slide-1::after {
+    /*.hero-slide.slide-1::after {
         background: linear-gradient(var(--overlay-black-50), var(--overlay-black-50));
-    }
+    }*/
 
-    .hero-slide.slide-3::after {
+   /* .hero-slide.slide-3::after {
         background: linear-gradient(var(--overlay-orange-70-1), var(--overlay-orange-70-2));
-    }
+    }*/
 
-    .hero-slide.slide-4::after {
+   /* .hero-slide.slide-4::after {
         background: linear-gradient(var(--overlay-black-60), var(--overlay-black-60));
-    }
+    }*/
 
-    .hero-content {
+   /* .hero-content {
         text-align: center;
         color: white;
         animation: fadeInUp 1s ease-out;
@@ -472,10 +703,10 @@
         margin: 0 auto;
         padding: 1.5rem;
         position: relative;
-        z-index: 2; /* Au-dessus de l'overlay */
-    }
+        z-index: 2; /* Au-dessus de l'overlay *
+    }*/
 
-    @keyframes fadeInUp {
+   /* @keyframes fadeInUp {
         from {
             opacity: 0;
             transform: translateY(30px);
@@ -484,9 +715,9 @@
             opacity: 1;
             transform: translateY(0);
         }
-    }
+    }*/
 
-    .hero-badge {
+   /* .hero-badge {
         display: inline-block;
         padding: 0.625rem 1.25rem;
         background: var(--white-transparent-20);
@@ -496,52 +727,404 @@
         font-weight: 600;
         margin-bottom: 1.25rem;
         border: 1px solid var(--white-transparent-30);
-    }
+    }*/
 
-    .hero-title {
+   /* .hero-title {
         font-size: 2.75rem;
         font-weight: 800;
         line-height: 1.2;
         margin-bottom: 1.25rem;
         text-shadow: 0 4px 20px var(--black-shadow-50);
-    }
+    }*/
 
-    .hero-description {
+   /* .hero-description {
         font-size: 1.125rem;
         line-height: 1.6;
         margin-bottom: 2rem;
         opacity: 0.95;
         text-shadow: 0 2px 10px var(--black-shadow-50);
-    }
+    }*/
 
-    .hero-actions {
+   /* .hero-actions {
         display: flex;
         justify-content: center;
         gap: 1rem;
         flex-wrap: wrap;
         margin-bottom: 2rem;
-    }
+    }*/
 
-    .hero-actions .btn {
+   /* .hero-actions .btn {
         padding: 0.875rem 1.75rem;
         font-size: 1rem;
         font-weight: 600;
         border-radius: 50px;
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px var(--black-shadow-20);
-    }
+    }*/
 
-    .hero-actions .btn:hover {
+   /* .hero-actions .btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 25px var(--black-shadow-30);
-    }
+    }*/
 
-    .hero-stats {
+   /* .hero-stats {
         display: flex;
         justify-content: center;
         gap: 2.5rem;
         flex-wrap: wrap;
+    }*/
+
+    /*Hero section starts*/
+    /* Couleurs nationales */
+.text-benin-green { color: var(--benin-green-color); }
+.btn-benin-green {
+    background-color: var(--benin-green-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-benin-green:hover {
+    background-color: #006b40;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Style de la section */
+.hero-section {
+    background-color: var(--benin-white-color) !important;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-text-content h1 {
+    line-height: 1.2;
+    color: #202124; /* Gris très foncé Google */
+}
+
+/* Conteneur Vidéo */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    height: 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-pure-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    height: 0;
+    pointer-events: none; /* Désactive tous les clics sur la vidéo */
+    user-select: none;
+}
+
+.video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* On l'agrandit légèrement pour masquer les bords de l'interface YouTube */
+    transform: scale(1.15); 
+}
+
+/* Overlay de sécurité pour bloquer les clics même si pointer-events échoue */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+}
+
+/* Bouton Outline arrondi */
+.btn-outline-dark {
+    border-radius: 50px;
+    font-weight: 500;
+}
+.video-pure-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    height: 0;
+    overflow: hidden; /* Important : coupe ce qui dépasse du zoom */
+    border: none;     /* Supprime toute bordure CSS résiduelle */
+}
+
+.video-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    /* On centre et on zoome (1.15) pour éliminer les bords noirs */
+    transform: translate(-50%, -50%) scale(1.15); 
+    border: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+}
+
+/* Responsive ajustements */
+@media (max-width: 991px) {
+    .hero-text-content {
+        text-align: center;
     }
+    .d-flex {
+        justify-content: center;
+    }
+}
+/* Hero Section ends */
+
+/* Regions Section starts */
+/* Couleur d'accentuation */
+.bg-benin-green { background-color: #008751; }
+
+.region-card {
+    position: relative;
+    height: 400px;
+    cursor: pointer;
+    background-color: #000;
+}
+
+.region-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.region-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient pour la lisibilité du texte */
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    z-index: 2;
+}
+
+/* Animations au survol */
+.region-card:hover .region-img {
+    transform: scale(1.1);
+    opacity: 0.7;
+}
+
+.region-card:hover .region-stats {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.transition-all {
+    transition: all 0.4s ease-in-out;
+}
+
+.translate-middle-y {
+    transform: translateY(20px);
+}
+
+/* Typographie */
+.region-card h3 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.region-languages {
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+/* Regions Section ends */
+
+/* Content Section starts */
+
+/* --- Section & Typographie --- */
+.regions-section {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+
+.text-benin-green { color: var(--benin-green-color) !important; }
+.bg-benin-green { background-color: var(--benin-green-color) !important; color: white; }
+.ls-1 { letter-spacing: 1px; }
+
+
+/* --- Navigation Tabs Style "Google Arts" --- */
+.nav-tabs .nav-link {
+    color: var(--google-gray);
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    transition: var(--transition-smooth);
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--benin-green-color);
+    border-bottom: 3px solid #e0e0e0;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--benin-green-color) !important;
+    border-bottom: 3px solid var(--benin-green-color) !important;
+    background: transparent !important;
+}
+
+/* --- Cartes et Design --- */
+.card {
+    transition: var(--transition-smooth);
+    border: none;
+}
+
+.main-feature-card {
+    height: 450px !important;
+    min-height: 405px !important;
+}
+
+.main-feature-card .card-img {
+    object-fit: cover;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+
+.main-feature-card:hover .card-img {
+    transform: scale(1.05);
+}
+
+/* Effet de flou pour le widget audio */
+.bg-blur {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Bouton Play */
+.play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: var(--transition-smooth);
+}
+
+.play-btn:hover {
+    background: var(--benin-green-color);
+    color: white !important;
+    transform: scale(1.1);
+}
+
+/* --- List Group (Contes) --- */
+.list-group-item {
+    border-left: none;
+    border-right: none;
+    transition: var(--transition-smooth);
+}
+
+.transition { transition: var(--transition-smooth); }
+
+.hover-bg-light:hover {
+    background-color: #f8f9fa !important;
+    padding-left: 2rem !important; /* Petit effet de décalage au survol */
+}
+
+/* --- Gastronomie (Cards) --- */
+#cuisine-content .card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+#cuisine-content .card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--card-shadow);
+}
+
+/* --- Responsivité --- */
+
+/* Mobile (Smartphones) */
+@media (max-width: 767.98px) {
+    .display-5 { font-size: 2rem; }
+    .display-6 { font-size: 1.8rem; }
+    
+    /* Tabs défilables horizontalement sur mobile */
+    .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+    }
+    
+    .nav-tabs .nav-link {
+        white-space: nowrap;
+        padding: 0 15px 10px 15px !important;
+    }
+    
+    .main-feature-card {
+        min-height: 350px;
+    }
+
+    .p-5 { padding: 2rem !important; }
+}
+
+/* Tablettes */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #cuisine-content .col-md-4 {
+        width: 50%; /* 2 cartes par ligne sur tablette */
+    }
+}
+
+/* Animations d'entrée (Optionnel) */
+.tab-pane.fade {
+    transition: opacity 0.4s linear;
+}
+
+.tab-pane.active {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Content Section ends */
+
+
 
     .stat-item {
         display: flex;
@@ -832,6 +1415,13 @@
             display: block;
         }
     }
+
+    @media (max-width: 768px) {
+        .hero-title { font-size: 2rem; }
+        .hero-description { font-size: 1rem; }
+        .hero-stats { flex-direction: column; gap: 10px; }
+    }
+    
 </style>
 
 @endpush
