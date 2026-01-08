@@ -89,6 +89,18 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+    <!-- Favicons -->
+        <link rel="icon" type="image/png" href="{{asset('img/favicon/favicon-96x96.png')}}" sizes="96x96/>"/>
+
+        <link rel="icon" type="image/svg+xml" href="{{asset('img/favicon/favicon.svg')}}" />
+
+        <link rel="shortcut icon" href="{{asset('img/favicon/favicon.ico')}}" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/apple-touch-icon.png')}}" />
+
+        <link rel="manifest" href="{{asset('/site.webmanifest')}}" />
+
     @stack('styles')
 
 </head>

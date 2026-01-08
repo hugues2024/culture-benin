@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="{{ route('accueil') }}" aria-label="Culture Bénin - Accueil">
             <!-- Logo CBJ avec masque africain -->
             <div class="logo-wrapper">
-                <img src="{{ asset('img/logo1.png') }}" alt="Logo Culture Bénin" class="navbar-logo">
+                <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="navbar-logo">
             </div>
             <div class="brand-text">
                 <span class="brand-name">Culture Bénin</span>

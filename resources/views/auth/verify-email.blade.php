@@ -8,7 +8,7 @@
             <!-- Header avec Logo -->
             <div class="card-header text-white custom-card-header bg-success">
                 <div class="text-center" style="backgrounf-color: #F0C43B;">
-                    <img src="{{ asset('img/logo1.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
+                    <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
                     <h4 class="mb-0 fw-bold">Vérifiez votre email</h4>
                     <p class="mb-0 small opacity-90">Dernière étape</p>
                 </div>

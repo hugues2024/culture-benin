@@ -6,7 +6,7 @@
             <!-- Header avec Logo -->
             <div class="card-header text-white custom-card-header">
                 <div class="text-center">
-                    <img src="{{ asset('img/logo1.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
+                    <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="header-logo mb-2">
                     <h5 class="mb-0 fw-bold">Créer un compte</h5>
                     <p class="mb-0 small opacity-90">Rejoignez notre communauté culturelle</p>
                 </div>
