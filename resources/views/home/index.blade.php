@@ -181,7 +181,7 @@ $contenus = [
     <!-- Hero Carousel Section ends -->
 
     <!-- Regions Section starts -->
-<section class="regions-section py-5 bg-light">
+<section class="regions-section py-5 bg-light" id="regions">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold display-5">Les Richesses de nos Régions</h2>
@@ -233,7 +233,7 @@ $contenus = [
     <!-- Regions Section ends -->
 
     <!-- Content Section starts -->
-<section class="regions-section py-5 bg-light">
+<section class="regions-section py-5 bg-light" id="patrimoine">
     <div class="container">
         
         <div class="text-center mb-5">
@@ -410,7 +410,7 @@ $contenus = [
 
 
     <!-- Contribution section  starts-->
-    <section class="contribution-call py-5 bg-white border-top">
+    <section class="contribution-call py-5 bg-white border-top" id="contribuer">
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
@@ -444,7 +444,7 @@ $contenus = [
 
     <!-- Knowledge Wall Section starts -->
 
-<section class="knowledge-wall py-5 bg-light">
+<section class="knowledge-wall py-5 bg-light" id="avis">
     <div class="container">
         <div class="d-flex flex-wrap justify-content-between align-items-end mb-5">
             <div>

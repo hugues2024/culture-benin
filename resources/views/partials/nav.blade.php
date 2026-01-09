@@ -1,199 +1,318 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top" role="navigation" aria-label="Navigation principale">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-white shadow-sm" role="navigation" aria-label="Navigation principale">
+
     <div class="container">
-        <a class="navbar-brand" href="{{ route('accueil') }}" aria-label="Culture-Bénin | Accueil">
-            <!-- Logo CB -->
-            <div class="logo-wrapper">
-                <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="navbar-logo">
-            </div>
-            <div class="brand-text">
-                <span class="text-green">C</span><span class="text-yellow">u</span><span class="text-green">l</span><span class="text-red">t</span><span class="text-yellow">u</span><span class="text-green">r</span><span class="text-red">e</span><span class="text-yellow">-</span><span class="text-green">B</span><span class="text-red">é</span><span class="text-yellow">n</span><span class="text-red">i</span><span class="text-yellow">n</span>
-            </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Basculer la navigation">
-            <span class="navbar-toggler-icon"></span>
+
+        <button class="navbar-toggler border-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+
+            <i class="fas fa-bars text-dark fs-3"></i>
+
         </button>
+
+
+
+        <a class="navbar-brand me-lg-auto" href="{{ route('accueil') }}" aria-label="Culture-Bénin | Accueil">
+
+            <div class="logo-wrapper">
+
+                <img src="{{ asset('img/logo-removebg.png') }}" alt="Logo Culture Bénin" class="navbar-logo">
+
+            </div>
+
+            <div class="brand-text d-none d-sm-flex">
+
+                <span class="text-green">C</span><span class="text-yellow">u</span><span class="text-green">l</span><span class="text-red">t</span><span class="text-yellow">u</span><span class="text-green">r</span><span class="text-red">e</span><span class="text-yellow">-</span><span class="text-green">B</span><span class="text-red">é</span><span class="text-yellow">n</span><span class="text-red">i</span><span class="text-yellow">n</span>
+
+            </div>
+
+        </a>
+
+
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
+             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('accueil') ? 'active' : '' }}" 
-                       href="{{ route('accueil') }}" 
+                    <a class="nav-link {{ request()->routeIs('accueil') ? 'active-link' : '' }}"
+                       href="{{ route('accueil') }}"
                        aria-current="{{ request()->routeIs('accueil') ? 'page' : 'false' }}">
                        Accueil
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contes">Régions</a>
+                    <a class="nav-link" href="#regions">Régions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#cuisine">Patrimoine </a>
+                    <a class="nav-link" href="#patrimoine">Patrimoine</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#traditions">Contribuer</a>
+                    <a class="nav-link" href="#contribuer">Contribuer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#regions">Avis</a>
+                    <a class="nav-link" href="#avis">Avis</a>
                 </li>
             </ul>
-            <div class="d-flex align-items-center flex-wrap gap-2">
+
+            <div class="d-flex align-items-center gap-2">
+
                 @auth
-                    <span class="navbar-text me-3 d-none d-sm-block" style="color: black;">
-                        <i class="fas fa-user-circle me-1"></i>
-                        Bonjour, {{ Auth::user()->nom }}
-                    </span>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fas fa-sign-out-alt me-1"></i>
-                            Déconnexion
+
+                    <div class="dropdown">
+
+                        <button class="btn btn-outline-success rounded-pill dropdown-toggle" type="button" data-bs-toggle="dropdown">
+
+                            <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->prenom }}
+
                         </button>
-                    </form>
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                            <li>
+
+                                <form method="POST" action="{{ route('logout') }}">
+
+                                    @csrf
+
+                                    <button type="submit" class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</button>
+
+                                </form>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
                 @else
+
                     <a href="{{ route('register') }}" class="btn btn-outline-light">Créer un compte</a>
+
                     <a href="{{ route('login') }}" class="btn btn-primary">Accéder au compte Bénin</a>
                 @endauth
+
             </div>
+
         </div>
+
     </div>
+
 </nav>
-<style>
-/* Logo CBJ - Taille augmentée */
-.navbar-brand {
-    display: flex;
-    align-items: center;
+
+
+
+<div class="offcanvas offcanvas-start border-0 shadow" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel" style="width: 280px;">
+    <div class="offcanvas-header border-bottom py-4">
+        <h5 class="offcanvas-title d-flex align-items-center" id="mobileSidebarLabel">
+            <img src="{{ asset('img/logo-removebg.png') }}" height="40" alt="Logo" class="me-2">
+            <span class="fw-bold">Menu</span>
+        </h5>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body p-0">
+        <div class="list-group list-group-flush pt-2">
+            <a href="{{ route('accueil') }}" class="list-group-item list-group-item-action border-0 py-3 px-4 {{ request()->routeIs('accueil') ? 'sidebar-active' : '' }}">
+                <i class="fas fa-home me-3"></i> Accueil
+            </a>
+            <a href="#regions" class="list-group-item list-group-item-action border-0 py-3 px-4">
+                <i class="fas fa-map-marked-alt me-3"></i> Régions
+            </a>
+            <a href="#patrimoine" class="list-group-item list-group-item-action border-0 py-3 px-4">
+                <i class="fas fa-history me-3"></i> Patrimoine
+            </a>
+            <a href="#contribuer" class="list-group-item list-group-item-action border-0 py-3 px-4">
+                <i class="fas fa-star me-3"></i> Contribuer
+            </a>
+            <a href="#avis" class="list-group-item list-group-item-action border-0 py-3 px-4 border-bottom">
+                <i class="fas fa-heart me-3"></i> Avis
+            </a>
+        </div>
+
+
+
+        <div class="p-4 mt-auto">
+
+            @guest
+                <a href="{{ route('register') }}" class="btn btn-outline-success w-100 rounded-pill mb-2">Créer un compte</a>
+
+                <a href="{{ route('login') }}" class="btn  btn-success  w-100 rounded-pill mb-2">Accéder au compte Bénin</a>
+
+               
+
+            @else
+
+                <div class="d-flex align-items-center mb-3 p-2 bg-light rounded-3">
+
+                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+
+                        {{ substr(Auth::user()->prenom, 0, 1) }}
+
+                    </div>
+
+                    <span class="fw-bold">{{ Auth::user()->prenom }} {{ Auth::user()->nom }}</span>
+
+                </div>
+
+                <form method="POST" action="{{ route('logout') }}">
+
+                    @csrf
+
+                    <button type="submit" class="btn btn-danger w-100 rounded-pill">Déconnexion</button>
+
+                </form>
+
+            @endguest
+
+        </div>
+
+    </div>
+
+</div>  <style>
+
+/* --- Couleurs & Variables --- */
+
+:root {
+
+    --benin-green: #008751;
+
+    --benin-yellow: #FCD116;
+
+    --benin-red: #E8112D;
+
+    --google-blue-light: #e8f0fe;
+
+    --google-blue: #1967d2;
+
 }
 
-.navbar-brand span {
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+
+
+.text-green { color: var(--benin-green); }
+
+.text-yellow { color: var(--benin-yellow); }
+
+.text-red { color: var(--benin-red); }
+
+.btn-benin-green { background-color: var(--benin-green); color: white; border: none; }
+
+.btn-benin-green:hover { background-color: #006b40; color: white; }
+
+
+
+/* --- Navbar Modifications --- */
+
+.navbar { background-color: #ffffff !important; transition: all 0.3s; }
+
+
+
+.navbar-logo {
+
+    height: 55px;
+
+    object-fit: contain;
+
+    transform: scale(1.2);
+
 }
 
-/* Vert Bénin */
-.text-green {
-    color: #008751;
-}
 
-/* Jaune Or */
-.text-yellow {
-    color: #FCD116;
-}
 
-/* Rouge Éclat */
-.text-red {
-    color: #E8112D;
-}
-
-.logo-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo-wrapper img {
-    transform: scale(1.5); /* Augmente la taille de 50% */
-    transition: transform 0.3s; /* Rend l'agrandissement fluide */
-}
-
-/* Texte de marque */
 .brand-text {
-    display: flex;
-    flex-direction: row;
-    gap: 0. 15rem;
+
+    font-weight: 800;
+
+    font-size: 1.3rem;
+
+    margin-left: 10px;
+
 }
 
-.brand-name {
-    font-weight: 700;
-    font-size: 1.4rem;
-    letter-spacing: 0.3px;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    line-height: 1.2;
-}
 
-.brand-tagline {
-    font-size: 0.75rem;
+
+.nav-link {
+
     font-weight: 500;
-    color: rgba(255, 215, 0, 0.95);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+    padding: 0.5rem 1.2rem !important;
+
+    transition: color 0.2s;
+
 }
 
-/* Responsive Desktop Large */
-@media (min-width: 1200px) {
-    .navbar-logo {
-        height: 75px;  /* Encore plus grand sur grands écrans */
-    }
-    
-    .brand-name {
-        font-size: 1. 5rem;
-    }
-    
-    .brand-tagline {
-        font-size: 0.8rem;
-    }
+
+
+.active-link {
+
+    color: var(--benin-green) !important;
+
+    font-weight: 700;
+
 }
 
-/* Responsive Tablet */
-@media (max-width: 992px) {
-    .navbar-logo {
-        height: 65px;
-    }
-    
-    .brand-name {
-        font-size: 1.3rem;
-    }
-    
-    .brand-tagline {
-        font-size: 0. 7rem;
-    }
+
+
+/* --- Sidebar (Style Google) --- */
+
+.sidebar-active {
+
+    background-color: var(--google-blue-light) !important;
+
+    color: var(--google-blue) !important;
+
+    border-radius: 0 50px 50px 0 !important;
+
+    margin-right: 12px;
+
+    font-weight: 600;
+
 }
 
-/* Responsive Mobile Large */
-@media (max-width: 768px) {
+
+
+.list-group-item-action {
+
+    transition: all 0.2s;
+
+    font-size: 0.95rem;
+
+}
+
+
+
+.list-group-item-action:hover:not(.sidebar-active) {
+
+    background-color: #f8f9fa !important;
+
+    border-radius: 0 50px 50px 0 !important;
+
+    margin-right: 12px;
+
+}
+
+
+
+/* Fix pour l'icône hamburger à gauche sur mobile */
+
+@media (max-width: 991.98px) {
+
+    .navbar .container {
+
+        display: flex;
+
+        justify-content: space-between; /* Hamburger à gauche, Logo à droite */
+
+    }
+
     .navbar-brand {
-        gap: 0.85rem;
+
+        margin-right: 0;
+
+        position: absolute;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
     }
-    
-    .navbar-logo {
-        height: 58px;
-    }
-    
-    .brand-name {
-        font-size: 1.2rem;
-    }
-    
-    .brand-tagline {
-        font-size: 0. 65rem;
-    }
+
 }
 
-/* Responsive Mobile */
-@media (max-width: 576px) {
-    .navbar-brand {
-        gap: 0. 75rem;
-    }
-    
-    .navbar-logo {
-        height: 52px;
-    }
-    
-    .brand-name {
-        font-size: 1. 1rem;
-    }
-    
-    .brand-tagline {
-        display: none;
-    }
-}
-
-/* Responsive Mobile Small */
-@media (max-width: 400px) {
-    .navbar-logo {
-        height: 48px;
-    }
-    
-    .brand-name {
-        font-size: 1rem;
-    }
-}
-</style>
+</style>   
