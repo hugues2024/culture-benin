@@ -98,3 +98,16 @@
         </div>
     </div>
 </nav>
+<style>
+    /* Couleur de sélection pour Chrome, Firefox, Safari et Edge */
+    ::selection {
+        background-color: rgba(0, 135, 81, 0.25); /* Vert bénin avec 25% d'opacité */
+        color: #008751; /* Le texte lui-même devient vert foncé */
+    }
+
+    /* Pour Firefox (version spécifique) */
+    ::-moz-selection {
+        background-color: rgba(0, 135, 81, 0.25);
+        color: #008751;
+    }
+</style>

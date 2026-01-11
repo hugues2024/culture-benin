@@ -5,14 +5,14 @@
         <a href="{{ route('home') }}" class="brand-link text-decoration-none">
             <!--begin::Brand Image-->
             <img
-                src="{{ asset('adminlte/img/benin.png') }}"
+                src="{{ asset('img/logo-removebg.png') }}"
                 alt="Logo Culture Bénin"
                 class="brand-image opacity-100 shadow-sm rounded-circle"
                 style="width: 40px; height: 40px; object-fit: cover;"
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-bold text-primary fs-6">BÉNIN-CULTURE</span>
+            <span class="brand-text fw-bold text-primary fs-6">Culture-Bénin</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->

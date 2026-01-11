@@ -153,6 +153,18 @@
     --benin-green-light-color: rgba(0, 135, 81, 0.1);
 }
 
+/* Couleur de sélection pour Chrome, Firefox, Safari et Edge */
+    ::selection {
+        background-color: rgba(0, 135, 81, 0.25); /* Vert bénin avec 25% d'opacité */
+        color: #008751; /* Le texte lui-même devient vert foncé */
+    }
+
+    /* Pour Firefox (version spécifique) */
+    ::-moz-selection {
+        background-color: rgba(0, 135, 81, 0.25);
+        color: #008751;
+    }
+    
 /* Suppression du contour bleu - Focus Vert Bénin */
 .form-control:focus, .form-select:focus, .custom-check:focus {
     border-color: var(--benin-green-color) !important;
