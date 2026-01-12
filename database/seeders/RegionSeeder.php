@@ -45,7 +45,7 @@ class RegionSeeder extends Seeder
                 'population' => 100000, 
                 'localisation' => 'Atacora', 
                 'superficie' => 23340
-            ],
+            ]/*,
             [
                 'id' => 5, 
                 'nom' => 'Atacora', 
@@ -63,7 +63,7 @@ class RegionSeeder extends Seeder
                 'langues' => 'Fon, Mahi', 
                 'contenus' => 210, 
                 'paye' => false
-            ]
+            ]*/
         ];
 
         foreach ($regions as $region) {
