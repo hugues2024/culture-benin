@@ -802,6 +802,8 @@ $contenus = [
     min-height: 80vh;
     display: flex;
     align-items: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .hero-text-content h1 {
@@ -840,7 +842,7 @@ $contenus = [
     width: 100%;
     height: 100%;
     /* On l'agrandit légèrement pour masquer les bords de l'interface YouTube */
-    transform: scale(1.15); 
+    transform: scale(1.5); 
 }
 
 /* Overlay de sécurité pour bloquer les clics même si pointer-events échoue */
@@ -894,6 +896,13 @@ $contenus = [
     .hero-text-content {
         text-align: center;
     }
+    
+    .hero-section {
+        min-height: auto;
+        margin-top: 125px !important;
+        margin-bottom: 100px !important;
+    }
+
     .d-flex {
         justify-content: center;
     }
@@ -1369,6 +1378,11 @@ $contenus = [
         .stat-item strong {
             font-size: 1.875rem;
         }
+
+        .hero-section {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
     }
 
     @media (max-width: 768px) {
@@ -1377,17 +1391,18 @@ $contenus = [
             min-height: 450px;
         }
 
+        .hero-section {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
         .hero-title {
             font-size: 1.875rem;
         }
-
         .hero-description {
             font-size: 0.9375rem;
         }
 
-        .hero-stats {
-            gap: 1.75rem;
-        }
 
         .stat-item strong {
             font-size: 1.625rem;
@@ -1420,12 +1435,12 @@ $contenus = [
         }
     }
 
-    @media (max-width: 768px) {
-        .hero-title { font-size: 2rem; }
-        .hero-description { font-size: 1rem; }
-        .hero-stats { flex-direction: column; gap: 10px; }
+    @media (max-width: 6) {
+         .hero-section {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
     }
-    
 </style>
 
 @endpush

@@ -14,10 +14,56 @@ class RegionSeeder extends Seeder
     public function run(): void
     {
         $regions = [
-            ['id' => 1, 'nom_region' => 'NIKKI', 'description_region' => 'Région culturelle', 'population' => 100000, 'localisation' => 'Nord Atacora', 'superficie' => 23340],
-            ['id' => 2, 'nom_region' => 'Ouidah', 'description_region' => 'Région vodoun', 'population' => 100000, 'localisation' => 'Atlantique', 'superficie' => 23340],
-            ['id' => 3, 'nom_region' => 'Parakou', 'description_region' => 'Capitale économique', 'population' => 100000, 'localisation' => 'Borgou', 'superficie' => 23340],
-            ['id' => 4, 'nom_region' => 'TchaTou', 'description_region' => 'Région rurale', 'population' => 100000, 'localisation' => 'Atacora', 'superficie' => 23340],
+            [
+                'id' => 1, 
+                'nom_region' => 'NIKKI', 
+                'description_region' => 'Région culturelle', 
+                'population' => 100000, 
+                'localisation' => 'Nord Atacora', 
+                'superficie' => 23340
+            ],
+            [
+                'id' => 2, 
+                'nom_region' => 'Ouidah', 
+                'description_region' => 'Région vodoun', 
+                'population' => 100000, 
+                'localisation' => 'Atlantique', 
+                'superficie' => 23340
+            ],
+            [
+                'id' => 3, 
+                'nom_region' => 'Parakou', 
+                'description_region' => 'Capitale économique', 
+                'population' => 100000, 
+                'localisation' => 'Borgou', 
+                'superficie' => 23340
+            ],
+            [
+                'id' => 4, 
+                'nom_region' => 'TchaTou', 
+                'description_region' => 'Région rurale', 
+                'population' => 100000, 
+                'localisation' => 'Atacora', 
+                'superficie' => 23340
+            ],
+            [
+                'id' => 5, 
+                'nom' => 'Atacora', 
+                'prix' => 100, 
+                'img' => 'img/regions/atacora.jpg',
+                'langues' => 'Ditammari, Dendi', 
+                'contenus' => 342, 
+                'paye' => true
+            ],
+            [
+                'id' => 6, 
+                'nom' => 'Abomey', 
+                'prix' => 100, 
+                'img' => 'img/regions/abomey.jpg',
+                'langues' => 'Fon, Mahi', 
+                'contenus' => 210, 
+                'paye' => false
+            ]
         ];
 
         foreach ($regions as $region) {

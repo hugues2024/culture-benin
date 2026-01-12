@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         'email' => 'maurice.comlan@uac.bj',
         'password' => Hash::make('Eneam123'),
         'email_verified_at' => now(),
-        'id_role' => 4, // Admin
+        'id_role' => 5, // Admin
         'id_langue' => 3,
         'created_at' => now(),
         'updated_at' => now(),
@@ -37,9 +37,9 @@ class UserSeeder extends Seeder
             'sexe' => 'masculin',
             'date_naissance' => '1990-01-01',
             'email' => 'xthedev@gmail.com',
-            'password' => Hash::make('Manager123'),
+            'password' => Hash::make('Eneam123'),
             'email_verified_at' => now(),
-            'id_role' => 5, // Manager
+            'id_role' => 5, // Admin
             'id_langue' =>3,
             'created_at' => now(),
             'updated_at' => now(),
@@ -50,9 +50,22 @@ class UserSeeder extends Seeder
             'sexe' => 'masculin',
             'date_naissance' => '2007-06-19',
             'email' => 'huguesmariehounkpatin1@gmail.com',
-            'password' => Hash::make('Manager123'),
+            'password' => Hash::make('Eneam123'),
             'email_verified_at' => now(),
-            'id_role' => 5, // Manager
+            'id_role' => 5, // Admin
+            'id_langue' =>3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        User::create([
+            'nom' => 'HOUNKPATIN',
+            'prenom' => 'Hugues',
+            'sexe' => 'masculin',
+            'date_naissance' => '2007-06-19',
+            'email' => 'dewanouhounkpatin1@gmail.com',
+            'password' => Hash::make('Eneam123'),
+            'email_verified_at' => now(),
+            'id_role' => 5, // Admin
             'id_langue' =>3,
             'created_at' => now(),
             'updated_at' => now(),

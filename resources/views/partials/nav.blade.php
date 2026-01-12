@@ -199,7 +199,10 @@
 
 /* --- Navbar Modifications --- */
 
-.navbar { background-color: #ffffff !important; transition: all 0.3s; }
+.navbar { 
+    background-color: #ffffff !important; 
+    transition: all 0.3s; 
+}
 
 
 

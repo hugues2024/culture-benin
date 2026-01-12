@@ -461,12 +461,10 @@
        NAVBAR PROTECTION - Styles prioritaires
     ======================================== */
     .navbar .btn {
-        border-radius: var(--border-radius-md) !important;
         padding: var(--spacing-sm) var(--spacing-lg) !important;
         font-weight: var(--font-weight-semibold) !important;
         text-decoration: none !important;
         display: inline-block !important;
-        text-align: center !important;
         cursor: pointer !important;
         transition: all var(--transition-fast) !important;
     }
@@ -475,7 +473,7 @@
         border-color: var(--benin-green-color) !important;
         color: var(--benin-white-color) !important;
         background-color: var(--benin-green-color); /* Fond Vert */
-        border-radius: 50px !important; /* Pour l'effet très arrondi de l'image */
+        border-radius: 50px !important; 
         text-decoration: none;
         font-weight: 500 !important;
         font-family: 'Segoe UI', sans-serif;
