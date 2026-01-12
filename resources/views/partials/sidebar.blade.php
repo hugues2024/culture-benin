@@ -325,7 +325,7 @@
 
 .sidebar-menu .nav-link:hover {
     background-color: #e3f2fd !important;
-    color: #F0C43B !important;
+    color: #000 !important;
     transform: translateX(5px);
 }
 
