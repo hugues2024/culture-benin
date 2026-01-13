@@ -500,6 +500,7 @@
         font-weight: 500;
         font-family: 'Segoe UI', sans-serif;
         font-size: 16px;
+        border-radius: 50px !important;
     }
 
     .navbar .btn-outline-light:hover {
