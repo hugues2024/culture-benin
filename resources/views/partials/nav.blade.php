@@ -59,7 +59,7 @@
 
                         <button class="btn btn-outline-success rounded-pill dropdown-toggle" type="button" data-bs-toggle="dropdown">
 
-                            <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->prenom }}
+                            <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->nom }}
 
                         </button>
 
@@ -67,6 +67,17 @@
 
                             <li>
 
+                                <form method="POST" action="{{ route('login') }}">
+
+                                    @csrf
+
+                                    <button type="submit" class="dropdown-item text-benin-green"><i class="fas fa-th-large me-2"></i>Tableau de board</button>
+
+                                </form>
+
+                            </li>
+
+                            <li>
                                 <form method="POST" action="{{ route('logout') }}">
 
                                     @csrf
@@ -83,7 +94,7 @@
 
                 @else
 
-                    <a href="{{ route('register') }}" class="btn btn-outline-light">Créer un compte</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-light" style="background-color:#cbf8e9ff !important; border-color:#cbf8e9ff  !important; color: #000 !important;">Créer un compte</a>
 
                     <a href="{{ route('login') }}" class="btn btn-primary">Accéder au compte Bénin</a>
                 @endauth
@@ -128,40 +139,55 @@
 
 
 
-        <div class="p-4 mt-auto">
+       <div class="d-flex align-items-center gap-2 py-4 px-4 border-top mt-auto mb-3">
 
-            @guest
-                <a href="{{ route('register') }}" class="btn btn-outline-success w-100 rounded-pill mb-2">Créer un compte</a>
+                @auth
 
-                <a href="{{ route('login') }}" class="btn  btn-success  w-100 rounded-pill mb-2">Accéder au compte Bénin</a>
+                    <div class="dropdown">
 
-               
+                        <button class="btn btn-outline-success rounded-pill dropdown-toggle" type="button" data-bs-toggle="dropdown">
 
-            @else
+                            <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->nom }}
 
-                <div class="d-flex align-items-center mb-3 p-2 bg-light rounded-3">
+                        </button>
 
-                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
 
-                        {{ substr(Auth::user()->prenom, 0, 1) }}
+                            <li>
+
+                                <form method="POST" action="{{ route('login') }}">
+
+                                    @csrf
+
+                                    <button type="submit" class="dropdown-item text-benin-green"><i class="fas fa-th-large me-2"></i>Tableau de board</button>
+
+                                </form>
+
+                            </li>
+
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+
+                                    @csrf
+
+                                    <button type="submit" class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</button>
+
+                                </form>
+
+                            </li>
+
+                        </ul>
 
                     </div>
 
-                    <span class="fw-bold">{{ Auth::user()->prenom }} {{ Auth::user()->nom }}</span>
+                @else
 
-                </div>
+                    <a href="{{ route('register') }}" class="btn btn-primary">Créer un compte</a>
 
-                <form method="POST" action="{{ route('logout') }}">
+                    <a href="{{ route('login') }}" class="btn btn-primary">Accéder au compte Bénin</a>
+                @endauth
 
-                    @csrf
-
-                    <button type="submit" class="btn btn-danger w-100 rounded-pill">Déconnexion</button>
-
-                </form>
-
-            @endguest
-
-        </div>
+            </div>
 
     </div>
 

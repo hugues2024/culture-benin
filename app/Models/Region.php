@@ -13,6 +13,9 @@ class Region extends Model
         'population',
         'superficie',
         'localisation',
+        'prix',
+        'img',
+        'paye'
     ];
 
     protected $casts = [

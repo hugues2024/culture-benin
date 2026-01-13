@@ -6,25 +6,19 @@ use App\Models\Commentaire;
 use App\Models\Contenu;
 use App\Models\Langue;
 use App\Models\User;
+use App\Models\Region;
 use Illuminate\Http\Request;
-
 
 class HomeController extends Controller
 {
-    public function edit($id)
-    {
-        return view('langues.edit', compact('id'));
-    }
-
+    // Affiche le Dashboard (Admin/Manager)
     public function index()
     {
-        // Statistiques clés
         $totalContenus = Contenu::count();
-        $totalLangues = Contenu::distinct('langue_id')->count('langue_id');
+        $totalLangues = Langue::count();
         $totalCommentaires = Commentaire::count();
         $totalUsers = User::count();
 
-        // Contenus par langue (pour le diagramme en barres)
         $contenusParLangue = Contenu::with('langue')
             ->select('langue_id')
             ->selectRaw('COUNT(*) as total')
@@ -32,10 +26,12 @@ class HomeController extends Controller
             ->get()
             ->mapWithKeys(fn($c) => [$c->langue->nom_langue ?? 'Inconnue' => $c->total]);
 
-        // Commentaires par contenu (diagramme semi-circulaire)
         $commentairesParContenu = Contenu::withCount('commentaires')
             ->get()
             ->pluck('commentaires_count', 'titre');
+        
+        // On récupère aussi les régions au cas où le dashboard en a besoin
+        $regions = Region::all();
 
         return view('welcome', compact(
             'totalContenus',
@@ -43,56 +39,60 @@ class HomeController extends Controller
             'totalCommentaires',
             'totalUsers',
             'contenusParLangue',
-            'commentairesParContenu'
+            'commentairesParContenu',
+            'regions'
+        ));
+    }
+
+    // Affiche la page d'accueil publique (Culture-Bénin)
+    public function accueil()
+    {
+        $nbr_contenus = Contenu::count();
+        $nbr_langues = Langue::count();
+        
+        // RÉCUPÉRATION DES RÉGIONS POUR LA VUE
+        $regions = Region::all(); 
+
+        $contenus = Contenu::with(['region', 'langue', 'type_contenu'])
+            ->where('statut', 'actif')
+            ->latest()
+            ->take(12) 
+            ->get();
+
+        // Découpage pour le carousel (3 par slide)
+        $slides = $contenus->chunk(3);
+
+        // On envoie bien 'regions' à la vue home.index
+        return view('home.index', compact(
+            'nbr_contenus', 
+            'nbr_langues', 
+            'contenus', 
+            'slides', 
+            'regions'
         ));
     }
 
     public function redirectCustomize()
     {
         $user = auth()->user();
-
-        // Rediriger en fonction du rôle de l'utilisateur
         return match ($user->id_role) {
-            4 => redirect()->route('home'), // Admin
-            5 => redirect()->route('home'), // Manager
-            default => redirect()->route('accueil'), // Utilisateur standard
+            4 => redirect()->route('home'), // Admin -> Dashboard
+            5 => redirect()->route('home'), // Manager -> Dashboard
+            default => redirect()->route('accueil'), // User -> Accueil publique
         };
-    }
-
-    public function accueil()
-    {
-        $nbr_contenus = Contenu::count();
-        $nbr_langues = Langue::count();
-        $contenus = Contenu::with(['region', 'langue', 'type_contenu'])
-            ->where('statut', 'actif')
-            ->latest()
-            ->take(9) // 3 par slide × 4 slides
-            ->get();
-        // Chunk into slides (3 per slide)
-        $slides = $contenus->chunk(3);
-
-
-        return view('home.index', compact('nbr_contenus', 'nbr_langues', 'contenus', 'slides'));
     }
 
     public function ShowContents()
     {
-        //APRÈS (pagination complète)
         $contents = Contenu::with(['region', 'langue', 'type_contenu'])
             ->where('statut', 'actif')
             ->latest()
             ->paginate(12);
         return view('home.contents', compact('contents'));
-
-
     }
 
     public function ShowContentDetail(Contenu $contenu)
     {
-
         return view('home.detail', compact('contenu'));
-
     }
-
-
 }

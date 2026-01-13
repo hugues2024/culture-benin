@@ -53,7 +53,7 @@
         /* Semantic Colors */
         --color-primary: var(--benin-green);
         --color-primary-hover: var(--benin-green-dark);
-        --color-secondary: var(--benin-yellow);
+        --color-secondary: var(--benin-green-color);
         --color-accent: var(--benin-red);
         --color-text: var(--color-gray-900);
         --color-text-light: var(--color-gray-600);
@@ -155,17 +155,21 @@
         padding: var(--spacing-sm) var(--spacing-md) !important;
     }
 
+    .nav-link:hover {
+        color: var( --benin-green-color) !important;
+    }
+
     .btn-primary {
-        background-color: var(--color-secondary);
-        border-color: var(--color-secondary);
-        color: var(--color-text);
+        background-color: var(--benin-green-color);
+        border-color: var(--benin-green-color);
+        color: var(--benin-white-color);
         font-weight: var(--font-weight-semibold);
     }
 
     .btn-primary:hover {
-        background-color: var(--benin-yellow-dark);
-        border-color: var(--benin-yellow-dark);
-        color: var(--color-text);
+        background-color: var(--benin-green-light-color);
+        border-color: var(--benin-green-light-color);
+        color: var(--benin-white-color);
     }
 
     .hero-section {
@@ -461,6 +465,9 @@
        NAVBAR PROTECTION - Styles prioritaires
     ======================================== */
     .navbar .btn {
+        background-color: var(--benin-green-color) !important;
+        border-color: var(--benin-green-color) !important;
+        color: var(--benin-white-color) !important;
         padding: var(--spacing-sm) var(--spacing-lg) !important;
         font-weight: var(--font-weight-semibold) !important;
         text-decoration: none !important;
@@ -487,9 +494,8 @@
     }
 
     .navbar .btn-outline-light {
-        background-color: transparent !important;
-        border-color: rgba(255, 255, 255, 0.5) !important;
-        color: var(--benin-green-color) ;
+        background-color: var(--benin-green-color) !important;
+        color: var(--benin-green-color) !important ;
         text-decoration: none;
         font-weight: 500;
         font-family: 'Segoe UI', sans-serif;

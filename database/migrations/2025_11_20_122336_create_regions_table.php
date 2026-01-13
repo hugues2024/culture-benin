@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('localisation');
             $table->double('superficie');
             $table->timestamps();
+            // NOUVEAUX ATTRIBUTS
+            $table->integer('prix')->default(100); // Prix d'accès à la région
+            $table->string('img')->default('img/regions/default.jpg'); // Chemin de l'image
+            $table->boolean('paye')->default(false); // État du paiement
         });
     }
 

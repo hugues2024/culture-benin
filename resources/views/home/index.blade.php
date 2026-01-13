@@ -5,13 +5,6 @@
 @section('content')
 <?php 
 //Datas
-$regions = [
-        ['id' => 1, 'nom' => 'Atacora', 'prix' => 100, 'img' => 'img/regions/atacora.jpg', 'langues' => 'Ditammari, Dendi', 'contenus' => 342, 'paye' => true],
-        ['id' => 2, 'nom' => 'Abomey', 'prix' => 100, 'img' => 'img/regions/abomey.jpg', 'langues' => 'Fon, Mahi', 'contenus' => 210, 'paye' => false],
-        ['id' => 3, 'nom' => 'Ouidah', 'prix' => 100, 'img' => 'img/regions/ouidah.jpg', 'langues' => 'Fon, Xweda', 'contenus' => 180, 'paye' => false],
-        ['id' => 4, 'nom' => 'Parakou', 'prix' => 100, 'img' => 'img/regions/parakou.jpg', 'langues' => 'Bariba, Dendi', 'contenus' => 250, 'paye' => true]
-];
-
 $contenus = [
     'Litterature' => [
         "1" => [
@@ -191,43 +184,50 @@ $contenus = [
         </div>
 
         <div class="row g-4">
-            @foreach($regions as $region)
-            <div class="col-md-6 col-lg-3">
-                <div class="region-card shadow-sm rounded-4 overflow-hidden">
-                    <div class="region-img" style="background-image: url('{{ $region['img'] }}');"></div>
-                    <div class="region-overlay p-4 d-flex flex-column justify-content-end">
-                        <h3 class="h4 text-white mb-1">{{ $region['nom'] }}</h3>
-                        <div class="region-languages text-white-50 small mb-3">
-                            <i class="fas fa-language me-1"></i> {{ $region['langues'] }}
-                        </div>
-                        <div class="region-stats text-white bg-benin-green py-2 px-3 rounded-pill text-center opacity-0 translate-middle-y transition-all">
-                            {{ $region['contenus'] }} Contenus
-                        </div>
-                            @auth
-                                {{-- User connecté --}}
-                                    @if(auth()->user()->isAdmin() || $region['paye'])
-                                        {{-- Admin OU a payé = Accès direct --}}
-                                            <a href="{{ route('contenu.detail', $region['id']) }}" class="btn btn-sm btn-success">
-                                                <i class="fas fa-book-open me-1"></i>Lire
-                                            </a>
-                                    @else
-                                        <button type="button" class="btn btn-sm btn-warning btn-pay-content" data-contenu-id="{{ $region['id'] }}" data-contenu-titre="{{ addslashes($region['nom']) }}">
-                                            <i class="fas fa-lock me-1"></i> Payer 100 F
-                                        </button>
-                                    @endif
-                                    @else
-                                {{-- Non connecté = Bouton Connexion --}}
-                                <a href="{{ route('login') }}" class="btn btn-sm btn-danger">
-                                    <i class="fas fa-sign-in-alt me-1"></i>
-                                        Se connecter pour lire
-                                </a>
-                            @endauth
-                        
-                    </div>
+    @foreach($regions as $region)
+    <div class="col-md-6 col-lg-3">
+        <div class="region-card shadow-sm rounded-4 overflow-hidden">
+            {{-- Utilisation de asset() pour s'assurer que le chemin de l'image est correct --}}
+            <div class="region-img" style="background-image: url('{{ asset($region->img) }}');"></div>
+            
+            <div class="region-overlay p-4 d-flex flex-column justify-content-end">
+                <h3 class="h4 text-white mb-1">{{ $region->nom_region }}</h3>
+                
+                <div class="region-languages text-white-50 small mb-3">
+                    <i class="fas fa-map-marker-alt me-1"></i> {{ $region->localisation }}
                 </div>
+                
+                <div class="region-stats text-white bg-benin-green py-2 px-3 rounded-pill text-center mb-3">
+                    {{ number_format($region->population, 0, ',', ' ') }} Hab.
+                </div>
+
+                @auth
+                    {{-- Vérification : Admin OU Contenu déjà débloqué --}}
+                    @if(auth()->user()->isAdmin() || $region->paye)
+                        <a href="{{ route('contenu.detail', $region->id) }}" class="btn btn-sm btn-success w-100">
+                            <i class="fas fa-book-open me-1"></i> Lire le contenu
+                        </a>
+                    @else
+                        {{-- Bouton de paiement dynamique avec le prix de la BDD --}}
+                        <button type="button" 
+                                class="btn btn-sm btn-warning btn-pay-content w-100" 
+                                data-contenu-id="{{ $region->id }}" 
+                                data-contenu-titre="{{ addslashes($region->nom_region) }}"
+                                data-prix="{{ $region->prix }}">
+                            <i class="fas fa-lock me-1"></i> Débloquer ({{ $region->prix }} F)
+                        </button>
+                    @endif
+                @else
+                    {{-- Non connecté --}}
+                    <a href="{{ route('login') }}" class="btn btn-sm btn-danger w-100">
+                        <i class="fas fa-sign-in-alt me-1"></i> Se connecter pour lire
+                    </a>
+                @endauth
             </div>
-            @endforeach
         </div>
+    </div>
+    @endforeach
+</div>
     </div>
 </section>
     <!-- Regions Section ends -->
