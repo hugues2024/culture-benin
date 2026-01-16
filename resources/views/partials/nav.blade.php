@@ -94,7 +94,7 @@
 
                 @else
 
-                    <a href="{{ route('register') }}" class="btn btn-outline-light" style="background-color:#cbf8e9ff !important; border-color:#cbf8e9ff  !important; color: #000 !important;">Créer un compte</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-light">Créer un compte</a>
 
                     <a href="{{ route('login') }}" class="btn btn-primary">Accéder au compte Bénin</a>
                 @endauth
@@ -144,7 +144,6 @@
                 @auth
 
                     <div class="dropdown">
-
                         <button class="btn btn-outline-success rounded-pill dropdown-toggle" type="button" data-bs-toggle="dropdown">
 
                             <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->nom }}
@@ -182,9 +181,9 @@
 
                 @else
 
-                    <a href="{{ route('register') }}" class="btn btn-primary">Créer un compte</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-light2">Créer un compte</a>
 
-                    <a href="{{ route('login') }}" class="btn btn-primary">Accéder au compte Bénin</a>
+                    <a href="{{ route('login') }}" class="btn btn-primary2">Accéder au compte Bénin</a>
                 @endauth
 
             </div>
@@ -209,6 +208,38 @@
 
 }
 
+ .btn-primary2 {
+        border-color: var(--benin-green-color) !important;
+        color: var(--benin-white-color) !important;
+        background-color: var(--benin-green-color); /* Fond Vert */
+        border-radius: 50px !important; 
+        text-decoration: none;
+        font-weight: 500 !important;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 16px;
+        transition: background-color 0.3s !important;
+    }
+
+     .btn-primary2:hover {
+        border-color: var(--benin-green-dark-color) !important;
+        background-color: var(--benin-green-dark-color) !important; /* Un vert un peu plus sombre au survol */
+    }
+
+     .btn-outline-light2 {
+        background-color: none !important; /* Fond Vert Clair */
+        color: var(--benin-green-color) !important ;
+        text-decoration: none;
+        font-weight: 500;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 16px;
+        border-radius: 50px !important;
+    }
+
+     .btn-outline-light2:hover {
+        background-color: var(--benin-green-light-color) !important;
+        color: var(--benin-green-color) !important;
+        border-radius: 50px !important;
+    }
 
 
 .text-green { color: var(--benin-green); }

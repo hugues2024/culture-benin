@@ -53,21 +53,16 @@ class HomeController extends Controller
         // RÉCUPÉRATION DES RÉGIONS POUR LA VUE
         $regions = Region::all(); 
 
-        $contenus = Contenu::with(['region', 'langue', 'type_contenu'])
+        $contenus = Contenu::with(['region', 'type_contenu'])
             ->where('statut', 'actif')
             ->latest()
-            ->take(12) 
             ->get();
-
-        // Découpage pour le carousel (3 par slide)
-        $slides = $contenus->chunk(3);
 
         // On envoie bien 'regions' à la vue home.index
         return view('home.index', compact(
             'nbr_contenus', 
             'nbr_langues', 
             'contenus', 
-            'slides', 
             'regions'
         ));
     }

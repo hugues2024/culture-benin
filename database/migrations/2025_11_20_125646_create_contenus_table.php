@@ -26,7 +26,7 @@ return new class extends Migration
 
             //
 
-
+            $table->string('image')->nullable();
             $table->foreignId('id_auteur')->nullable()->constrained('users');
             $table->foreignId('id_moderateur')->nullable()->constrained('users');
 

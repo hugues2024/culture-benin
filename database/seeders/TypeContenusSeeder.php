@@ -14,9 +14,9 @@ class TypeContenusSeeder extends Seeder
     public function run(): void
     {
         $types = [
-            ['id' => 1, 'nom' => 'Conte'],
-            ['id' => 2, 'nom' => 'Proverbe'],
-            ['id' => 3, 'nom' => 'Chanson'],
+            ['id' => 1, 'nom' => 'Littérature Orale'],
+            ['id' => 2, 'nom' => 'Gastronomie'],
+            ['id' => 3, 'nom' => 'Histoire & Rites'],
             ['id' => 4, 'nom' => 'Légende'],
         ];
 

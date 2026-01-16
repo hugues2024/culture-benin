@@ -465,7 +465,6 @@
        NAVBAR PROTECTION - Styles prioritaires
     ======================================== */
     .navbar .btn {
-        background-color: var(--benin-green-color) !important;
         border-color: var(--benin-green-color) !important;
         color: var(--benin-white-color) !important;
         padding: var(--spacing-sm) var(--spacing-lg) !important;
@@ -494,7 +493,7 @@
     }
 
     .navbar .btn-outline-light {
-        background-color: var(--benin-green-color) !important;
+        background-color: none !important; /* Fond Vert Clair */
         color: var(--benin-green-color) !important ;
         text-decoration: none;
         font-weight: 500;

@@ -54,6 +54,7 @@ class Contenu extends Model
 		'titre',
 		'texte',
 		'statut',
+		'image',
 		'parent_id',
 		'region_id',
 		'langue_id',

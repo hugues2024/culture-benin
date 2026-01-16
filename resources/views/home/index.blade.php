@@ -3,143 +3,6 @@
 @section('title', 'Culture-Bénin')
 
 @section('content')
-<?php 
-//Datas
-$contenus = [
-    'Litterature' => [
-        "1" => [
-            'nom' => "Le Cycle de l'Araignée (Yéhoué Gbadogli)",
-            'description' => "Plongez dans l'univers de la ruse et de la sagesse populaire à travers les récits fondateurs du sud-Bénin.",
-            'image' => 'img/patrimoine/littérature/araignee.jpg',
-            'paye' => false,
-        ],
-    ],
-    'Gastronomie' => [
-        "1" => [
-            "nom" => "L'Amiwo au Poulet",
-            "description" => "La fameuse pâte de maïs rouge fermentée, pilier de la table royale d'Abomey.",
-            "image" => "img/patrimoine/gastronomie/amiwo.jpg",
-            "location" => "Zou / Littoral",
-            'paye' => false,
-        ],
-        "2" => [
-            "nom" => "L'Agoun (Igname Pilée)",
-            "description" => "La noblesse culinaire du centre-Bénin, servie avec une sauce arachide ou graine.",
-            "image" => "img/patrimoine/gastronomie/agoun.jpg",
-            "location" => "Variantes régionales",
-            'paye' => true,
-        ],
-        "3" => [
-            "nom" => "L'Atassi Classique",
-            "description" => "Le mélange riz-haricots indissociable du piment noir (Dja) et du poisson frit.",
-            "image" => "img/patrimoine/gastronomie/atassi.jpg",
-            "location" => "National",
-            'paye' => true,
-        ],
-        "4" => [
-            "nom" => "Le Wassa-Wassa",
-            "description" => 'Le "couscous noir" à base de cossettes d\'igname, une merveille du Nord-Bénin.',
-            "image" => "img/patrimoine/gastronomie/wassa-wassa.jpg",
-            "location" => "Dendi / Bariba",
-            'paye' => false,
-        ],
-        "5" => [
-            "nom" => "Le Toubani",
-            "description" => "Gâteau de farine de haricots ou de niébé cuit à la vapeur. Léger et nutritif.",
-            "image" => "img/patrimoine/gastronomie/toubani.jpg",
-            "location" => "Dendi / Bariba",
-            'paye' => true,
-        ],
-        "6" => [
-            "nom" => "Le Dakouin",
-            "description" => "La polenta de gari (manioc) cuite dans un bouillon de poisson frais du lac Ahémé.",
-            "image" => "img/patrimoine/gastronomie/dakouin.jpg",
-            "location" => "Mono / Couffo",
-            'paye' => true,
-        ],
-        "7" => [
-            "nom" => "Les Massa",
-            "description" => "Délicieuses galettes de riz sucrées, frites et croustillantes, spécialité du Nord.",
-            "image" => "img/patrimoine/gastronomie/massa.jpg",
-            "location" => "Mono / Couffo",
-            'paye' => false,
-        ],
-        "8" => [
-            "nom" => "Talé-Talé",
-            "description" => "Beignets de bananes plantains mûres, le goûter préféré des Béninois.",
-            "image" => "img/patrimoine/gastronomie/tale-tale.jpg",
-            "location" => "National",
-            'paye' => false,
-        ],
-        "9" => [
-            "nom" => "Sauce Gombo (Fétri)",
-            "description" => "Une sauce gluante riche en crabes, crevettes et fromage local (Wagashi).",
-            "image" => "img/patrimoine/gastronomie/gombo.jpg",
-            "location" => "National",
-            'paye' => true,
-        ],
-        "10" => [
-            "nom" => "Wagashi Gasno",
-            "description" => "L'unique fromage au lait de vache, teint en rouge grâce aux tiges de sorgho.",
-            "image" => "img/patrimoine/gastronomie/wagashi.jpg",
-            "location" => "Borgou / Alibori",
-            'paye' => false,
-        ],
-        "11" => [
-            "nom" => "Yovo-Doko",
-            "description" => "Les beignets de farine de blé vendus à chaque coin de rue, symboles du 'Street-Food'.",
-            "image" => "img/patrimoine/gastronomie/yovo-doko.jpg",
-            "location" => "Borgou / Alibori",
-            'paye' => true,
-        ],
-        "12" => [
-            "nom" => "Le Djanman",
-            "description" => "Poisson grillé ou braisé à la béninoise, mariné aux épices locales.",
-            "image" => "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600",
-            "location" => "Borgou / Alibori",
-            'paye' => true,
-        ],
-        "13" => [
-            "nom" => "Le Kpétchi",
-            "description" => "Plat à base de sang de porc ou de mouton cuit, très apprécié dans le Sud.",
-            "image" => "img/patrimoine/gastronomie/kpetchi.jpg",
-            "location" => "Traditionel",
-            'paye' => true,
-        ],
-        "14" => [
-            "nom" => "Le Télibo",
-            "description" => "La pâte noire obtenue à partir de la farine de cossettes d'igname.",
-            "image" => "img/patrimoine/gastronomie/telibo.jpg",
-            "location" => "National",
-            'paye' => true,
-        ],
-        "15" => [
-            "nom" => "Rafraîchissements",
-            "description" => "Bissap (fleurs d'hibiscus), jus de Baobab ou Ananas 'Pain de Sucre'.",
-            "image" => "img/patrimoine/gastronomie/rafraichissement.jpg",
-            "location" => "National",
-            'paye' => true,
-        ]
-    ],
-
-    'Histoire' => [
-        "1" => [
-            'titre' => "Figures Historiques",
-            'nom' => "L'Amazone du Bénin",
-            'description' => "Inspirées par l'élite militaire féminine du Danxomè, elles incarnent aujourd'hui la force et l'émancipation de la femme béninoise.",
-            'paye' => false,
-        ],
-        "2" => [
-            'titre' => "Résistance",
-            'nom' => "Bio Guéra : L'Immortel",
-            'description' => "Prince guerrier et figure de la résistance anticoloniale dans le septentrion béninois. Un symbole de souveraineté.",
-            'paye' => true,
-        ],
-    ]
-];
-
-
-?>
     <!-- Hero Carousel Section starts -->
     <section class="hero-section py-5">
         <div class="container">
@@ -271,37 +134,27 @@ $contenus = [
             <div class="tab-pane fade show active" id="contes-content" role="tabpanel">
                 <div class="row g-4">
                     <div class="col-lg-8">
-                        @foreach($contenus['Litterature'] as $conte)
+                        @foreach($contenus->where('type_contenu_id', 1)->take(1) as $conte)
                             <div class="card bg-dark text-white border-0 rounded-4 overflow-hidden h-100 shadow-lg main-feature-card">
                             <img src="{{ $conte['image'] }}" class="card-img opacity-50" alt="Tradition Orale">
                             <div class="card-img-overlay d-flex flex-column justify-content-end p-4 p-md-5">
                                 <span class="badge bg-benin-green mb-3 py-2 px-3">À LA UNE</span>
-                                <h3 class="display-5 fw-bold mb-3">{{ $conte['nom'] }}</h3>
-                                <p class="card-text fs-5 mb-4 opacity-75">{{ $conte['description'] }}</p>
+                                <h3 class="display-5 fw-bold mb-3">{{ $conte->titre }}</h3>
+                                <p class="card-text fs-5 mb-4 opacity-75">{{ Str::limit($conte->texte, 150) }}</p>
                                 <div class="d-flex flex-wrap align-items-center gap-3">
                                     <div class="audio-widget bg-blur p-2 rounded-pill d-flex align-items-center px-4">
                                         <button class="play-btn me-3 text-dark"><i class="fas fa-play"></i></button>
                                         <span class="small fw-bold">Écouter en Fon</span>
                                     </div>
-                                    @auth
-                                {{-- User connecté --}}
-                                    @if(auth()->user()->isAdmin() || $conte['paye'])
-                                        {{-- Admin OU a payé = Accès direct --}}
-                                            <a href="#" class="btn btn-sm btn-success">
-                                                <i class="fas fa-book-open me-1"></i>Lire
-                                            </a>
-                                    @else
-                                        <button type="button" class="btn btn-sm btn-warning btn-pay-content" data-contenu-id="{{ $conte['nom'] }}" data-contenu-titre="{{ addslashes($conte['nom']) }}">
-                                            <i class="fas fa-lock me-1"></i> Payer 100 F
-                                        </button>
-                                    @endif
-                                    @else
-                                {{-- Non connecté = Bouton Connexion --}}
-                                <a href="{{ route('login') }}" class="btn btn-sm btn-danger">
-                                    <i class="fas fa-sign-in-alt me-1"></i>
-                                        Se connecter pour lire
-                                </a>
-                            @endauth
+                                   @auth
+                                            @if(auth()->user()->isAdmin() || $conte->paye)
+                                                <a href="{{ route('home.detail', $conte->id) }}" class="btn btn-success"><i class="fas fa-book-open me-1"></i>Lire</a>
+                                            @else
+                                                <button class="btn btn-warning btn-pay-content" data-contenu-id="{{ $conte->id }}">Payer 100 F</button>
+                                            @endif
+                                        @else
+                                            <a href="{{ route('login') }}" class="btn btn-danger">Se connecter</a>
+                                        @endauth
                                 </div>
                             </div>
                             </div>
@@ -331,25 +184,25 @@ $contenus = [
 
             <div class="tab-pane fade" id="cuisine-content" role="tabpanel">
     <div class="row g-4">
-        @foreach($contenus['Gastronomie'] as $gastronomie)
+        @foreach($contenus->where('type_contenu_id', 2) as $plat)
             <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <img src="{{ $gastronomie['image'] }}" class="card-img-top" alt="{{ $gastronomie['nom'] }}">
+                <img src="{{ $plat->image }}" class="card-img-top" alt="{{ $plat->titre }}">
                 <div class="card-body p-4 text-center">
-                    <h5 class="fw-bold mb-2">{{ $gastronomie['nom'] }}</h5>
-                    <p class="text-muted small">{{ $gastronomie['description'] }}</p>
+                    <h5 class="fw-bold mb-2">{{ $plat->titre }}</h5>
+                    <p class="text-muted small">{{ $plat->description }}</p>
                     <hr class="my-3 opacity-10">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="badge bg-light text-dark border">{{ $gastronomie['location'] }}</span>
+                        <span class="badge bg-light text-dark border">{{ $plat->region->nom_region }}</span>
                          @auth
                                 {{-- User connecté --}}
-                                    @if(auth()->user()->isAdmin() || $gastronomie['paye'])
+                                    @if(auth()->user()->isAdmin() || $plat->paye)
                                         {{-- Admin OU a payé = Accès direct --}}
-                                            <a href="#" class="btn btn-sm btn-success">
+                                            <a href="{{ route('home.detail', $plat->id) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-book-open me-1"></i>Lire
                                             </a>
                                     @else
-                                        <button type="button" class="btn btn-sm btn-warning btn-pay-content" data-contenu-id="{{ $gastronomie['nom'] }}" data-contenu-titre="{{ addslashes($gastronomie['nom']) }}">
+                                        <button type="button" class="btn btn-sm btn-warning btn-pay-content" data-contenu-id="{{ $plat->titre }}" data-contenu-titre="{{ addslashes($plat->titre) }}">
                                             <i class="fas fa-lock me-1"></i> Payer 100 F
                                         </button>
                                     @endif
@@ -370,22 +223,22 @@ $contenus = [
 
             <div class="tab-pane fade" id="rites-content" role="tabpanel">
                 <div class="row g-4">
-                    @foreach($contenus['Histoire'] as $histoire)
+                    @foreach($contenus->where('type_contenu_id', 3) as $histoire)
                         <div class="col-md-6">
                         <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100 bg-light">
                              <div class="p-5">
-                                <span class="text-benin-green fw-bold text-uppercase ls-1">{{ $histoire['titre'] }}</span>
-                                <h3 class="display-6 fw-bold mt-2">{{ $histoire['nom'] }}</h3>
-                                <p class="text-secondary mt-3 fs-5">{{ $histoire['description'] }}</p>
+                                <span class="text-benin-green fw-bold text-uppercase ls-1">{{ $histoire->titre }}</span>
+                                <h3 class="display-6 fw-bold mt-2">{{ $histoire->nom }}</h3>
+                                <p class="text-secondary mt-3 fs-5">{{ $histoire->texte }}</p>
                                 @auth
                                 {{-- User connecté --}}
-                                    @if(auth()->user()->isAdmin() || $histoire['paye'])
+                                    @if(auth()->user()->isAdmin() || $histoire->paye)
                                         {{-- Admin OU a payé = Accès direct --}}
-                                            <a href="#" class="btn btn-sm btn-success">
+                                            <a href="{{ route('home.detail', $histoire->id) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-book-open me-1"></i>Lire
                                             </a>
                                     @else
-                                        <button type="button" class="btn btn-sm btn-warning btn-pay-content" data-contenu-id="{{ $histoire['nom'] }}" data-contenu-titre="{{ addslashes($histoire['nom']) }}">
+                                        <button type="button" class="btn btn-sm btn-warning btn-pay-content" data-contenu-id="{{ $histoire->nom }}" data-contenu-titre="{{ addslashes($histoire->nom) }}">
                                             <i class="fas fa-lock me-1"></i> Payer 100 F
                                         </button>
                                     @endif
