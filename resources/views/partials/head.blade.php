@@ -466,13 +466,17 @@
     ======================================== */
     .navbar .btn {
         border-color: var(--benin-green-color) !important;
-        color: var(--benin-white-color) !important;
+        color: var(--benin-green-color) !important;
         padding: var(--spacing-sm) var(--spacing-lg) !important;
         font-weight: var(--font-weight-semibold) !important;
         text-decoration: none !important;
         display: inline-block !important;
         cursor: pointer !important;
         transition: all var(--transition-fast) !important;
+    }
+
+    .navbar .btn:hover {
+        color: var(--benin-white-color) !important;
     }
 
     .navbar .btn-primary {
