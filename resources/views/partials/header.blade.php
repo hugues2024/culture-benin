@@ -26,13 +26,13 @@
 
         <ul class="navbar-nav align-items-center">
 
-            <li class="nav-item me-2 d-none d-sm-block">
+            <li class="nav-item me-2 d-sm-block">
 
                 <a class="nav-link text-secondary p-2 rounded-circle hover-bg" href="#"><i class="bi bi-question-circle fs-5"></i></a>
 
             </li>
 
-            <li class="nav-item me-3 d-none d-sm-block">
+            <li class="nav-item me-3 d-sm-block" >
 
                 <a class="nav-link text-secondary p-2 rounded-circle hover-bg" href="#"><i class="bi bi-grid-3x3-gap fs-5"></i></a>
 
@@ -40,7 +40,7 @@
 
 
 
-            <li class="nav-item dropdown user-menu">
+            <li class="nav-item dropdown user-menu" id="menuBtn">
 
                 <a href="#" class="nav-link p-0" data-bs-toggle="dropdown" aria-expanded="false">
 

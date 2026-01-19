@@ -8,14 +8,23 @@
     <div class="container-fluid py-4" style="margin: 0 auto;">
         <div class="text-center mb-5">
             <div class="position-relative d-inline-block mb-3">
-                <div class="rounded-circle bg-danger d-flex align-items-center justify-content-center shadow-sm" 
-                    style="width: 90px; height: 90px; font-size: 40px; color: white;">
-                    {{ substr(Auth::user()->name, 0, 1) }}
-                </div>
-                <button class="btn btn-sm btn-light position-absolute bottom-0 end-0 rounded-circle border shadow-sm p-1">
-                    <i class="bi bi-camera"></i>
-                </button>
-            </div>
+    @if(auth()->user()->photo)
+        <img src="{{ asset('storage/' . auth()->user()->photo) }}" 
+             alt="{{ auth()->user()->name }}" 
+             class="rounded-circle shadow-sm object-fit-cover" 
+             style="width: 90px; height: 90px; border: 3px solid #fff;">
+    @else
+        <div class="rounded-circle bg-danger d-flex align-items-center justify-content-center shadow-sm" 
+             style="width: 90px; height: 90px; font-size: 40px; color: white;">
+             {{ substr(Auth::user()->name, 0, 1) }}
+        </div>
+    @endif
+
+    <button class="btn btn-sm btn-light position-absolute bottom-0 end-0 rounded-circle border shadow-sm p-1" 
+            title="Modifier la photo">
+        <i class="bi bi-camera"></i>
+    </button>
+</div>
             <h2 class="fw-normal mb-1">Bienvenue, {{ Auth::user()->name }}</h2>
             <p class="text-muted">Gérez vos informations et la plateforme Culture-Bénin</p>
         </div>
