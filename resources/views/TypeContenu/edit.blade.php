@@ -6,123 +6,253 @@
 
 @section('content')
 
-    <div class="container-fluid mt-4 w-100">
-        <div class="card shadow-sm custom-card">
-            <!-- Header -->
-            <div class="card-header text-white custom-card-header">
-                <h4 class="mb-0">Modifier le Type de Contenu</h4>
-            </div>
+<div class="container-fluid py-4">
 
-            <!-- Form -->
-            <div class="card-body p-4">
-                <form action="{{ route('type_contenu.update', $typeContenu->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
+    <div class="row justify-content-center">
 
-                    <div class="mb-3">
-                        <label for="nom" class="form-label fw-semibold">Nom du Type de Contenu</label>
-                        <input type="text"
-                               name="nom"
-                               id="nom"
-                               class="form-control @error('nom') is-invalid @enderror"
-                               value="{{ old('nom', $typeContenu->nom) }}"
-                               placeholder="Ex: Article">
-                        @error('nom')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card google-card shadow-sm border-0">
+
+                
+
+                <div class="card-header bg-white py-4 border-bottom position-relative">
+
+                    <div class="header-accent-line-yellow"></div>
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="icon-circle bg-warning-subtle text-warning me-3">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4 class="card-title mb-0 fw-bold text-dark">Modifier le Type</h4>
+
+
+                        </div>
+
                     </div>
 
-                    <div class="d-flex justify-content-end mt-4">
-                        <a href="{{ route('type_contenu.index') }}" class="btn btn-secondary me-2">Annuler</a>
-                        <button type="submit" class="btn btn-primary btn-submit">Mettre à jour</button>
-                    </div>
-                </form>
+                </div>
+
+
+
+                <div class="card-body p-4 p-lg-5">
+
+                    <form action="{{ route('type_contenu.update', $typeContenu->id) }}" method="POST">
+
+                        @csrf
+
+                        @method('PUT')
+
+
+
+                        <div class="mb-4">
+
+                            <label for="nom" class="form-label text-uppercase small fw-bold text-muted mb-2">
+
+                                Nom du Type de Contenu
+
+                            </label>
+
+                            <div class="input-group custom-input-group shadow-sm-hover">
+
+                                <span class="input-group-text bg-light border-end-0">
+
+                                    <i class="bi bi-tag"></i>
+
+                                </span>
+
+                                <input type="text"
+
+                                       name="nom"
+
+                                       id="nom"
+
+                                       class="form-control border-start-0 ps-2 py-2 @error('nom') is-invalid @enderror"
+
+                                       value="{{ old('nom', $typeContenu->nom) }}"
+
+                                       placeholder="Ex: Article"
+
+                                       required>
+
+                            </div>
+
+                            @error('nom')
+
+                                <div class="invalid-feedback d-block mt-2">
+
+                                    <i class="bi bi-exclamation-circle me-1"></i> {{ $message }}
+
+                                </div>
+
+                            @enderror
+
+                        </div>
+
+
+
+                        <div class="d-flex justify-content-end align-items-center mt-5 pt-3 border-top">
+
+                            <a href="{{ route('type_contenu.index') }}" class="btn btn-link text-secondary text-decoration-none me-4 fw-bold">
+
+                                Annuler
+
+                            </a>
+
+                            <button type="submit" class="btn btn-warning rounded-pill px-5 fw-bold text-white shadow-sm" style="background-color: #F0C43B; border: none;">
+
+                                <i class="bi bi-arrow-repeat me-2"></i>Mettre à jour
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
             </div>
+
         </div>
+
     </div>
+
+</div>
 
 @endsection
 
-@push('styles')
+
+
+@push('style')
+
 <style>
-    /* Card modern */
-    .custom-card {
-        border-radius: 12px;
+
+    /* Card Global Style */
+
+    .google-card {
+
+        border-radius: 16px;
+
         overflow: hidden;
-        border: none;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
     }
 
-    /* HEADER BLEU UNIFORME */
-    .custom-card-header {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
-        padding: 20px;
+
+
+    /* Ligne d'accentuation supérieure */
+
+    .header-accent-line-yellow {
+
+        position: absolute;
+
+        top: 0;
+
+        left: 0;
+
+        right: 0;
+
+        height: 4px;
+
+        background: #F0C43B;
+
     }
 
-    .custom-card-header h4 {
-        margin: 0;
-        font-weight: 600;
-        color: #fff !important;
+
+
+    /* Icône ronde décorative */
+
+    .icon-circle {
+
+        width: 48px;
+
+        height: 48px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 12px;
+
     }
 
-    /* Form */
-    .form-label { 
-        color: #4e4e4e; 
-        font-weight: 600;
+
+
+    .bg-warning-subtle {
+
+        background-color: #fff9e6 !important;
+
+        color: #F0C43B !important;
+
     }
-    
+
+
+
+    /* Inputs modernes */
+
     .form-control {
-        border-radius: 8px;
-        border: 1px solid #d1d3e2;
-        padding: 10px 12px;
-        transition: 0.25s;
+
+        border-radius: 10px !important;
+
+        border: 1px solid #dee2e6;
+
+        transition: all 0.2s ease-in-out;
+
     }
-    
+
+
+
     .form-control:focus {
-        border-color: #F0C43B;
-        box-shadow: 0 0 0 0.2rem rgba(240,196,59,0.25);
+
+        border-color: #F0C43B !important;
+
+        box-shadow: 0 0 0 4px rgba(240, 196, 59, 0.15) !important;
+
     }
 
-    .is-invalid { 
-        border-color: #e74a3b !important; 
+
+
+    .custom-input-group .input-group-text {
+
+        border-radius: 10px 0 0 10px !important;
+
+        color: #adb5bd;
+
     }
 
-    .invalid-feedback {
-        display: block;
-        width: 100%;
-        margin-top: 0.25rem;
-        font-size: 0.875rem;
-        color: #e74a3b;
+
+
+    /* Animation au survol */
+
+    .shadow-sm-hover:hover {
+
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+
     }
 
-    /* Buttons */
-    .btn-submit {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
-        border: none;
-        font-weight: 600;
-        transition: 0.2s;
-        padding: 10px 24px;
-    }
-    
-    .btn-submit:hover {
-        transform: scale(1.05);
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
+
+
+    /* Boutons */
+
+    .btn-warning:hover {
+
+        background-color: #dda20a !important;
+
+        transform: translateY(-1px);
+
+        box-shadow: 0 4px 12px rgba(240, 196, 59, 0.3) !important;
+
     }
 
-    .btn-secondary {
-        background-color: #6c757d;
-        border: none;
-        color: #fff;
-        padding: 10px 24px;
-        font-weight: 500;
-        transition: 0.2s;
-    }
-
-    .btn-secondary:hover {
-        background-color: #5a6268;
-        transform: scale(1.05);
-    }
 </style>
+
 @endpush
 
 @push('scripts')

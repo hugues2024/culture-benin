@@ -6,190 +6,425 @@
 
 @section('content')
 
-    <style>
-        /* ----- Card modern ----- */
-        .custom-card {
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            overflow: hidden;
-        }
+<div class="container py-5">
 
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-            padding: 20px 20px;
-        }
+    <div class="row justify-content-center">
 
-        .custom-card-header .card-title {
-            font-size: 19px;
-            font-weight: 600;
-            margin: 0;
-        }
+        <div class="col-lg-10"> <div class="card google-card">
 
-        .form-label {
-            font-weight: 600;
-            color: #4e4e4e;
-            margin-bottom: 6px;
-        }
+                <div class="header-accent-line"></div>
 
-        .form-control, .form-select {
-            border-radius: 8px !important;
-            border: 1px solid #d1d3e2;
-            padding: 10px 12px;
-            transition: 0.25s ease-in-out;
-        }
+                
 
-        .form-control:focus, .form-select:focus {
-            border-color: #F0C43B !important;
-            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
-        }
+                <div class="card-header-custom">
 
-        .btn-primary-custom {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            color: white;
-            transition: 0.2s ease-in-out;
-        }
-        .btn-primary-custom:hover {
-            transform: scale(1.05);
-            background: #F0C43B;
-        }
+                    <div class="d-flex align-items-center">
 
-        .btn-cancel-custom {
-            background: #6c757d;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            color: white;
-            transition: 0.2s ease-in-out;
-        }
-        .btn-cancel-custom:hover {
-            transform: scale(1.05);
-            background: #5a6268;
-            color: white;
-        }
+                        <div class="icon-box-header me-3 shadow-sm">
 
-        .custom-footer {
-            padding: 15px 20px;
-            background: #f7f7f7;
-            border-top: 1px solid #e2e2e2;
-        }
-    </style>
+                            <i class="bi bi-geo-alt-fill"></i>
 
-    <div class="card custom-card mb-4">
+                        </div>
 
-        <!-- HEADER avec icône de région -->
-        <div class="custom-card-header">
-            <div class="card-title">
-                <i class="bi bi-geo-alt-fill me-2"></i>Formulaire de création de région
-            </div>
-        </div>
+                        <div>
 
-        <!-- FORM -->
-        <form action="{{ route('regions.store') }}" method="POST">
-            @csrf
+                            <h3 class="mb-0 fw-bold" style="color: #202124;">Nouvelle Région</h3>
 
-            <div class="card-body">
+                            <p class="text-muted mb-0 small text-uppercase fw-bold letter-spacing-1">Configuration territoriale du Bénin</p>
 
-                <div class="row">
-                    <!-- Nom de la région -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Nom de la région</label>
-                        <input
-                            type="text"
-                            class="form-control @error('nom_region') is-invalid @enderror"
-                            name="nom_region"
-                            value="{{ old('nom_region') }}"
-                            placeholder="Nom de la région"
-                        >
-                        @error('nom_region')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
+                        </div>
+
                     </div>
 
-                    <!-- Description -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea
-                            class="form-control @error('description_region') is-invalid @enderror"
-                            name="description_region"
-                            rows="3"
-                            placeholder="Décrivez la région..."
-                        >{{ old('description_region') }}</textarea>
-                        @error('description_region')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Population -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Population</label>
-                        <input
-                            type="number"
-                            class="form-control @error('population') is-invalid @enderror"
-                            name="population"
-                            value="{{ old('population') }}"
-                            placeholder="Population"
-                        >
-                        @error('population')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Superficie -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Superficie (km²)</label>
-                        <input
-                            type="number"
-                            step="0.01"
-                            class="form-control @error('superficie') is-invalid @enderror"
-                            name="superficie"
-                            value="{{ old('superficie') }}"
-                            placeholder="Superficie en km²"
-                        >
-                        @error('superficie')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Localisation -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Localisation</label>
-                        <input
-                            type="text"
-                            class="form-control @error('localisation') is-invalid @enderror"
-                            name="localisation"
-                            value="{{ old('localisation') }}"
-                            placeholder="Ville, département ou zone géographique"
-                        >
-                        @error('localisation')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
                 </div>
 
+
+
+                <form action="{{ route('regions.store') }}" method="POST">
+
+                    @csrf
+
+                    <div class="card-body p-4 p-lg-5">
+
+                        
+
+                        <div class="row g-4">
+
+                            <div class="col-md-12">
+
+                                <label class="form-label">Nom de la région</label>
+
+                                <input type="text" 
+
+                                       class="form-control custom-input @error('nom_region') is-invalid @enderror" 
+
+                                       name="nom_region" 
+
+                                       value="{{ old('nom_region') }}" 
+
+                                       placeholder="Ex: Littoral, Atacora, Ouémé...">
+
+                                @error('nom_region')
+
+                                    <div class="invalid-feedback">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Population</label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text bg-white border-end-0 custom-input"><i class="bi bi-people text-muted"></i></span>
+
+                                    <input type="number" 
+
+                                           class="form-control custom-input border-start-0 @error('population') is-invalid @enderror" 
+
+                                           name="population" 
+
+                                           value="{{ old('population') }}" 
+
+                                           placeholder="Nombre d'habitants">
+
+                                </div>
+
+                                @error('population')
+
+                                    <div class="text-danger small mt-1 fw-bold">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Superficie (km²)</label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text bg-white border-end-0 custom-input"><i class="bi bi-layers text-muted"></i></span>
+
+                                    <input type="number" 
+
+                                           step="0.01" 
+
+                                           class="form-control custom-input border-start-0 @error('superficie') is-invalid @enderror" 
+
+                                           name="superficie" 
+
+                                           value="{{ old('superficie') }}" 
+
+                                           placeholder="Ex: 112.622">
+
+                                </div>
+
+                                @error('superficie')
+
+                                    <div class="text-danger small mt-1 fw-bold">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+
+
+                            <div class="col-md-12">
+
+                                <label class="form-label">Localisation géographique</label>
+
+                                <input type="text" 
+
+                                       class="form-control custom-input @error('localisation') is-invalid @enderror" 
+
+                                       name="localisation" 
+
+                                       value="{{ old('localisation') }}" 
+
+                                       placeholder="Zone (ex: Sud du Bénin)">
+
+                                @error('localisation')
+
+                                    <div class="invalid-feedback">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+
+
+                            <div class="col-12">
+
+                                <label class="form-label">Description détaillée</label>
+
+                                <textarea class="form-control custom-input @error('description_region') is-invalid @enderror" 
+
+                                          name="description_region" 
+
+                                          rows="5" 
+
+                                          placeholder="Présentation historique ou économique de la région...">{{ old('description_region') }}</textarea>
+
+                                @error('description_region')
+
+                                    <div class="invalid-feedback">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                    <div class="card-footer bg-white p-4 border-0 d-flex justify-content-end align-items-center">
+
+                        <a href="{{ route('regions.index') }}" class="btn-google-cancel me-3">
+
+                            Annuler
+
+                        </a>
+
+                        <button type="submit" class="btn btn-google-save">
+
+                            <i class="bi bi-check2-circle me-2"></i>Enregistrer la région
+
+                        </button>
+
+                    </div>
+
+                </form>
+
             </div>
 
-            <!-- FOOTER -->
-            <div class="custom-footer">
-                <a href="{{ route('regions.index') }}" class="btn-cancel-custom">
-                    Annuler
-                </a>
+            
 
-                <button type="submit" class="btn-primary-custom ms-2">
-                    Enregistrer
-                </button>
-            </div>
-        </form>
+            <p class="text-center text-muted mt-4 small">
+
+                Toutes les données saisies sont soumises à la validation administrative.
+
+            </p>
+
+        </div>
 
     </div>
 
+</div>
+
 @endsection
+
+
+
+@push('styles')
+
+<style>
+
+    /* ----- Google Card Modern Style ----- */
+
+    .google-card {
+
+        border-radius: 16px;
+
+        border: none;
+
+        background: #ffffff;
+
+        box-shadow: 0 1px 3px rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
+
+        overflow: hidden;
+
+    }
+
+
+
+    .header-accent-line {
+
+        position: absolute;
+
+        top: 0;
+
+        left: 0;
+
+        right: 0;
+
+        height: 6px;
+
+        background: #F0C43B; /* Jaune Google */
+
+    }
+
+
+
+    .card-header-custom {
+
+        padding: 32px 40px 10px 40px;
+
+        background: white;
+
+        border: none;
+
+    }
+
+
+
+    .icon-box-header {
+
+        width: 48px;
+
+        height: 48px;
+
+        background-color: #fff9e6;
+
+        color: #F0C43B;
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 1.5rem;
+
+    }
+
+
+
+    /* ----- Inputs Style ----- */
+
+    .form-label {
+
+        font-size: 0.9rem;
+
+        font-weight: 600;
+
+        color: #3c4043;
+
+        margin-bottom: 8px;
+
+    }
+
+
+
+    .custom-input {
+
+        border-radius: 8px !important;
+
+        border: 1px solid #dadce0;
+
+        padding: 12px 16px;
+
+        font-size: 1rem;
+
+        color: #202124;
+
+        transition: all 0.2s ease;
+
+        background-color: #f8f9fa;
+
+    }
+
+
+
+    .custom-input:focus {
+
+        background-color: #fff;
+
+        border-color: #F0C43B !important;
+
+        box-shadow: 0 0 0 4px rgba(240, 196, 59, 0.1) !important;
+
+        outline: none;
+
+    }
+
+
+
+    /* ----- Buttons ----- */
+
+    .btn-google-save {
+
+        background-color: #F0C43B;
+
+        color: white;
+
+        border: none;
+
+        padding: 12px 32px;
+
+        border-radius: 24px;
+
+        font-weight: 600;
+
+        letter-spacing: 0.25px;
+
+        transition: all 0.3s ease;
+
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+
+    }
+
+
+
+    .btn-google-save:hover {
+
+        background-color: #dda20a;
+
+        box-shadow: 0 4px 8px 3px rgba(60,64,67,0.15);
+
+        transform: translateY(-1px);
+
+        color: white;
+
+    }
+
+
+
+    .btn-google-cancel {
+
+        color: #5f6368;
+
+        font-weight: 600;
+
+        text-decoration: none;
+
+        padding: 12px 24px;
+
+        border-radius: 24px;
+
+        transition: background 0.2s;
+
+    }
+
+
+
+    .btn-google-cancel:hover {
+
+        background-color: #f1f3f4;
+
+        color: #202124;
+
+    }
+
+
+
+    .invalid-feedback { font-weight: 500; }
+
+</style>
+
+@endpush
 
 @push('scripts')
     <script>

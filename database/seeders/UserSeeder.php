@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'nom' => 'HOUNKPATIN',
-            'prenom' => 'Hugue',
+            'prenom' => 'Hugues-Marie',
             'sexe' => 'masculin',
             'date_naissance' => '2007-06-19',
             'email' => 'huguesmariehounkpatin1@gmail.com',

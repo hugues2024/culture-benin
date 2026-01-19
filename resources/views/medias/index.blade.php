@@ -6,223 +6,308 @@
 
 @section('content')
 
-    <style>
-        /* --- Card Modern --- */
-        .custom-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: none !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
+<div class="container-fluid py-4">
 
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-            padding: 18px 20px;
-        }
+    <div class="card google-card shadow-sm border-0 mb-4">
 
-        .custom-card-header h3 {
-            margin: 0;
-            font-weight: 600;
-            font-size: 20px;
-        }
+        
 
-        /* --- Table --- */
-        #mediasTable thead {
-            background: #f1f2f6;
-            font-weight: bold;
-        }
+        <div class="card-header bg-white py-4 border-bottom position-relative">
 
-        #mediasTable tbody tr:hover {
-            background: #f8f9fc !important;
-            transition: 0.2s;
-        }
+            <div class="header-accent-line-yellow"></div>
 
-        /* --- Icon Buttons Modern --- */
-        .icon-btn {
-            border: none;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s ease-in-out;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            font-size: 15px;
-        }
+            <div class="d-flex align-items-center justify-content-between">
 
-        .btn-edit {
-            background: #f6c23e;
-        }
+                <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="icon-circle bg-warning-subtle text-warning me-3">
+                    <i class="bi bi-tags-fill"></i>
+                </div>
+                <div>
+                    <h4 class="card-title mb-0 fw-bold text-dark">Gestion des Médias</h4>
+                </div>
+            </div>
 
-        .btn-edit:hover {
-            background: #dda20a;
-            transform: scale(1.1);
-        }
-
-        .btn-delete {
-            background: #e74a3b;
-        }
-
-        .btn-delete:hover {
-            background: #c0392b;
-            transform: scale(1.1);
-        }
-
-        .no-link-style {
-            text-decoration: none;
-            color: inherit;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-info {
-            background: #36b9cc;
-            color: white;
-        }
-
-        .btn-info:hover {
-            background: #2c9faf;
-            transform: scale(1.1);
-        }
-
-        /* Datatable - Alignement horizontal */
-        .dataTables_wrapper .dataTables_length,
-        .dataTables_wrapper .dataTables_filter {
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .dataTables_wrapper .dataTables_filter {
-            float: right;
-        }
-
-        .dataTables_wrapper .dataTables_length {
-            float: left;
-        }
-
-        .dataTables_wrapper .dataTables_info {
-            float: left;
-            padding-top: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate {
-            float: right;
-            padding-top: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_filter input {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin-left: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_length select {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin: 0 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #F0C43B !important;
-            color: white !important;
-        }
-
-        .dataTables_wrapper:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-    </style>
-
-    <div class="card custom-card mb-4">
-        <div class="card-header custom-card-header">
-            <h3 class="card-title">Médias disponibles</h3>
+            <a href="{{ route('medias.create') }}" class="btn btn-warning rounded-pill px-4 fw-bold text-white shadow-sm d-none d-sm-block" style="background-color: #F0C43B; border: none;">
+                <i class="bi bi-plus-lg me-2"></i>Nouveau Média
+            </a>
         </div>
 
-        <div class="card-body">
-            <table id="mediasTable" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Contenu</th>
-                    <th>Type de Média</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-                </thead>
+                </div>
 
-                <tbody>
-                @forelse($medias as $media)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $media->contenu->titre ?? 'N/A' }}</td>
-                        <td>{{ $media->type_media->nom ?? 'N/A' }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('medias.show', $media->id) }}"
-                               class="icon-btn btn-info mx-1 no-link-style"
-                               title="Voir les détails">
-                                <i class="bi bi-eye"></i>
-                            </a>
-                            <a href="{{ route('medias.edit', $media->id) }}"
-                               class="icon-btn btn-edit mx-1 no-link-style"
-                               title="Modifier">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                         @can('delete-medias')
-                            <!-- Bouton Supprimer avec icône -->
-                            <button type="button" class="icon-btn btn-delete mx-1" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $media->id }}"
-                                    title="Supprimer">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                         @endcan
-                        </td>
-                    </tr>
-                    <!-- Modal -->
-                    <div class="modal fade" id="deleteModal{{ $media->id }}" tabindex="-1"
-                         aria-labelledby="deleteModalLabel{{ $media->id }}" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-danger text-white">
-                                    <h5 class="modal-title" id="deleteModalLabel{{ $media->id }}">Confirmation</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+        </div>
+
+
+
+        <div class="card-body p-0"> <div class="table-responsive">
+
+                <table id="mediasTable" class="table align-middle custom-table mb-0">
+
+                    <thead>
+
+                        <tr>
+
+                            <th class="ps-4 text-uppercase small fw-bold text-muted border-0">#</th>
+
+                            <th class="text-uppercase small fw-bold text-muted border-0">Contenu associé</th>
+
+                            <th class="text-uppercase small fw-bold text-muted border-0">Type de Média</th>
+
+                            <th class="text-center text-uppercase small fw-bold text-muted border-0 pe-4">Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @forelse($medias as $media)
+
+                            <tr class="hover-row">
+
+                                <td class="ps-4">
+
+                                    <span class="badge bg-light text-dark border rounded-pill shadow-xs">
+
+                                        {{ $loop->iteration }}
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="fw-bold text-dark">{{ $media->contenu->titre ?? 'N/A' }}</div>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3">
+
+                                        {{ $media->type_media->nom ?? 'N/A' }}
+
+                                    </span>
+
+                                </td>
+
+                                <td class="text-center pe-4">
+
+                                    <div class="d-flex justify-content-center">
+
+                                        <a href="{{ route('medias.show', $media->id) }}" 
+
+                                           class="btn btn-sm btn-outline-info border-0 rounded-circle mx-1 action-btn" 
+
+                                           title="Voir les détails">
+
+                                            <i class="bi bi-eye fs-5"></i>
+
+                                        </a>
+
+
+
+                                        <a href="{{ route('medias.edit', $media->id) }}" 
+
+                                           class="btn btn-sm btn-outline-warning border-0 rounded-circle mx-1 action-btn" 
+
+                                           title="Modifier" >
+
+                                            <i class="bi bi-pencil-square fs-5"></i>
+
+                                        </a>
+
+
+
+                                        @can('delete-medias')
+
+                                            <button type="button" 
+
+                                                    class="btn btn-sm btn-outline-danger border-0 rounded-circle mx-1 action-btn" 
+
+                                                    data-bs-toggle="modal"
+
+                                                    data-bs-target="#deleteModal{{ $media->id }}"
+
+                                                    title="Supprimer">
+
+                                                <i class="bi bi-trash fs-5"></i>
+
+                                            </button>
+
+                                        @endcan
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <div class="modal fade" id="deleteModal{{ $media->id }}" tabindex="-1" aria-hidden="true">
+
+                                <div class="modal-dialog modal-dialog-centered">
+
+                                    <div class="modal-content border-0 shadow-lg">
+
+                                        <div class="modal-header bg-danger text-white border-0">
+
+                                            <h5 class="modal-title fw-bold"><i class="bi bi-exclamation-triangle me-2"></i>Confirmation</h5>
+
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                        </div>
+
+                                        <div class="modal-body py-4 text-center">
+
+                                            <p class="mb-0">Êtes-vous sûr de vouloir supprimer le média associé à :</p>
+
+                                            <h5 class="fw-bold mt-2 text-danger">"{{ $media->contenu->titre ?? 'N/A' }}"</h5>
+
+                                            <small class="text-muted">Cette action est irréversible.</small>
+
+                                        </div>
+
+                                        <div class="modal-footer bg-light border-0 justify-content-center">
+
+                                            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Annuler</button>
+
+                                            <form action="{{ route('medias.destroy', $media->id) }}" method="POST">
+
+                                                @csrf
+
+                                                @method('DELETE')
+
+                                                <button type="submit" class="btn btn-danger rounded-pill px-4">Supprimer définitivement</button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="modal-body">
-                                    Êtes-vous sûr de vouloir supprimer le média associé à
-                                    <strong>{{ $media->contenu->titre ?? 'N/A' }}</strong> ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler
-                                    </button>
-                                    <form action="{{ route('medias.destroy', $media->id) }}" method="POST"
-                                          style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                                    </form>
-                                </div>
+
                             </div>
-                        </div>
-                    </div>
 
-                @empty
-                    <tr>
-                        <td colspan="4" class="text-center">Aucun média trouvé</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
+
+
+                        @empty
+
+                            <tr>
+
+                                <td colspan="4" class="text-center py-5">
+
+                                    <div class="text-muted">
+
+                                        <i class="bi bi-inbox fs-1 d-block mb-3 opacity-25"></i>
+
+                                        Aucun média trouvé dans la base de données.
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
+
     </div>
 
+</div>
+
 @endsection
+
+
+
+@push('style')
+
+<style>
+
+    /* Global Card Style */
+
+    .google-card { border-radius: 16px; overflow: hidden; background: #fff; }
+
+    
+
+    .header-accent-line-yellow {
+
+        position: absolute; top: 0; left: 0; right: 0; height: 4px;
+
+        background: #F0C43B;
+
+    }
+
+
+
+    .icon-circle {
+
+        width: 48px; height: 48px; display: flex;
+
+        align-items: center; justify-content: center; border-radius: 12px;
+
+    }
+
+
+
+    /* Table Styles */
+
+    .custom-table thead { background-color: #f8f9fa; }
+
+    .custom-table th { padding: 1.25rem 1rem !important; }
+
+    .custom-table td { padding: 1rem !important; }
+
+
+
+    .hover-row:hover { background-color: #fffdf5 !important; }
+
+
+
+    /* Buttons & Actions */
+
+    .action-btn {
+
+        width: 38px; height: 38px; display: flex;
+
+        align-items: center; justify-content: center; transition: all 0.2s;
+
+    }
+
+    .action-btn:hover { background-color: #f8f9fa; transform: translateY(-2px); }
+
+
+
+    /* Badges */
+
+    .bg-warning-subtle { background-color: #fff9e6 !important; color: #F0C43B !important; }
+
+    .bg-primary-subtle { background-color: #eef2ff !important; color: #4f46e5 !important; }
+
+    
+
+    .shadow-xs { box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+
+
+
+    /* Modals */
+
+    .modal-content { border-radius: 18px; }
+
+    .modal-header { border-radius: 18px 18px 0 0; }
+
+</style>
+
+@endpush
 
 @push('scripts')
     <script>

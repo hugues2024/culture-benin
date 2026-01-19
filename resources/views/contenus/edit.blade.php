@@ -81,144 +81,145 @@
         }
     </style>
 
-    <div class="card custom-card mb-4">
+    <div class="card google-card shadow-sm border-0 mb-4">
 
-        <!-- HEADER -->
-        <div class="custom-card-header">
-            <div class="card-title">Formulaire de modification de contenu</div>
+    <div class="card-header bg-white py-4 border-bottom position-relative">
+        <div class="header-accent-line-yellow"></div>
+        <div class="d-flex align-items-center">
+            <div class="icon-circle bg-warning-subtle text-warning me-3">
+                <i class="bi bi-pencil-square"></i>
+            </div>
+            <div>
+                <h4 class="card-title mb-0 fw-bold text-dark">Modifier le contenu</h4>
+                <p class="text-muted small mb-0">ID Contenu : #{{ $contenu->id }}</p>
+            </div>
         </div>
+    </div>
 
-        <!-- FORM -->
-        <form action="{{ route('contenus.update', $contenu->id) }}" method="POST">
-            @csrf
-            @method('PUT')
+    <form action="{{ route('contenus.update', $contenu->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-            <div class="card-body">
-
-                <div class="row">
-                    <!-- Titre -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Titre</label>
-                        <input
-                            type="text"
-                            class="form-control @error('titre') is-invalid @enderror"
-                            name="titre"
-                            value="{{ old('titre', $contenu->titre) }}"
-                            placeholder="Titre du contenu"
+        <div class="card-body p-4 p-lg-5">
+            <div class="row g-4">
+                
+                <div class="col-12">
+                    <label class="form-label text-uppercase small fw-bold text-muted mb-2">Titre du contenu</label>
+                    <div class="input-group custom-input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="bi bi-type"></i></span>
+                        <input 
+                            type="text" 
+                            class="form-control border-start-0 ps-1 @error('titre') is-invalid @enderror" 
+                            name="titre" 
+                            value="{{ old('titre', $contenu->titre) }}" 
+                            placeholder="Titre du contenu" 
                             required
                         >
-                        @error('titre')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
                     </div>
-
-                    <!-- Texte -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Texte</label>
-                        <textarea
-                            class="form-control @error('texte') is-invalid @enderror"
-                            name="texte"
-                            rows="3"
-                            placeholder="Votre texte..."
-                        >{{ old('texte', $contenu->texte) }}</textarea>
-                        @error('texte')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Statut -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Statut</label>
-                        <select class="form-select @error('statut') is-invalid @enderror" name="statut" required>
-                            <option value="">-- Sélectionner --</option>
-                            <option value="actif" {{ old('statut', $contenu->statut)=='actif' ? 'selected' : '' }}>Actif</option>
-                            <option value="inactif" {{ old('statut', $contenu->statut)=='inactif' ? 'selected' : '' }}>Inactif</option>
-                        </select>
-                        @error('statut')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Auteur -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Auteur</label>
-                        <select class="form-select @error('id_auteur') is-invalid @enderror" name="id_auteur" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}" {{ old('id_auteur', $contenu->id_auteur)==$user->id ? 'selected' : '' }}>
-                                    {{ $user->nom }} {{ $user->prenom }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('id_auteur')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Région -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Région</label>
-                        <select class="form-select @error('region_id') is-invalid @enderror" name="region_id" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($regions as $region)
-                                <option value="{{ $region->id }}" {{ old('region_id', $contenu->region_id)==$region->id ? 'selected' : '' }}>
-                                    {{ $region->nom_region }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('region_id')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Langue -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Langue</label>
-                        <select class="form-select @error('langue_id') is-invalid @enderror" name="langue_id" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($langues as $langue)
-                                <option value="{{ $langue->id }}" {{ old('langue_id', $contenu->langue_id)==$langue->id ? 'selected' : '' }}>
-                                    {{ $langue->nom_langue }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('langue_id')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Type de contenu -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Type de contenu</label>
-                        <select class="form-select @error('type_contenu_id') is-invalid @enderror" name="type_contenu_id" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($types as $type)
-                                <option value="{{ $type->id }}" {{ old('type_contenu_id', $contenu->type_contenu_id)==$type->id ? 'selected' : '' }}>
-                                    {{ $type->nom }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('type_contenu_id')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    @error('titre')
+                        <div class="text-danger small mt-2 d-flex align-items-center">
+                            <i class="bi bi-exclamation-circle me-1"></i> {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
+                <div class="col-12">
+                    <label class="form-label text-uppercase small fw-bold text-muted mb-2">Texte / Description</label>
+                    <textarea 
+                        class="form-control shadow-sm-hover @error('texte') is-invalid @enderror" 
+                        name="texte" 
+                        rows="6" 
+                        placeholder="Rédigez votre texte ici..."
+                    >{{ old('texte', $contenu->texte) }}</textarea>
+                    @error('texte')
+                        <div class="text-danger small mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label text-uppercase small fw-bold text-muted mb-2">Statut de publication</label>
+                    <select class="form-select shadow-sm @error('statut') is-invalid @enderror" name="statut" required>
+                        <option value="">-- Sélectionner --</option>
+                        <option value="actif" {{ old('statut', $contenu->statut)=='actif' ? 'selected' : '' }}>Actif</option>
+                        <option value="inactif" {{ old('statut', $contenu->statut)=='inactif' ? 'selected' : '' }}>Inactif</option>
+                    </select>
+                    @error('statut')
+                        <div class="text-danger small mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label text-uppercase small fw-bold text-muted mb-2">Auteur référent</label>
+                    <select class="form-select shadow-sm @error('id_auteur') is-invalid @enderror" name="id_auteur" required>
+                        <option value="">-- Sélectionner --</option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}" {{ old('id_auteur', $contenu->id_auteur)==$user->id ? 'selected' : '' }}>
+                                {{ $user->nom }} {{ $user->prenom }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('id_auteur')
+                        <div class="text-danger small mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label text-uppercase small fw-bold text-muted mb-2">Région géographique</label>
+                    <select class="form-select shadow-sm @error('region_id') is-invalid @enderror" name="region_id" required>
+                        <option value="">-- Sélectionner --</option>
+                        @foreach($regions as $region)
+                            <option value="{{ $region->id }}" {{ old('region_id', $contenu->region_id)==$region->id ? 'selected' : '' }}>
+                                {{ $region->nom_region }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('region_id')
+                        <div class="text-danger small mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label text-uppercase small fw-bold text-muted mb-2">Langue</label>
+                    <select class="form-select shadow-sm @error('langue_id') is-invalid @enderror" name="langue_id" required>
+                        <option value="">-- Sélectionner --</option>
+                        @foreach($langues as $langue)
+                            <option value="{{ $langue->id }}" {{ old('langue_id', $contenu->langue_id)==$langue->id ? 'selected' : '' }}>
+                                {{ $langue->nom_langue }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('langue_id')
+                        <div class="text-danger small mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label text-uppercase small fw-bold text-muted mb-2">Type de contenu</label>
+                    <select class="form-select shadow-sm @error('type_contenu_id') is-invalid @enderror" name="type_contenu_id" required>
+                        <option value="">-- Sélectionner --</option>
+                        @foreach($types as $type)
+                            <option value="{{ $type->id }}" {{ old('type_contenu_id', $contenu->type_contenu_id)==$type->id ? 'selected' : '' }}>
+                                {{ $type->nom }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('type_contenu_id')
+                        <div class="text-danger small mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
+        </div>
 
-            <!-- FOOTER -->
-            <div class="custom-footer">
-                <a href="{{ route('contenus.index') }}" class="btn-cancel-custom">
-                    Annuler
-                </a>
-
-                <button type="submit" class="btn-primary-custom ms-2">
-                    Mettre à jour
-                </button>
-            </div>
-        </form>
-
-    </div>
+        <div class="card-footer bg-light py-4 px-lg-5 d-flex justify-content-end align-items-center">
+            <a href="{{ route('contenus.index') }}" class="btn btn-link text-secondary text-decoration-none me-4 fw-bold">
+                Annuler
+            </a>
+            <button type="submit" class="btn btn-warning rounded-pill px-5 fw-bold text-white shadow-sm" style="background-color: #F0C43B; border: none;">
+                <i class="bi bi-arrow-repeat me-2"></i>Mettre à jour
+            </button>
+        </div>
+    </form>
+</div>
 
 @endsection
 

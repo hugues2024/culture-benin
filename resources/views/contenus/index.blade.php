@@ -5,299 +5,199 @@
 @endsection
 
 @section('content')
-
-    <style>
-        /* --- Card Modern --- */
-        .custom-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: none !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-            padding: 18px 20px;
-        }
-
-        .custom-card-header h3 {
-            margin: 0;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        /* --- Table --- */
-        #contenusTable thead {
-            background: #f1f2f6;
-            font-weight: bold;
-        }
-
-        #contenusTable tbody tr:hover {
-            background: #f8f9fc !important;
-            transition: 0.2s;
-        }
-
-        /* --- Icon Buttons Modern --- */
-        .icon-btn {
-            border: none;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s ease-in-out;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            font-size: 15px;
-        }
-
-        .btn-edit {
-            background: #f6c23e;
-        }
-
-        .btn-edit:hover {
-            background: #dda20a;
-            transform: scale(1.1);
-        }
-
-        .btn-delete {
-            background: #e74a3b;
-        }
-
-        .btn-delete:hover {
-            background: #c0392b;
-            transform: scale(1.1);
-        }
-
-        .btn-info {
-            background: #36b9cc;
-        }
-
-        .btn-info:hover {
-            background: #2c9faf;
-            transform: scale(1.1);
-        }
-
-        .no-link-style {
-            text-decoration: none;
-            color: inherit;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Bouton Ajouter moderne */
-        .btn-add-modern {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(78, 115, 223, 0.3);
-            color: white;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .btn-add-modern:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(78, 115, 223, 0.4);
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-        }
-
-        /* Datatable - Alignement horizontal */
-        .dataTables_wrapper .dataTables_length,
-        .dataTables_wrapper .dataTables_filter {
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .dataTables_wrapper .dataTables_filter {
-            float: right;
-        }
-
-        .dataTables_wrapper .dataTables_length {
-            float: left;
-        }
-
-        .dataTables_wrapper .dataTables_info {
-            float: left;
-            padding-top: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate {
-            float: right;
-            padding-top: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_filter input {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin-left: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_length select {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin: 0 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #F0C43B !important;
-            color: white !important;
-        }
-
-        .dataTables_wrapper:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* État vide amélioré */
-        .empty-state {
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-
-        .empty-state img {
-            opacity: 0.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .empty-state h5 {
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-state p {
-            color: #6c757d;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Badge pour les statuts */
-        .badge-type {
-            background: #e8f4fd;
-            color: #1976d2;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-    </style>
-
-    <div class="card custom-card mb-4">
-        <div class="card-header custom-card-header">
-            <h3 class="card-title">Contenus culturels</h3>
+<div class="container-fluid py-4"> 
+    <div class="google-card border-0">
+        
+        <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+            <h4 class="card-title mb-0 fw-bold text-dark">
+                <i class="bi bi-collection-play text-primary me-2"></i>
+                Contenus culturels
+            </h4>
+            
+            <a href="{{ route('contenus.create') }}" class="btn btn-primary rounded-pill px-4 shadow-sm fw-bold">
+                <i class="bi bi-plus-lg me-2"></i> Ajouter un contenu
+            </a>
         </div>
 
-        <div class="card-body">
-            <!-- Bouton Ajouter -->
-            <div class="mb-4 d-flex justify-content-start">
-                <a href="{{ route('contenus.create') }}" class="btn btn-add-modern">
-                    <i class="bi bi-plus-circle me-2"></i> Ajouter un contenu
-                </a>
-            </div>
-
+        <div class="card-body p-0">
             @if($contenus->count() > 0)
-                <table id="contenusTable" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Titre</th>
-                        <th>Auteur</th>
-                        <th>Région</th>
-                        <th>Langue</th>
-                        <th>Type</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($contenus as $contenu)
-                        <tr>
-                            <td>
-                                <strong>{{ $contenu->titre }}</strong>
-                            </td>
-                            <td>
-                                @if($contenu->auteur)
-                                    <i class="bi bi-person-circle text-primary me-1"></i>
-                                    {{ $contenu->auteur->prenom }} {{ $contenu->auteur->nom }}
-                                @else
-                                    <span class="text-muted">N/A</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if($contenu->region)
-                                    <i class="bi bi-geo-alt text-success me-1"></i>
-                                    {{ $contenu->region->nom_region }}
-                                @else
-                                    <span class="text-muted">N/A</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if($contenu->langue)
-                                    <span class="badge-type">
-                                        <i class="bi bi-translate me-1"></i>
-                                        {{ $contenu->langue->nom_langue }}
-                                    </span>
-                                @else
-                                    <span class="text-muted">N/A</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if($contenu->type_contenu)
-                                    <span class="badge-type">
-                                        {{ $contenu->type_contenu->nom }}
-                                    </span>
-                                @else
-                                    <span class="text-muted">N/A</span>
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ route('contenus.show', $contenu->id) }}"
-                                   class="icon-btn btn-info mx-1 no-link-style"
-                                   title="Voir les détails">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="{{ route('contenus.edit', $contenu->id) }}"
-                                   class="icon-btn btn-edit mx-1 no-link-style"
-                                   title="Modifier">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                         @can('delete-contenus')
-                                <!-- Bouton Supprimer avec icône -->
-                                <button type="button" class="icon-btn btn-delete mx-1 btn-delete"
-                                        title="Supprimer"
-                                        data-id="{{ $contenu->id }}"
-                                        data-name="{{ $contenu->titre }}">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                        @endcan
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="contenusTable" class="table table-hover align-middle mb-0">
+                        <thead class="bg-light text-muted small text-uppercase fw-bold">
+                            <tr>
+                                <th class="ps-4">Titre</th>
+                                <th>Auteur</th>
+                                <th>Région</th>
+                                <th>Langue</th>
+                                <th>Type</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($contenus as $contenu)
+                            <tr>
+                                <td class="ps-4">
+                                    <span class="fw-bold text-dark">{{ $contenu->titre }}</span>
+                                </td>
+                                <td>
+                                    @if($contenu->auteur)
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-xs bg-primary-subtle text-primary rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;">
+                                                <i class="bi bi-person-fill small"></i>
+                                            </div>
+                                            <span class="text-secondary small">{{ $contenu->auteur->prenom }} {{ $contenu->auteur->nom }}</span>
+                                        </div>
+                                    @else
+                                        <span class="badge bg-light text-muted fw-normal">Non défini</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($contenu->region)
+                                        <span class="text-muted small">
+                                            <i class="bi bi-geo-alt-fill text-danger me-1 small"></i>
+                                            {{ $contenu->region->nom_region }}
+                                        </span>
+                                    @else
+                                        <span class="text-muted small">-</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($contenu->langue)
+                                        <span class="badge-custom bg-info-subtle text-info">
+                                            <i class="bi bi-translate me-1"></i>
+                                            {{ $contenu->langue->nom_langue }}
+                                        </span>
+                                    @else
+                                        <span class="text-muted">-</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($contenu->type_contenu)
+                                        <span class="badge-custom bg-secondary-subtle text-secondary">
+                                            {{ $contenu->type_contenu->nom }}
+                                        </span>
+                                    @else
+                                        <span class="text-muted">-</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <a href="{{ route('contenus.show', $contenu->id) }}"
+                                           class="btn btn-sm btn-outline-info rounded-circle action-btn"
+                                           title="Voir les détails">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="{{ route('contenus.edit', $contenu->id) }}"
+                                           class="btn btn-sm btn-outline-warning rounded-circle action-btn"
+                                           title="Modifier">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        @can('delete-contenus')
+                                            <button type="button" 
+                                                    class="btn btn-sm btn-outline-danger rounded-circle action-btn btn-delete"
+                                                    title="Supprimer"
+                                                    data-id="{{ $contenu->id }}"
+                                                    data-name="{{ $contenu->titre }}">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @else
-                <div class="empty-state">
-                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486748.png" width="120" alt="Aucun contenu">
-                    <h5>Aucun contenu trouvé</h5>
-                    <p>Commencez par créer votre premier contenu culturel.</p>
-                    <a href="{{ route('contenus.create') }}" class="btn btn-add-modern">
-                        <i class="bi bi-plus-circle me-2"></i> Créer un contenu
+                <div class="text-center py-5">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486748.png" width="100" class="opacity-25 mb-3" alt="Vide">
+                    <h5 class="text-muted fw-bold">Votre bibliothèque est vide</h5>
+                    <p class="text-muted small">Aucun contenu culturel n'a été répertorié pour le moment.</p>
+                    <a href="{{ route('contenus.create') }}" class="btn btn-primary rounded-pill mt-2">
+                        <i class="bi bi-plus-circle me-2"></i> Ajouter votre premier contenu
                     </a>
                 </div>
             @endif
         </div>
     </div>
-
+</div>
 @endsection
+
+@push('styles')
+<style>
+    /* Carte style Google */
+    .google-card {
+        border: 1px solid #dadce0;
+        border-radius: 12px;
+        background: #fff;
+        width: 100%;
+    }
+
+    /* Table & Lignes */
+    .table thead th {
+        border-top: none;
+        background-color: #f8f9fa;
+        padding: 12px 10px;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+    .table tbody td {
+        padding: 16px 10px;
+        border-bottom: 1px solid #f1f3f4;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #fcfdfe !important;
+    }
+
+    /* Badges personnalisés */
+    .badge-custom {
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+    }
+    .bg-info-subtle { background-color: #e1f5fe !important; color: #0288d1 !important; }
+    .bg-primary-subtle { background-color: #e8f0fe !important; color: #1a73e8 !important; }
+    .bg-secondary-subtle { background-color: #f1f3f4 !important; color: #5f6368 !important; }
+
+    /* Boutons d'action */
+    .action-btn {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+    .action-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Bouton Ajouter */
+    .btn-primary {
+        background-color: #1a73e8;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #174ea6;
+        box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    }
+
+    /* DataTables Overrides */
+    .dataTables_wrapper .dataTables_filter input {
+        border-radius: 20px;
+        padding: 6px 15px;
+        border: 1px solid #dadce0;
+    }
+    .dataTables_wrapper .dataTables_length select {
+        border-radius: 8px;
+        border: 1px solid #dadce0;
+    }
+</style>
+@endpush
 
 @push('scripts')
     <script>

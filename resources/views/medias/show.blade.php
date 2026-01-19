@@ -5,23 +5,33 @@
 @endsection
 
 @section('content')
-    <div class="card custom-card mb-4">
-        <!-- Header -->
-        <div class="custom-card-header">
-            <div class="card-title">
-                <i class="bi bi-image-fill me-2"></i>
-                Détails du média
+<div class="container-fluid py-4">
+    <div class="card google-card shadow-sm border-0">
+        
+        <div class="card-header bg-white py-4 border-bottom position-relative">
+            <div class="header-accent-line-yellow"></div>
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div class="icon-circle bg-warning-subtle text-warning me-3">
+                        <i class="bi bi-image-fill"></i>
+                    </div>
+                    <div>
+                        <h4 class="card-title mb-0 fw-bold text-dark">Détails du média</h4>
+                        <p class="text-muted small mb-0">Consultation des ressources liées au contenu</p>
+                    </div>
+                </div>
+                <span class="badge bg-light text-dark border rounded-pill px-3 py-2 shadow-sm">
+                    ID: #{{ $media->id }}
+                </span>
             </div>
         </div>
 
-        <!-- Body -->
-        <div class="card-body">
-            <div class="row g-4">
-                <!-- Aperçu du média -->
+        <div class="card-body p-4 p-lg-5">
+            <div class="row g-5">
                 <div class="col-lg-5">
-                    <div class="media-preview-card">
-                        <h6 class="section-title mb-3">
-                            <i class="bi bi-camera-reels me-2"></i>Aperçu
+                    <div class="preview-container p-3 rounded-4 bg-light border shadow-sm">
+                        <h6 class="text-uppercase small fw-bold text-muted mb-3 d-flex align-items-center">
+                            <i class="bi bi-camera-reels me-2 text-warning"></i> Aperçu du fichier
                         </h6>
 
                         @php
@@ -31,153 +41,99 @@
                             $isAudio = in_array($extension, ['mp3','wav','ogg','m4a','aac','flac']);
                         @endphp
 
-                        <div class="media-wrapper">
+                        <div class="media-display-box rounded-3 overflow-hidden bg-white d-flex align-items-center justify-content-center shadow-inner" style="min-height: 300px; border: 1px dashed #dee2e6;">
                             @if($isImage)
-                                <img src="{{ asset('storage/'.$media->chemin) }}"
-                                     alt="Media"
-                                     class="img-fluid rounded-3 shadow-lg media-image">
+                                <img src="{{ asset('img/'.$media->chemin) }}" class="img-fluid media-zoom" alt="Media preview">
                             @elseif($isVideo)
-                                <video controls class="w-100 rounded-3 shadow-lg" controlsList="nodownload">
-                                    <source src="{{ asset('storage/'.$media->chemin) }}" type="video/{{ $extension }}">
-                                    Votre navigateur ne supporte pas la lecture vidéo.
+                                <video controls class="w-100" style="max-height: 400px;">
+                                    <source src="{{ asset('img/'.$media->chemin) }}" type="video/{{ $extension }}">
+                                    Votre navigateur ne supporte pas la vidéo.
                                 </video>
                             @elseif($isAudio)
-                                <div class="audio-player-wrapper">
-                                    <div class="audio-visual-icon">
-                                        <i class="bi bi-music-note-beamed audio-icon"></i>
+                                <div class="text-center w-100 px-3">
+                                    <div class="audio-icon-animation mb-3">
+                                        <i class="bi bi-music-note-beamed fs-1 text-warning"></i>
                                     </div>
-                                    <p class="audio-filename mt-3 mb-3">{{ basename($media->chemin) }}</p>
-                                    <audio controls class="w-100 custom-audio-player" controlsList="nodownload">
-                                        <source src="{{ asset('storage/'.$media->chemin) }}" type="audio/{{ $extension }}">
-                                        Votre navigateur ne supporte pas la lecture audio.
+                                    <audio controls class="w-100 custom-audio-player">
+                                        <source src="{{ asset('img/'.$media->chemin) }}" type="audio/{{ $extension }}">
                                     </audio>
+                                    <p class="small text-muted mt-3 mb-0">{{ basename($media->chemin) }}</p>
                                 </div>
                             @else
-                                <div class="file-placeholder">
-                                    <i class="bi bi-file-earmark-text file-icon"></i>
-                                    <p class="mt-3 mb-0 text-muted">{{ basename($media->chemin) }}</p>
+                                <div class="text-center">
+                                    <i class="bi bi-file-earmark-text text-muted display-1"></i>
+                                    <p class="mt-2 fw-bold text-secondary">{{ strtoupper($extension) }}</p>
                                 </div>
                             @endif
                         </div>
 
-                        <!-- Metadata rapide -->
-                        <div class="metadata-quick mt-3">
-                            <div class="metadata-item">
-                                @if($isImage)
-                                    <i class="bi bi-file-earmark-image text-primary"></i>
-                                    <span>📷 {{ strtoupper($extension) }}</span>
-                                @elseif($isVideo)
-                                    <i class="bi bi-file-earmark-play text-danger"></i>
-                                    <span>🎥 {{ strtoupper($extension) }}</span>
-                                @elseif($isAudio)
-                                    <i class="bi bi-file-earmark-music text-warning"></i>
-                                    <span>🎵 {{ strtoupper($extension) }}</span>
-                                @else
-                                    <i class="bi bi-file-earmark text-secondary"></i>
-                                    <span>{{ strtoupper($extension) }}</span>
-                                @endif
+                        <div class="d-flex flex-wrap gap-2 mt-4">
+                            <div class="meta-tag">
+                                <i class="bi bi-hdd-fill me-1"></i>
+                                @if(file_exists(storage_path('app/public/'.$media->chemin)))
+                                    {{ number_format(filesize(storage_path('app/public/'.$media->chemin)) / 1048576, 2) }} MB
+                                @else N/A @endif
                             </div>
-                            <div class="metadata-item">
-                                <i class="bi bi-calendar3 text-primary"></i>
-                                <span>{{ $media->created_at->format('d/m/Y') }}</span>
+                            <div class="meta-tag">
+                                <i class="bi bi-file-earmark-code me-1"></i> {{ strtoupper($extension) }}
                             </div>
-                            @if(file_exists(storage_path('app/public/'.$media->chemin)))
-                                <div class="metadata-item">
-                                    <i class="bi bi-hdd text-success"></i>
-                                    <span>{{ number_format(filesize(storage_path('app/public/'.$media->chemin)) / 1048576, 2) }} MB</span>
-                                </div>
-                            @endif
+                            <div class="meta-tag">
+                                <i class="bi bi-calendar3 me-1"></i> {{ $media->created_at->format('d/m/Y') }}
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Informations détaillées -->
                 <div class="col-lg-7">
-                    <!-- Section Informations générales -->
-                    <div class="info-section mb-4">
-                        <h6 class="section-title">
-                            <i class="bi bi-info-circle me-2"></i>Informations générales
-                        </h6>
+                    <div class="info-group mb-5">
+                        <h5 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                            <span class="bg-warning text-white rounded-circle me-2 d-inline-flex align-items-center justify-content-center" style="width:24px; height:24px; font-size: 14px;">1</span>
+                            Informations Générales
+                        </h5>
                         <div class="row g-3">
                             <div class="col-12">
-                                <div class="info-item-modern">
-                                    <div class="info-icon">
-                                        <i class="bi bi-file-text-fill"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <span class="info-label-small">Contenu lié</span>
-                                        <span class="info-value-large">{{ $media->contenu->titre ??  'N/A' }}</span>
-                                    </div>
+                                <div class="detail-card">
+                                    <label>Contenu lié</label>
+                                    <p class="h5 fw-bold text-primary mb-0">{{ $media->contenu->titre ?? 'N/A' }}</p>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
-                                <div class="info-item-modern">
-                                    <div class="info-icon">
-                                        <i class="bi bi-tag-fill"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <span class="info-label-small">Type de média</span>
-                                        <span class="badge-type mt-1">{{ $media->type_media->nom ?? 'N/A' }}</span>
-                                    </div>
+                                <div class="detail-card">
+                                    <label>Type de Média</label>
+                                    <span class="badge-type-custom">{{ $media->type_media->nom ?? 'N/A' }}</span>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
-                                <div class="info-item-modern">
-                                    <div class="info-icon">
-                                        <i class="bi bi-folder-fill"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <span class="info-label-small">Chemin</span>
-                                        <span class="info-value-large text-truncate" title="{{ $media->chemin }}">
-                                            {{ Str::limit(basename($media->chemin), 30) }}
-                                        </span>
-                                    </div>
+                                <div class="detail-card">
+                                    <label>Nom du fichier</label>
+                                    <p class="mb-0 text-truncate text-muted small fw-bold">{{ basename($media->chemin) }}</p>
                                 </div>
                             </div>
-
                             <div class="col-12">
-                                <div class="info-item-modern">
-                                    <div class="info-icon">
-                                        <i class="bi bi-chat-left-text-fill"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <span class="info-label-small">Description</span>
-                                        <span class="info-value-large">{{ $media->description ?? 'Aucune description' }}</span>
-                                    </div>
+                                <div class="detail-card">
+                                    <label>Description</label>
+                                    <p class="mb-0 text-dark">{{ $media->description ?? 'Aucune description fournie.' }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Section Dates -->
-                    <div class="info-section">
-                        <h6 class="section-title">
-                            <i class="bi bi-clock-history me-2"></i>Historique
-                        </h6>
+                    <div class="info-group">
+                        <h5 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                            <span class="bg-warning text-white rounded-circle me-2 d-inline-flex align-items-center justify-content-center" style="width:24px; height:24px; font-size: 14px;">2</span>
+                            Historique et Système
+                        </h5>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <div class="info-item-modern">
-                                    <div class="info-icon">
-                                        <i class="bi bi-calendar-plus-fill"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <span class="info-label-small">Date d'ajout</span>
-                                        <span class="info-value-large">{{ $media->created_at->format('d/m/Y à H:i') }}</span>
-                                    </div>
+                                <div class="detail-card">
+                                    <label>Ajouté le</label>
+                                    <p class="mb-0 fw-bold"><i class="bi bi-calendar-check me-2 text-muted"></i>{{ $media->created_at->format('d/m/Y à H:i') }}</p>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
-                                <div class="info-item-modern">
-                                    <div class="info-icon">
-                                        <i class="bi bi-calendar-check-fill"></i>
-                                    </div>
-                                    <div class="info-content">
-                                        <span class="info-label-small">Dernière modification</span>
-                                        <span class="info-value-large">{{ $media->updated_at->format('d/m/Y à H:i') }}</span>
-                                    </div>
+                                <div class="detail-card">
+                                    <label>Dernière modification</label>
+                                    <p class="mb-0 fw-bold"><i class="bi bi-arrow-repeat me-2 text-muted"></i>{{ $media->updated_at->format('d/m/Y à H:i') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -186,369 +142,95 @@
             </div>
         </div>
 
-        <!-- Footer avec actions -->
-        <div class="custom-footer">
-            <a href="{{ route('medias.index') }}" class="btn-cancel-custom">
-                <i class="bi bi-arrow-left-circle"></i> Retour
-            </a>
-
-            <div class="d-flex gap-2">
-                <a href="{{ route('medias.edit', $media->id) }}" class="btn-warning-custom">
-                    <i class="bi bi-pencil-square"></i> Modifier
+        <div class="card-footer bg-light py-4 px-4 border-top">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="{{ route('medias.index') }}" class="btn btn-outline-secondary rounded-pill px-4 fw-bold shadow-sm">
+                    <i class="bi bi-arrow-left me-2"></i>Retour à la liste
                 </a>
-
-                <form action="{{ route('medias.destroy', $media->id) }}"
-                      method="POST"
-                      class="deleteMediaForm d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-danger-custom">
-                        <i class="bi bi-trash"></i> Supprimer
-                    </button>
-                </form>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('medias.edit', $media->id) }}" class="btn btn-warning rounded-pill px-4 fw-bold text-white shadow-sm" style="background-color: #F0C43B; border: none;">
+                        <i class="bi bi-pencil-square me-2"></i>Modifier
+                    </a>
+                    
+                    <form action="{{ route('medias.destroy', $media->id) }}" method="POST" class="d-inline ms-2">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger rounded-pill px-4 fw-bold shadow-sm onclick="return confirm('Supprimer définitivement ce média ?')">
+                            <i class="bi bi-trash me-2"></i>Supprimer
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
-@push('styles')
-    <style>
-        /* Card modern */
-        .custom-card {
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            overflow: hidden;
-            width: 100%;
-            max-width: 100%;
-        }
+@push('style')
+<style>
+    .google-card { border-radius: 20px; overflow: hidden; }
+    .header-accent-line-yellow {
+        position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #F0C43B;
+    }
 
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-            padding: 20px 20px;
-        }
+    /* Styles de l'aperçu */
+    .preview-container { background: #fdfdfd; }
+    .media-display-box { background: #ffffff; }
+    .media-zoom { transition: transform 0.5s ease; cursor: zoom-in; }
+    .media-zoom:hover { transform: scale(1.05); }
 
-        .custom-card-header .card-title {
-            font-size: 19px;
-            font-weight: 600;
-            margin: 0;
-        }
+    /* Badges et Tags */
+    .meta-tag {
+        background: #f1f3f4;
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #5f6368;
+    }
 
-        /* Media Preview Card */
-        .media-preview-card {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            height: 100%;
-        }
+    /* Cards d'information */
+    .detail-card {
+        background: #ffffff;
+        padding: 15px 20px;
+        border-radius: 12px;
+        border: 1px solid #edf2f7;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    .detail-card:hover { border-color: #F0C43B; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .detail-card label {
+        display: block;
+        text-uppercase;
+        font-size: 10px;
+        font-weight: 800;
+        color: #a0aec0;
+        letter-spacing: 0.5px;
+        margin-bottom: 5px;
+    }
 
-        .media-wrapper {
-            position: relative;
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .badge-type-custom {
+        display: inline-block;
+        background: #fff9e6;
+        color: #F0C43B;
+        padding: 4px 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 13px;
+    }
 
-        .media-image {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
+    .bg-warning-subtle { background-color: #fff9e6 !important; }
 
-        . media-image:hover {
-            transform: scale(1.05);
-        }
-
-        /* Audio Player Enhanced */
-        .audio-player-wrapper {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            padding: 40px 30px;
-            border-radius: 12px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .audio-visual-icon {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        . audio-icon {
-            font-size: 5rem;
-            color: #f59e0b;
-            filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.3));
-        }
-
-        .audio-filename {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #78350f;
-            word-break: break-word;
-        }
-
-        .custom-audio-player {
-            border-radius: 50px;
-            background: #ffffff;
-            padding: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .custom-audio-player::-webkit-media-controls-panel {
-            background: #ffffff;
-        }
-
-        /* Video styling */
-        video {
-            max-height: 400px;
-            background: #000;
-        }
-
-        /* File Placeholder */
-        .file-placeholder {
-            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-            padding: 60px 20px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        . file-icon {
-            font-size: 5rem;
-            color: #6b7280;
-        }
-
-        /* Metadata Quick */
-        .metadata-quick {
-            display: flex;
-            gap: 10px;
-            padding-top: 15px;
-            border-top: 1px solid #e2e8f0;
-            flex-wrap: wrap;
-        }
-
-        .metadata-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            background: #ffffff;
-            border-radius: 20px;
-            border: 1px solid #e2e8f0;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #4b5563;
-            white-space: nowrap;
-        }
-
-        /* Section Title */
-        .section-title {
-            color: #F0C43B;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Info Item Modern */
-        .info-item-modern {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 16px;
-            background: #ffffff;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s ease;
-            height: 100%;
-        }
-
-        .info-item-modern:hover {
-            border-color: #F0C43B;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .info-icon {
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #F0C43B;
-            font-size: 1.2rem;
-        }
-
-        . info-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .info-label-small {
-            font-size: 0.75rem;
-            color: #6b7280;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        . info-value-large {
-            font-size: 1rem;
-            color: #1f2937;
-            font-weight: 600;
-            word-break: break-word;
-        }
-
-        /* Badge Type */
-        .badge-type {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            display: inline-block;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-        }
-
-        /* Buttons */
-        .btn-cancel-custom {
-            background: #6c757d;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 700;
-            color: white;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-cancel-custom:hover {
-            transform: translateY(-2px);
-            background: #5a6268;
-            color: white;
-            box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
-        }
-
-        .btn-warning-custom {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 700;
-            color: white;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-        }
-
-        .btn-warning-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
-            color: white;
-        }
-
-        .btn-danger-custom {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 700;
-            color: white;
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0. 3);
-        }
-
-        . btn-danger-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
-        }
-
-        /* Footer */
-        .custom-footer {
-            padding: 20px 25px;
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            border-top: 2px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .media-preview-card {
-                margin-bottom: 1. 5rem;
-            }
-
-            .media-wrapper {
-                min-height: 250px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .custom-footer {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            . custom-footer > * {
-                width: 100%;
-            }
-
-            .btn-cancel-custom,
-            .btn-warning-custom,
-            .btn-danger-custom {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .metadata-quick {
-                flex-direction: column;
-            }
-
-            .metadata-item {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .audio-icon {
-                font-size: 3. 5rem;
-            }
-
-            .audio-player-wrapper {
-                padding: 30px 20px;
-            }
-        }
-    </style>
+    /* Audio custom feel */
+    .audio-icon-animation i {
+        animation: pulse-audio 2s infinite;
+    }
+    @keyframes pulse-audio {
+        0% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.5; }
+    }
+</style>
 @endpush
 
 @push('scripts')

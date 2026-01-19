@@ -64,14 +64,13 @@
 
     /* HEADER BLEU UNIFORME */
     .custom-card-header {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
         padding: 20px;
     }
 
     .custom-card-header h4 {
         margin: 0;
         font-weight: 600;
-        color: #fff !important;
+        color: #F0C43B !important;
     }
 
     /* Form */

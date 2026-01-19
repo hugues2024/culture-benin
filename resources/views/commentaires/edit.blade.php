@@ -16,8 +16,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
+            color: #F0C43B;
             padding: 20px 20px;
         }
 

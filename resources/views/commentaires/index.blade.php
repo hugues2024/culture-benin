@@ -16,8 +16,7 @@
         }
 
         .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
+            color: #F0C43B;
             padding: 18px 20px;
         }
 
@@ -206,6 +205,16 @@
     <div class="card custom-card mb-4">
         <div class="card-header custom-card-header">
             <h3 class="card-title">Commentaires des utilisateurs</h3>
+
+            @if ($commentaires->count() > 0)
+
+                <a href="{{ route('commentaires.create') }}" class="btn btn-warning rounded-pill px-4 fw-bold text-white shadow-sm">
+
+                    <i class="bi bi-plus-lg me-2"></i>Nouveau commentaire
+
+                </a>
+
+                @endif
         </div>
 
         <div class="card-body">

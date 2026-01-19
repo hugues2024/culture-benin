@@ -1,10 +1,7 @@
-<footer class="app-footer bg-white border-top py-3">
-    <!--begin::To the end-->
+<!-- <footer class="app-footer bg-white border-top py-3">
     <div class="float-end d-none d-sm-inline">
         <span class="text-muted">Plateforme Culturelle du Bénin</span>
     </div>
-    <!--end::To the end-->
-    <!--begin::Copyright-->
     <div class="text-muted">
         <strong>
             Copyright &copy; 2014-2025&nbsp;
@@ -12,8 +9,7 @@
         </strong>
         Tous droits réservés.
     </div>
-    <!--end::Copyright-->
-</footer>
+</footer> -->
 
 <style>
 .app-footer {

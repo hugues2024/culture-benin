@@ -5,221 +5,189 @@
 @endsection
 
 @section('content')
-
-    <style>
-        /* ----- Card modern ----- */
-        .custom-card {
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            overflow: hidden;
-        }
-
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-            padding: 20px 20px;
-        }
-
-        .custom-card-header .card-title {
-            font-size: 19px;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .form-label {
-            font-weight: 600;
-            color: #4e4e4e;
-            margin-bottom: 6px;
-        }
-
-        .form-control, .form-select {
-            border-radius: 8px !important;
-            border: 1px solid #d1d3e2;
-            padding: 10px 12px;
-            transition: 0.25s ease-in-out;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: #F0C43B !important;
-            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
-        }
-
-        .btn-primary-custom {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            color: white;
-            transition: 0.2s ease-in-out;
-        }
-        .btn-primary-custom:hover {
-            transform: scale(1.05);
-            background: #F0C43B;
-        }
-
-        .btn-cancel-custom {
-            background: #6c757d;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            color: white;
-            transition: 0.2s ease-in-out;
-        }
-        .btn-cancel-custom:hover {
-            transform: scale(1.05);
-            background: #5a6268;
-            color: white;
-        }
-
-        .custom-footer {
-            padding: 15px 20px;
-            background: #f7f7f7;
-            border-top: 1px solid #e2e2e2;
-        }
-    </style>
-
-    <div class="card custom-card mb-4">
-
-        <!-- HEADER -->
-        <div class="custom-card-header">
-            <div class="card-title">Formulaire de création de contenu</div>
+<div class="container-fluid py-4"> <div class="card google-card shadow-sm border-0">
+        
+        <div class="card-header bg-white py-4 border-bottom position-relative">
+            <div class="header-accent-line-create"></div>
+            <div class="d-flex align-items-center">
+                <div class="icon-circle bg-primary-subtle text-primary me-3">
+                    <i class="bi bi-plus-circle-fill"></i>
+                </div>
+                <div>
+                    <h4 class="card-title mb-0 fw-bold text-dark">Nouveau contenu culturel</h4>
+                    <p class="text-muted small mb-0">Remplissez les informations ci-dessous pour publier un nouveau contenu.</p>
+                </div>
+            </div>
         </div>
 
-        <!-- FORM -->
         <form action="{{ route('contenus.store') }}" method="POST">
             @csrf
 
-            <div class="card-body">
+            <div class="card-body p-4 p-lg-5">
+                <div class="row g-4">
+                    
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="mb-4">
+                            <label class="form-label text-uppercase small fw-bold text-muted mb-2">Titre explicite</label>
+                            <div class="input-group custom-input-group shadow-sm-hover">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </span>
+                                <input type="text" 
+                                       class="form-control ps-2 py-2 border-start-0 @error('titre') is-invalid @enderror" 
+                                       name="titre" 
+                                       value="{{ old('titre') }}" 
+                                       placeholder="Entrez le titre du contenu..."
+                                       required>
+                            </div>
+                            @error('titre')
+                                <div class="text-danger small mt-2 d-flex align-items-center">
+                                    <i class="bi bi-exclamation-circle me-1"></i> {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-                <div class="row">
-                    <!-- Titre -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Titre</label>
-                        <input
-                            type="text"
-                            class="form-control @error('titre') is-invalid @enderror"
-                            name="titre"
-                            value="{{ old('titre') }}"
-                            placeholder="Titre du contenu"
-                            required
-                        >
-                        @error('titre')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
+                        <div class="mb-0">
+                            <label class="form-label text-uppercase small fw-bold text-muted mb-2">Corps du texte / Récit</label>
+                            <textarea class="form-control shadow-sm-hover @error('texte') is-invalid @enderror" 
+                                      name="texte" 
+                                      rows="12" 
+                                      placeholder="Écrivez votre texte ici..."
+                            >{{ old('texte') }}</textarea>
+                            @error('texte')
+                                <div class="text-danger small mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
 
-                    <!-- Texte -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Texte</label>
-                        <textarea
-                            class="form-control @error('texte') is-invalid @enderror"
-                            name="texte"
-                            rows="3"
-                            placeholder="Votre texte..."
-                        >{{ old('texte') }}</textarea>
-                        @error('texte')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="p-4 bg-light rounded-4 border border-secondary border-opacity-10">
+                            <h6 class="fw-bold mb-4 text-dark d-flex align-items-center">
+                                <i class="bi bi-funnel-fill text-primary me-2"></i>Classification
+                            </h6>
+                            
+                            <div class="mb-3">
+                                <label class="form-label small">Statut initial</label>
+                                <select class="form-select @error('statut') is-invalid @enderror shadow-sm" name="statut" required>
+                                    <option value="" disabled selected>-- Choisir --</option>
+                                    <option value="actif" {{ old('statut') == 'actif' ? 'selected' : '' }}>Actif (Visible)</option>
+                                    <option value="inactif" {{ old('statut') == 'inactif' ? 'selected' : '' }}>Inactif (Masqué)</option>
+                                </select>
+                            </div>
 
-                    <!-- Statut -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Statut</label>
-                        <select class="form-select @error('statut') is-invalid @enderror" name="statut" required>
-                            <option value="">-- Sélectionner --</option>
-                            <option value="actif" {{ old('statut')=='actif' ? 'selected' : '' }}>Actif</option>
-                            <option value="inactif" {{ old('statut')=='inactif' ? 'selected' : '' }}>Inactif</option>
-                        </select>
-                        @error('statut')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                            <div class="mb-3">
+                                <label class="form-label small">Attribuer à l'auteur</label>
+                                <select class="form-select @error('id_auteur') is-invalid @enderror shadow-sm" name="id_auteur" required>
+                                    <option value="" disabled selected>-- Sélectionner l'auteur --</option>
+                                    @foreach($users as $user)
+                                        <option value="{{ $user->id }}" {{ old('id_auteur') == $user->id ? 'selected' : '' }}>
+                                            {{ $user->nom }} {{ $user->prenom }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                    <!-- Auteur -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Auteur</label>
-                        <select class="form-select @error('id_auteur') is-invalid @enderror" name="id_auteur" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}" {{ old('id_auteur')==$user->id ? 'selected' : '' }}>
-                                    {{ $user->nom }} {{$user->prenom}}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('id_auteur')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                            <div class="mb-3">
+                                <label class="form-label small">Région concernée</label>
+                                <select class="form-select @error('region_id') is-invalid @enderror shadow-sm" name="region_id" required>
+                                    <option value="" disabled selected>-- Choisir une région --</option>
+                                    @foreach($regions as $region)
+                                        <option value="{{ $region->id }}" {{ old('region_id') == $region->id ? 'selected' : '' }}>
+                                            {{ $region->nom_region }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                    <!-- Région -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Région</label>
-                        <select class="form-select @error('region_id') is-invalid @enderror" name="region_id" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($regions as $region)
-                                <option value="{{ $region->id }}" {{ old('region_id')==$region->id ? 'selected' : '' }}>
-                                    {{ $region->nom_region }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('region_id')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                            <div class="mb-3">
+                                <label class="form-label small">Langue du contenu</label>
+                                <select class="form-select @error('langue_id') is-invalid @enderror shadow-sm" name="langue_id" required>
+                                    <option value="" disabled selected>-- Choisir une langue --</option>
+                                    @foreach($langues as $langue)
+                                        <option value="{{ $langue->id }}" {{ old('langue_id') == $langue->id ? 'selected' : '' }}>
+                                            {{ $langue->nom_langue }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                    <!-- Langue -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Langue</label>
-                        <select class="form-select @error('langue_id') is-invalid @enderror" name="langue_id" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($langues as $langue)
-                                <option value="{{ $langue->id }}" {{ old('langue_id')==$langue->id ? 'selected' : '' }}>
-                                    {{ $langue->nom_langue }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('langue_id')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
+                            <div class="mb-0">
+                                <label class="form-label small">Catégorie de contenu</label>
+                                <select class="form-select @error('type_contenu_id') is-invalid @enderror shadow-sm" name="type_contenu_id" required>
+                                    <option value="" disabled selected>-- Choisir un type --</option>
+                                    @foreach($types as $type)
+                                        <option value="{{ $type->id }}" {{ old('type_contenu_id') == $type->id ? 'selected' : '' }}>
+                                            {{ $type->nom }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-                    <!-- Type de contenu -->
-                    <div class="col-12 mb-3">
-                        <label class="form-label">Type de contenu</label>
-                        <select class="form-select @error('type_contenu_id') is-invalid @enderror" name="type_contenu_id" required>
-                            <option value="">-- Sélectionner --</option>
-                            @foreach($types as $type)
-                                <option value="{{ $type->id }}" {{ old('type_contenu_id')==$type->id ? 'selected' : '' }}>
-                                    {{ $type->nom }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('type_contenu_id')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
+                        <div class="mt-4 p-3 bg-primary-subtle rounded-4 text-primary small d-flex align-items-start">
+                            <i class="bi bi-info-circle-fill me-2 mt-1"></i>
+                            <div>
+                                <strong>Astuce :</strong> Assurez-vous que le texte respecte la charte éditoriale avant de passer au statut "Actif".
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- FOOTER -->
-            <div class="custom-footer">
-                <a href="{{ route('contenus.index') }}" class="btn-cancel-custom">
-                    Annuler
+            <div class="card-footer bg-light py-4 px-lg-5 d-flex justify-content-between">
+                <a href="{{ route('contenus.index') }}" class="btn btn-outline-secondary rounded-pill px-4 fw-bold shadow-sm">
+                    <i class="bi bi-arrow-left me-2"></i>Annuler
                 </a>
-
-                <button type="submit" class="btn-primary-custom ms-2">
-                    Enregistrer
+                <button type="submit" class="btn btn-primary rounded-pill px-5 fw-bold shadow-sm" style="background-color: #F0C43B; border: none; color: white;">
+                    <i class="bi bi-check-lg me-2"></i>Enregistrer le contenu
                 </button>
             </div>
         </form>
-
     </div>
-
+</div>
 @endsection
+
+@push('styles')
+<style>
+    /* Card Global */
+    .google-card { border-radius: 16px; background: #fff; }
+    
+    /* Ligne bleue pour la création */
+    .header-accent-line-create {
+        position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, #0d6efd, #0dcaf0);
+        border-radius: 16px 16px 0 0;
+    }
+
+    /* Inputs Modernes */
+    .form-label { color: #495057; }
+    .form-control, .form-select {
+        border-radius: 10px !important;
+        border: 1px solid #ced4da;
+        padding: 10px 15px;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1) !important;
+    }
+
+    /* Effets visuels */
+    .icon-circle {
+        width: 45px; height: 45px; display: flex;
+        align-items: center; justify-content: center; border-radius: 12px;
+    }
+    .bg-primary-subtle { background-color: #e7f1ff !important; color: #0d6efd !important; }
+    .rounded-4 { border-radius: 16px !important; }
+    .shadow-sm-hover:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    /* Bouton spécifique Jaune pour l'enregistrement */
+    .btn-primary:hover {
+        background-color: #dda20a !important;
+        transform: translateY(-1px);
+    }
+</style>
+@endpush
 
 @push('scripts')
     <script>

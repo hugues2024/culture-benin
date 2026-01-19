@@ -21,7 +21,7 @@
                 <div class="col-lg-4">
                     <div class="region-profile-card">
                         <div class="region-image-wrapper">
-                            <img src="https://cdn-icons-png. flaticon.com/512/854/854878.png"
+                            <img src="{{ asset($region->img) }}"
                                  alt="{{ $region->nom_region }}"
                                  class="region-image">
                         </div>
@@ -154,8 +154,7 @@
     }
 
     .custom-card-header {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
-        color: white;
+        color: #F0C43B;
         padding: 20px;
     }
 

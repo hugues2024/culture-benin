@@ -69,7 +69,7 @@ class TypeMediaController extends Controller
     {
         //
         $data = $request->validate([
-            'nom' => 'required|unique:type_media',
+            'nom' => 'required|unique:type_medias',
         ],[
             'nom.required' => 'le nom est obligatoire',
             'nom.unique' => 'ce type media existe deja'

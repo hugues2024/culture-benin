@@ -5,122 +5,136 @@
 @endsection
 
 @section('content')
+<div class="container-fluid py-4">
+    <div class="card google-card shadow-sm border-0">
+        <div class="card-header bg-white py-4 border-bottom position-relative">
+            <div class="header-accent-line-edit"></div>
+            <h3 class="card-title mb-0 fw-bold text-dark me-2 mb-2">
+                <i class="fa-solid fa-pen-to-square text-warning me-2"></i>
+                Modifier le type de média
+            </h3>
+            <p class="text-muted small mb-0 mt-1">Mise à jour des informations pour : <strong>{{ $typeMedia->nom }}</strong></p>
+        </div>
 
-    <div class="container-fluid mt-4 w-100">
-        <div class="card shadow-sm custom-card">
-            <!-- Header -->
-            <div class="card-header text-white custom-card-header">
-                <h4 class="mb-0">Modifier le type de média "{{ $typeMedia->nom }}"</h4>
-            </div>
+        <div class="card-body p-5">
+            <form action="{{ route('type_media.update', $typeMedia->id) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-            <!-- Form -->
-            <div class="card-body p-4">
-                <form action="{{ route('type_media.update', $typeMedia->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-
-                    <div class="mb-3">
-                        <label for="nom" class="form-label fw-semibold">Nom du type média</label>
-                        <input type="text"
-                               name="nom"
-                               id="nom"
-                               class="form-control @error('nom') is-invalid @enderror"
-                               placeholder="Ex: Vidéo, Image, Audio..."
-                               value="{{ old('nom', $typeMedia->nom) }}">
-                        @error('nom')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                <div class="row">
+                    <div class="col-xl-6 col-lg-8">
+                        <div class="form-group mb-4">
+                            <label for="nom" class="form-label fw-bold text-dark small text-uppercase mb-2">
+                                Nom du type média <span class="text-danger">*</span>
+                            </label>
+                            
+                            <div class="input-group custom-input-group shadow-sm-hover">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fa-solid fa-tag text-muted"></i>
+                                </span>
+                                <input type="text"
+                                       name="nom"
+                                       id="nom"
+                                       class="form-control ps-2 py-2 border-start-0 @error('nom') is-invalid @enderror"
+                                       placeholder="Ex: Vidéo, Image, Audio..."
+                                       value="{{ old('nom', $typeMedia->nom) }}"
+                                       autofocus
+                                >
+                            </div>
+                            
+                            @error('nom')
+                            <div class="text-danger small mt-2 d-flex align-items-center">
+                                <i class="fa-solid fa-circle-exclamation me-1"></i> {{ $message }}
+                            </div>
+                            @enderror
+                            
+                            <div class="form-text text-muted mt-2">
+                                <i class="fa-solid fa-circle-info me-1"></i>
+                                Modifier le nom impactera tous les médias liés à ce type.
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="d-flex justify-content-end mt-4">
-                        <a href="{{ route('type_media.index') }}" class="btn btn-secondary me-2">Annuler</a>
-                        <button type="submit" class="btn btn-primary btn-submit">Mettre à jour</button>
+                <hr class="my-4 opacity-25">
+
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="text-muted small italic">
+                         Dernière modification : {{ $typeMedia->updated_at ? $typeMedia->updated_at->format('d/m/Y H:i') : 'Inconnue' }}
                     </div>
-                </form>
-            </div>
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('type_media.index') }}" class="btn btn-light rounded-pill px-4 fw-semibold border">
+                            Annuler
+                        </a>
+                        <button type="submit" class="btn btn-primary rounded-pill px-5 fw-bold shadow-sm btn-submit">
+                            <i class="fa-solid fa-rotate me-2"></i> Mettre à jour
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-
+</div>
 @endsection
 
 @push('styles')
 <style>
-    /* Card modern */
-    .custom-card {
+    /* Carte style moderne */
+    .google-card {
         border-radius: 12px;
-        overflow: hidden;
-        border: none;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
-
-    /* HEADER BLEU UNIFORME */
-    .custom-card-header {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
-        padding: 20px;
-    }
-
-    .custom-card-header h4 {
-        margin: 0;
-        font-weight: 600;
-        color: #fff !important;
-    }
-
-    /* Form */
-    .form-label { 
-        color: #4e4e4e; 
-        font-weight: 600;
-    }
-    
-    .form-control {
-        border-radius: 8px;
-        border: 1px solid #d1d3e2;
-        padding: 10px 12px;
-        transition: 0.25s;
-    }
-    
-    .form-control:focus {
-        border-color: #F0C43B;
-        box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25);
-    }
-
-    .is-invalid { 
-        border-color: #e74a3b !important; 
-    }
-
-    .invalid-feedback {
-        display: block;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
         width: 100%;
-        margin-top: 0.25rem;
-        font-size: 0.875rem;
-        color: #e74a3b;
     }
 
-    /* Buttons */
-    .btn-submit {
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
-        border: none;
-        font-weight: 600;
-        transition: 0.2s;
-        padding: 10px 24px;
+    /* Barre d'accentuation orange pour le mode édition */
+    .header-accent-line-edit {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #f39c12, #f1c40f);
+        border-radius: 12px 12px 0 0;
+    }
+
+    /* Input et Groupes */
+    .custom-input-group .form-control {
+        border-radius: 0 8px 8px 0;
+        border-color: #dee2e6;
     }
     
-    .btn-submit:hover {
-        transform: scale(1.05);
-        background: linear-gradient(135deg, #F0C43B, #F0C43B);
+    .custom-input-group .input-group-text {
+        border-radius: 8px 0 0 8px;
+        border-color: #dee2e6;
     }
 
-    .btn-secondary {
-        background-color: #6c757d;
+    .form-control:focus {
+        border-color: #f39c12 !important; /* Couleur d'accentuation au focus */
+        box-shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.1) !important;
+    }
+
+    /* Boutons */
+    .btn-primary {
+        background-color: #1a73e8;
         border: none;
-        color: #fff;
-        padding: 10px 24px;
-        font-weight: 500;
-        transition: 0.2s;
+        transition: all 0.3s;
     }
 
-    .btn-secondary:hover {
-        background-color: #5a6268;
-        transform: scale(1.05);
+    .btn-primary:hover {
+        background-color: #174ea6;
+        box-shadow: 0 4px 12px rgba(26, 115, 232, 0.2);
+    }
+
+    .btn-light:hover {
+        background-color: #f8f9fa;
+        border-color: #bdc3c7;
+    }
+
+    /* Animation au survol du groupe d'input */
+    .shadow-sm-hover:hover {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: box-shadow 0.2s ease;
     }
 </style>
 @endpush

@@ -4,91 +4,278 @@
     Modification de langue
 @endsection
 
+
 @section('content')
 
-    <style>
-        /* ----- Card modern ----- */
-        .custom-card { border-radius: 12px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.06); overflow: hidden; }
-        .custom-card-header { background: linear-gradient(135deg, #F0C43B, #F0C43B); color: white; padding: 20px 20px; }
-        .custom-card-header .card-title { font-size: 19px; font-weight: 600; margin: 0; }
-        .form-label { font-weight: 600; color: #4e4e4e; margin-bottom: 6px; }
-        .form-control { border-radius: 8px !important; border: 1px solid #d1d3e2; padding: 10px 12px; transition: 0.25s ease-in-out; }
-        .form-control:focus { border-color: #F0C43B !important; box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25); }
-        .is-invalid { border-color: #e74a3b !important; }
-        .invalid-feedback { color: #e74a3b; font-size: 0.875rem; margin-top: 5px; }
-        .btn-primary-custom { background: linear-gradient(135deg, #F0C43B, #F0C43B); border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; transition: 0.2s ease-in-out; color: white; }
-        .btn-primary-custom:hover { transform: scale(1.05); background: linear-gradient(135deg, #F0C43B, #F0C43B); }
-        .btn-cancel-custom { background: #6c757d; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; color: white; transition: 0.2s ease-in-out; }
-        .btn-cancel-custom:hover { transform: scale(1.05); background: #5a6268; color: white; }
-        .custom-footer { padding: 15px 20px; background: #f8f9fc; border-top: 1px solid #e3e6f0; }
-    </style>
+<div class="container-fluid py-4">
 
-    <div class="card custom-card mb-4">
+    <div class="row justify-content-center">
 
-        <!-- HEADER -->
-        <div class="custom-card-header">
-            <div class="card-title">Formulaire de modification de la langue {{ $langue->nom_langue }}</div>
+        <div class="col-lg-8 col-xl-6">
+
+            <div class="card google-card shadow-sm border-0">
+
+                
+
+                <div class="card-header bg-white py-4 border-bottom position-relative">
+
+                    <div class="header-accent-line-yellow"></div>
+
+                    <div class="d-flex align-items-center justify-content-between">
+
+                        <div class="d-flex align-items-center">
+
+                            <div class="icon-circle bg-warning-subtle text-warning me-3">
+
+                                <i class="fa-solid fa-pen-nib"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="card-title mb-0 fw-bold text-dark">Modifier la langue</h4>
+
+                                <p class="text-muted small mb-0">Édition de : <span class="fw-bold text-warning">{{ $langue->nom_langue }}</span></p>
+
+                            </div>
+
+                        </div>
+
+                        <span class="badge bg-light text-muted border rounded-pill">ID: #{{ $langue->id }}</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <form action="{{ route('langues.update', $langue->id) }}" method="POST">
+
+                    @csrf
+
+                    @method('PUT')
+
+                    
+
+                    <div class="card-body p-4 p-lg-5">
+
+                        
+
+                        <div class="row g-4">
+
+                            <div class="col-md-4">
+
+                                <label class="form-label fw-bold text-dark">
+
+                                    <i class="fa-solid fa-hashtag me-2 text-warning"></i>Code
+
+                                </label>
+
+                                <input type="text" 
+
+                                       name="code_langue" 
+
+                                       class="form-control custom-input @error('code_langue') is-invalid @enderror" 
+
+                                       value="{{ old('code_langue', $langue->code_langue) }}" 
+
+                                       placeholder="Ex: FR">
+
+                                @error('code_langue')
+
+                                    <div class="invalid-feedback fw-semibold">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+
+
+                            <div class="col-md-8">
+
+                                <label class="form-label fw-bold text-dark">
+
+                                    <i class="fa-solid fa-language me-2 text-warning"></i>Nom de la langue
+
+                                </label>
+
+                                <input type="text" 
+
+                                       name="nom_langue" 
+
+                                       class="form-control custom-input @error('nom_langue') is-invalid @enderror" 
+
+                                       value="{{ old('nom_langue', $langue->nom_langue) }}" 
+
+                                       placeholder="Ex: Français">
+
+                                @error('nom_langue')
+
+                                    <div class="invalid-feedback fw-semibold">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+
+
+                            <div class="col-12">
+
+                                <label class="form-label fw-bold text-dark">
+
+                                    <i class="fa-solid fa-align-left me-2 text-warning"></i>Description
+
+                                </label>
+
+                                <textarea name="description" 
+
+                                          class="form-control custom-textarea @error('description') is-invalid @enderror" 
+
+                                          rows="4" 
+
+                                          placeholder="Modifier la description...">{{ old('description', $langue->description) }}</textarea>
+
+                                @error('description')
+
+                                    <div class="invalid-feedback fw-semibold">{{ $message }}</div>
+
+                                @enderror
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                    <div class="card-footer bg-light border-top p-4 d-flex justify-content-end align-items-center gap-3">
+
+                        <a href="{{ route('langues.index') }}" class="btn btn-link text-secondary text-decoration-none fw-bold">
+
+                            Annuler
+
+                        </a>
+
+                        <button type="submit" class="btn btn-warning rounded-pill px-5 fw-bold text-white shadow-sm" style="background-color: #F0C43B; border: none;">
+
+                            <i class="fa-solid fa-rotate me-2"></i>Mettre à jour
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+
+            </div>
+
+            
+
+            <div class="text-center mt-3">
+
+                <p class="text-muted small">
+
+                    <i class="fa-solid fa-clock-rotate-left me-1"></i> 
+
+                    Dernière modification : {{ $langue->updated_at->diffForHumans() }}
+
+                </p>
+
+            </div>
+
         </div>
 
-        <!-- FORM -->
-        <form action="{{ route('langues.update', $langue->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-
-            <div class="card-body">
-
-                <div class="mb-3">
-                    <label class="form-label">Code</label>
-                    <input
-                        type="text"
-                        class="form-control @error('code_langue') is-invalid @enderror"
-                        name="code_langue"
-                        value="{{ old('code_langue', $langue->code_langue) }}"
-                        placeholder="Ex: FR, EN, DE..."
-                    >
-                    @error('code_langue')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Nom</label>
-                    <input
-                        type="text"
-                        class="form-control @error('nom_langue') is-invalid @enderror"
-                        name="nom_langue"
-                        value="{{ old('nom_langue', $langue->nom_langue) }}"
-                        placeholder="Ex: Français, Anglais, Allemand..."
-                    >
-                    @error('nom_langue')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea
-                        class="form-control @error('description') is-invalid @enderror"
-                        name="description"
-                        rows="3"
-                        placeholder="Brève description..."
-                    >{{ old('description', $langue->description) }}</textarea>
-                    @error('description')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-            </div>
-
-            <!-- FOOTER -->
-            <div class="custom-footer">
-                <a href="{{ route('langues.index') }}" class="btn-cancel-custom">Annuler</a>
-                <button type="submit" class="btn-primary-custom ms-2">Mettre à jour</button>
-            </div>
-        </form>
-
     </div>
+
+</div>
+
 @endsection
+
+
+
+@push('styles')
+
+<style>
+
+    .google-card { border-radius: 16px; overflow: hidden; }
+
+    .header-accent-line-yellow {
+
+        position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #F0C43B;
+
+    }
+
+
+
+    .icon-circle {
+
+        width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px;
+
+    }
+
+    .bg-warning-subtle { background-color: #fff9e6 !important; }
+
+
+
+    /* Inputs stylisés */
+
+    .custom-input, .custom-textarea {
+
+        border-radius: 10px !important;
+
+        border: 1px solid #dee2e6;
+
+        padding: 12px 15px;
+
+        transition: all 0.2s ease;
+
+        background-color: #fcfcfc;
+
+    }
+
+
+
+    .custom-input:focus, .custom-textarea:focus {
+
+        background-color: #fff;
+
+        border-color: #F0C43B !important;
+
+        box-shadow: 0 0 0 4px rgba(240, 196, 59, 0.1) !important;
+
+        outline: none;
+
+    }
+
+
+
+    /* Bouton principal */
+
+    .btn-warning:hover {
+
+        background-color: #dda20a !important;
+
+        transform: translateY(-1px);
+
+        box-shadow: 0 5px 15px rgba(240, 196, 59, 0.3) !important;
+
+    }
+
+
+
+    .invalid-feedback {
+
+        font-size: 0.85rem;
+
+    }
+
+</style>
+
+@endpush
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {

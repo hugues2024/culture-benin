@@ -25,7 +25,6 @@
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->
     <meta name="supported-color-schemes" content="light dark" />
-    <link rel="preload" href="{{asset('adminlte/css/adminlte.css')}}" as="style" />
     <!--end::Accessibility Features-->
     <!--begin::Fonts-->
     <link
@@ -108,54 +107,71 @@
 <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary">
 <!--begin::App Wrapper-->
-<div class="app-wrapper">
+<div class="app-wrapper" width="100%" height="100%">
     <!--begin::Header-->
-     @include('partials.header')
+        @include('partials.header')
     <!--end::Header-->
-    <!--begin::Sidebar-->
-    @include('partials.sidebar')
-    <!--end::Sidebar-->
-    <!--begin::App Main-->
-    <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-            <!--begin::Container-->
-            <div class="container-fluid">
-                <!--begin::Row-->
-                <div class="row">
-                    <div class="col-sm-6"><h3 class="mb-0">@yield('title')</h3></div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tableau de bord</li>
-                        </ol>
-                    </div>
-                </div>
-                <!--end::Row-->
+
+    <div class="d-flex" width="100%" height="100%" style="height: calc(100vh - 64px); overflow: hidden;">
+            <!--begin::Sidebar-->
+                @include('partials.sidebar')
+            <!--end::Sidebar-->
+            
+        <!--begin::App Main-->
+        <main class="flex-grow-1" width="100%" height="100%" style="height: 100% !important; overflow-y: auto;">
+            <div class="container-fluid" width="100%" height="100%">
+                @yield('content')
             </div>
-            <!--end::Container-->
-        </div>
-        <!--end::App Content Header-->
-        <!--begin::App Content-->
-        <div class="app-content">
-            <!--begin::Container-->
-            <div class="container-fluid">
-                <!--begin::Row-->
-                 @yield('content')
-                <!-- /.row (main row) -->
-            </div>
-            <!--end::Container-->
-        </div>
-        <!--end::App Content-->
-    </main>
-    <!--end::App Main-->
-    <!--begin::Footer-->
-    @include('partials.footer')
-    <!--end::Footer-->
+        </main>
+    </div>
 </div>
 <!--end::App Wrapper-->
 <!--begin::Script-->
 <!--begin::Third Party Plugin(OverlayScrollbars)-->
+<style>
+
+
+/* Pour Chrome, Safari et Opera */
+main::-webkit-scrollbar {
+    display: none;
+}
+
+.app-sidebar::-webkit-scrollbar-thumb {
+    background: #dadce0;
+    border-radius: 10px;
+}
+
+
+    /* Empêche le défilement global de la page */
+body, html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden; 
+}
+
+/* Le contenu principal : décalé pour laisser la place à la sidebar */
+main {
+    height: calc(100vh - 64px);
+    overflow-y: scroll; /* On garde le défilement actif */
+    /* Pour Internet Explorer et Edge */
+    -ms-overflow-style: none;  
+    /* Pour Firefox */
+    scrollbar-width: none;  
+}
+
+/* Scrollbar discrète style Google (Optionnel) */
+.app-sidebar::-webkit-scrollbar, 
+main::-webkit-scrollbar {
+    width: 8px;
+}
+
+.app-sidebar::-webkit-scrollbar-thumb, 
+main::-webkit-scrollbar-thumb {
+    background: #dadce0;
+    border-radius: 10px;
+}
+</style>
+
 <script
     src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
     crossorigin="anonymous"
@@ -174,7 +190,6 @@
     crossorigin="anonymous"
 ></script>
 <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-<script src="{{asset('adminlte/js/adminlte.js')}}"></script>
 <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
 <script>
     const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';

@@ -6,247 +6,128 @@
 
 @section('content')
 
-    <style>
-        /* --- Card Modern --- */
-        .custom-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: none !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-            padding: 18px 20px;
-        }
-
-        .custom-card-header h3 {
-            margin: 0;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        /* --- Table --- */
-        #type-contenu-table thead {
-            background: #f1f2f6;
-            font-weight: bold;
-        }
-
-        #type-contenu-table tbody tr:hover {
-            background: #f8f9fc !important;
-            transition: 0.2s;
-        }
-
-        /* --- Icon Buttons Modern --- */
-        .icon-btn {
-            border: none;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s ease-in-out;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            font-size: 15px;
-        }
-
-        .btn-edit {
-            background: #f6c23e;
-        }
-
-        .btn-edit:hover {
-            background: #dda20a;
-            transform: scale(1.1);
-        }
-
-        .btn-delete {
-            background: #e74a3b;
-        }
-
-        .btn-delete:hover {
-            background: #c0392b;
-            transform: scale(1.1);
-        }
-
-        .no-link-style {
-            text-decoration: none;
-            color: inherit;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-info {
-            background: #36b9cc;
-            color: white;
-        }
-
-        .btn-info:hover {
-            background: #2c9faf;
-            transform: scale(1.1);
-        }
-
-        /* Bouton Ajouter moderne */
-        .btn-add-modern {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(78, 115, 223, 0.3);
-            color: white;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .btn-add-modern:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(78, 115, 223, 0.4);
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-        }
-
-        /* Datatable - Alignement horizontal */
-        .dataTables_wrapper .dataTables_length,
-        .dataTables_wrapper .dataTables_filter {
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .dataTables_wrapper .dataTables_filter {
-            float: right;
-        }
-
-        .dataTables_wrapper .dataTables_length {
-            float: left;
-        }
-
-        .dataTables_wrapper .dataTables_info {
-            float: left;
-            padding-top: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate {
-            float: right;
-            padding-top: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_filter input {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin-left: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_length select {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin: 0 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #F0C43B !important;
-            color: white !important;
-        }
-
-        .dataTables_wrapper:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* État vide amélioré */
-        .empty-state {
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-
-        .empty-state img {
-            opacity: 0.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .empty-state h5 {
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-state p {
-            color: #6c757d;
-            margin-bottom: 1.5rem;
-        }
-    </style>
-
-    <div class="card custom-card mb-4">
-        <div class="card-header custom-card-header">
-            <h3 class="card-title">Types de contenu disponibles</h3>
-        </div>
-
-        <div class="card-body">
-            <!-- Bouton Ajouter -->
-            <div class="mb-4 d-flex justify-content-start">
-                <a href="{{ route('type_contenu.create') }}" class="btn btn-add-modern">
-                    <i class="fa-solid fa-plus me-2"></i> Ajouter un type de contenu
-                </a>
+    <div class="card google-card shadow-sm border-0 mb-4">
+    
+    <div class="card-header bg-white py-4 border-bottom position-relative">
+        <div class="header-accent-line-yellow"></div>
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="icon-circle bg-warning-subtle text-warning me-3">
+                    <i class="bi bi-tags-fill"></i>
+                </div>
+                <div>
+                    <h4 class="card-title mb-0 fw-bold text-dark">Types de contenu</h4>
+                </div>
             </div>
-
-            @if($typeContenus->count() === 0)
-                <div class="empty-state">
-                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486748.png" width="120" alt="Aucun type de contenu">
-                    <h5>Aucun type de contenu trouvé</h5>
-                    <p>Commencez par créer votre premier type de contenu.</p>
-                    <a href="{{ route('type_contenu.create') }}" class="btn btn-add-modern">
-                        <i class="fa-solid fa-plus me-2"></i> Créer un type de contenu
-                    </a>
-                </div>
-            @else
-                <div class="table-responsive">
-                    <table id="type-contenu-table" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nom</th>
-                                <th>Date création</th>
-                                <th class="text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($typeContenus as $tc)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $tc->nom }}</td>
-                                    <td>{{ $tc->created_at->format('d/m/Y') }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('type_contenu.edit', $tc->id) }}"
-                                           class="icon-btn btn-edit mx-1 no-link-style"
-                                           title="Modifier">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                     @can('delete-type-contenu')
-                                        <!-- Bouton Supprimer avec icône -->
-                                        <button type="button" class="icon-btn btn-delete mx-1 btn-delete"
-                                                title="Supprimer"
-                                                data-id="{{ $tc->id }}"
-                                                data-name="{{ $tc->nom }}">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                      @endcan
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            @endif
+            
+            <a href="{{ route('type_contenu.create') }}" class="btn btn-warning rounded-pill px-4 fw-bold text-white shadow-sm d-none d-sm-block" style="background-color: #F0C43B; border: none;">
+                <i class="bi bi-plus-lg me-2"></i>Nouveau Type
+            </a>
         </div>
     </div>
+
+    <div class="card-body p-4">
+        
+        @if($typeContenus->count() === 0)
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486748.png" 
+                         width="120" 
+                         alt="Aucun type" 
+                         style="opacity: 0.5; filter: grayscale(1);">
+                </div>
+                <h5 class="fw-bold text-dark">Aucun type de contenu trouvé</h5>
+                <p class="text-muted">Commencez par créer votre première catégorie pour organiser vos récits.</p>
+                <a href="{{ route('type_contenu.create') }}" class="btn btn-warning rounded-pill px-4 fw-bold text-white mt-2" style="background-color: #F0C43B; border: none;">
+                    <i class="bi bi-plus-lg me-2"></i>Créer un type de contenu
+                </a>
+            </div>
+        @else
+            <div class="table-responsive">
+                <table id="type-contenu-table" class="table align-middle custom-table">
+                    <thead>
+                        <tr>
+                            <th class="border-0 text-uppercase small fw-bold text-muted ps-4" style="width: 80px;">#</th>
+                            <th class="border-0 text-uppercase small fw-bold text-muted">Nom de la catégorie</th>
+                            <th class="border-0 text-uppercase small fw-bold text-muted">Date de création</th>
+                            <th class="border-0 text-uppercase small fw-bold text-muted text-center" style="width: 150px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($typeContenus as $tc)
+                            <tr class="hover-row">
+                                <td class="ps-4">
+                                    <span class="badge bg-light text-dark rounded-pill shadow-sm border">
+                                        {{ $loop->iteration }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="fw-bold text-dark">{{ $tc->nom }}</div>
+                                </td>
+                                <td>
+                                    <div class="text-muted small">
+                                        <i class="bi bi-calendar3 me-2"></i>{{ $tc->created_at->format('d/m/Y') }}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{{ route('type_contenu.edit', $tc->id) }}" 
+                                           class="btn btn-sm btn-outline-warning border-0 rounded-circle mx-1 action-btn" 
+                                           title="Modifier"
+                                           style="color: #F0C43B;">
+                                            <i class="bi bi-pencil-square fs-5"></i>
+                                        </a>
+
+                                        @can('delete-type-contenu')
+                                            <button type="button" 
+                                                    class="btn btn-sm btn-outline-danger border-0 rounded-circle mx-1 action-btn btn-delete" 
+                                                    title="Supprimer"
+                                                    data-id="{{ $tc->id }}"
+                                                    data-name="{{ $tc->nom }}">
+                                                <i class="bi bi-trash fs-5"></i>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
+    </div>
+</div>
+
+<style>
+    /* Styles spécifiques pour la table */
+    .custom-table thead {
+        background-color: #f8f9fa;
+    }
+    
+    .custom-table tr {
+        transition: all 0.2s ease;
+    }
+
+    .hover-row:hover {
+    }
+
+    .action-btn {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .bg-warning-subtle {
+        background-color: #fff9e6 !important;
+    }
+</style>
 
 @endsection
 

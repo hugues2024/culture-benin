@@ -5,189 +5,142 @@
 @endsection
 
 @section('content')
-
-    {{-- FontAwesome (si non chargé) --}}
-
-    <style>
-        /* --- Card Modern --- */
-        .custom-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: none !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #224abe);
-            color: white;
-            padding: 18px 20px;
-        }
-
-        .custom-card-header h3 {
-            margin: 0;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        /* --- Table --- */
-        #languesTable thead {
-            background: #f1f2f6;
-            font-weight: bold;
-        }
-
-        #languesTable tbody tr:hover {
-            background: #f8f9fc !important;
-            transition: 0.2s;
-        }
-
-        /* --- Icon Buttons Modern --- */
-        .icon-btn {
-            border: none;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s ease-in-out;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            font-size: 15px;
-        }
-
-        .btn-edit {
-            background: #f6c23e;
-        }
-
-        .btn-edit:hover {
-            background: #dda20a;
-            transform: scale(1.1);
-        }
-
-        .btn-delete {
-            background: #e74a3b;
-        }
-
-        .btn-delete:hover {
-            background: #c0392b;
-            transform: scale(1.1);
-        }
-
-        /* Datatable */
-        .dataTables_wrapper .dataTables_filter input {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #F0C43B !important;
-            color: white !important;
-        }
-
-        .no-link-style {
-            text-decoration: none; /* supprime le souligné */
-            color: inherit; /* garde la couleur du bouton */
-            display: inline-flex; /* pour centrer l’icône */
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-info {
-            background: #F0C43B; /* bleu clair */
-            color: white;
-        }
-
-        .btn-info:hover {
-            background: #F0C43B;
-            transform: scale(1.1);
-        }
-
-
-    </style>
-
-
-    <div class="card custom-card mb-4">
-        <div class="card-header custom-card-header">
-            <h3 class="card-title">Langues disponibles</h3>
+<div class="container-fluid py-4">
+    <div class="card google-card shadow-sm border-0">
+        
+        <div class="card-header bg-white py-4 border-bottom position-relative">
+            <div class="header-accent-line-yellow"></div>
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div class="icon-circle bg-warning-subtle text-warning me-3">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <div>
+                        <h4 class="card-title mb-0 fw-bold text-dark">Gestion des Langues</h4>
+                    </div>
+                </div>
+                <a href="{{ route('langues.create') }}" class="btn btn-warning rounded-pill px-4 fw-bold text-white shadow-sm">
+                    <i class="fa-solid fa-plus me-2"></i>Ajouter une langue
+                </a>
+            </div>
         </div>
 
-        <div class="card-body">
-            <table id="languesTable" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Nom</th>
-                    <th class="text-center">Action</th>
-                </tr>
-                </thead>
+        <div class="card-body p-0"> <div class="table-responsive">
+                <table id="languesTable" class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4 py-3 text-uppercase small fw-bolder text-muted" style="width: 150px;">Code</th>
+                            <th class="py-3 text-uppercase small fw-bolder text-muted">Nom de la langue</th>
+                            <th class="py-3 text-uppercase small fw-bolder text-muted text-center" style="width: 200px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($langues as $langue)
+                        <tr>
+                            <td class="ps-4">
+                                <span class="badge bg-light text-primary border px-3 py-2 rounded-pill fw-bold">
+                                    {{ strtoupper($langue->code_langue) }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="fw-semibold text-dark">{{ $langue->nom_langue }}</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a href="{{ route('langues.show', $langue->id) }}" 
+                                       class="btn-action btn-show" title="Voir">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    
+                                    <a href="{{ route('langues.edit', $langue->id) }}" 
+                                       class="btn-action btn-edit" title="Modifier">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
 
-                <tbody>
-                @forelse($langues as $langue)
-                    <tr>
-                        <td>{{ $langue->code_langue }}</td>
-                        <td>{{ $langue->nom_langue }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('langues.show', $langue->id) }}"
-                               class="icon-btn btn-info mx-1 no-link-style"
-                               title="Voir les détails">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                            <a href="{{ route('langues.edit', $langue->id) }}"
-                               class="icon-btn btn-edit mx-1 no-link-style">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                        
-                            @can('delete-langues')
-                            <!-- Bouton Supprimer avec icône -->
-                            <button type="button" class="icon-btn btn-delete mx-1" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $langue->id }}">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @endcan
-
-                        </td>
-                    </tr>
-                    <!-- Modal -->
-                    <div class="modal fade" id="deleteModal{{ $langue->id }}" tabindex="-1"
-                         aria-labelledby="deleteModalLabel{{ $langue->id }}" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-danger text-white">
-                                    <h5 class="modal-title" id="deleteModalLabel{{ $langue->id }}">Confirmation</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Êtes-vous sûr de vouloir supprimer la langue
-                                    <strong>{{ $langue->nom_langue }}</strong> ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler
+                                    @can('delete-langues')
+                                    <button type="button" class="btn-action btn-delete" 
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal{{ $langue->id }}" title="Supprimer">
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
-                                    <form action="{{ route('langues.destroy', $langue->id) }}" method="POST"
-                                          style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                                    </form>
+                                    @endcan
+                                </div>
+                            </td>
+                        </tr>
+
+                        <div class="modal fade" id="deleteModal{{ $langue->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content border-0 shadow-lg">
+                                    <div class="modal-body p-4 text-center">
+                                        <div class="text-danger mb-3">
+                                            <i class="fa-solid fa-circle-exclamation display-4"></i>
+                                        </div>
+                                        <h5 class="fw-bold">Supprimer la langue ?</h5>
+                                        <p class="text-muted">Êtes-vous sûr de vouloir supprimer <strong>{{ $langue->nom_langue }}</strong> ? Cette action est irréversible.</p>
+                                        <div class="d-flex justify-content-center gap-2 mt-4">
+                                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Annuler</button>
+                                            <form action="{{ route('langues.destroy', $langue->id) }}" method="POST">
+                                                @csrf @method('DELETE')
+                                                <button type="submit" class="btn btn-danger rounded-pill px-4">Confirmer la suppression</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                @empty
-                    <tr>
-                        <td colspan="3" class="text-center">Aucune langue trouvée</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
-
+                        @empty
+                        <tr>
+                            <td colspan="3" class="text-center py-5 text-muted italic">
+                                <i class="fa-solid fa-folder-open display-6 d-block mb-3 opacity-25"></i>
+                                Aucune langue enregistrée pour le moment.
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
+</div>
 @endsection
+
+@push('styles')
+<style>
+    .google-card { border-radius: 15px; overflow: hidden; background: #fff; }
+    .header-accent-line-yellow {
+        position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #F0C43B;
+    }
+
+    /* Icones d'en-tête */
+    .icon-circle {
+        width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px;
+    }
+    .bg-warning-subtle { background-color: #fff9e6 !important; }
+
+    /* Table Styles */
+    .table thead th { border: none; font-size: 11px; letter-spacing: 0.5px; }
+    .table tbody tr { transition: all 0.2s; border-bottom: 1px solid #f1f3f4; }
+    .table tbody tr:hover { background-color: #f8f9fa; }
+    .table td { padding: 1rem 0.5rem; border: none; }
+
+    /* Boutons d'action stylisés */
+    .btn-action {
+        width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+        border-radius: 10px; border: none; transition: all 0.2s; text-decoration: none;
+    }
+    
+    .btn-show { background: #e3f2fd; color: #1976d2; }
+    .btn-show:hover { background: #1976d2; color: #fff; transform: translateY(-2px); }
+
+    .btn-edit { background: #fff3e0; color: #f57c00; }
+    .btn-edit:hover { background: #f57c00; color: #fff; transform: translateY(-2px); }
+
+    .btn-delete { background: #ffebee; color: #d32f2f; }
+    .btn-delete:hover { background: #d32f2f; color: #fff; transform: translateY(-2px); }
+
+    /* Modals */
+    .modal-content { border-radius: 20px; }
+</style>
+@endpush
 
 @push('scripts')
     <script>

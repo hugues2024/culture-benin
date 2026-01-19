@@ -6,309 +6,319 @@
 
 @section('content')
 
-    <style>
-        /* --- Card Modern --- */
-        .custom-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: none !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
+    <div class="container-fluid py-4">
 
-        .custom-card-header {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-            padding: 18px 20px;
-        }
+    <div class="card google-card shadow-sm border-0">
 
-        .custom-card-header h3 {
-            margin: 0;
-            font-weight: 600;
-            font-size: 20px;
-        }
+        
 
-        /* --- Table --- */
-        #regions-table thead {
-            background: #f1f2f6;
-            font-weight: bold;
-        }
+        <div class="card-header bg-white py-4 border-bottom position-relative">
 
-        #regions-table tbody tr:hover {
-            background: #f8f9fc !important;
-            transition: 0.2s;
-        }
+            <div class="header-accent-line-yellow"></div>
 
-        /* --- Icon Buttons Modern --- */
-        .icon-btn {
-            border: none;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s ease-in-out;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            font-size: 15px;
-        }
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
 
-        .btn-edit {
-            background: #f6c23e;
-        }
+                <div class="d-flex align-items-center">
 
-        .btn-edit:hover {
-            background: #dda20a;
-            transform: scale(1.1);
-        }
+                    <div class="icon-circle bg-warning-subtle text-warning me-3">
 
-        .btn-delete {
-            background: #e74a3b;
-        }
+                        <i class="bi bi-map-fill"></i>
 
-        .btn-delete:hover {
-            background: #c0392b;
-            transform: scale(1.1);
-        }
+                    </div>
 
-        .btn-info {
-            background: #36b9cc;
-        }
+                    <div>
 
-        .btn-info:hover {
-            background: #2c9faf;
-            transform: scale(1.1);
-        }
+                        <h4 class="card-title mb-0 fw-bold text-dark">Régions du Bénin</h4>
 
-        .no-link-style {
-            text-decoration: none;
-            color: inherit;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+                    </div>
 
-        /* Bouton Ajouter moderne */
-        .btn-add-modern {
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(78, 115, 223, 0.3);
-            color: white;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-        }
+                </div>
 
-        .btn-add-modern:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(78, 115, 223, 0.4);
-            background: linear-gradient(135deg, #F0C43B, #F0C43B);
-            color: white;
-        }
+                
 
-        /* Datatable - Alignement horizontal */
-        .dataTables_wrapper .dataTables_length,
-        .dataTables_wrapper .dataTables_filter {
-            display: inline-block;
-            margin-bottom: 15px;
-        }
+                @if ($regions->count() > 0)
 
-        .dataTables_wrapper .dataTables_filter {
-            float: right;
-        }
+                <a href="{{ route('regions.create') }}" class="btn btn-warning rounded-pill px-4 fw-bold text-white shadow-sm">
 
-        .dataTables_wrapper .dataTables_length {
-            float: left;
-        }
+                    <i class="bi bi-plus-lg me-2"></i>Nouvelle Région
 
-        .dataTables_wrapper .dataTables_info {
-            float: left;
-            padding-top: 10px;
-        }
+                </a>
 
-        .dataTables_wrapper .dataTables_paginate {
-            float: right;
-            padding-top: 10px;
-        }
+                @endif
 
-        .dataTables_wrapper .dataTables_filter input {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin-left: 10px;
-        }
+            </div>
 
-        .dataTables_wrapper .dataTables_length select {
-            border-radius: 6px;
-            border: 1px solid #d1d3e2;
-            padding: 5px 10px;
-            margin: 0 10px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #F0C43B !important;
-            color: white !important;
-        }
-
-        .dataTables_wrapper:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* État vide amélioré */
-        .empty-state {
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-
-        .empty-state img {
-            opacity: 0.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .empty-state h5 {
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-state p {
-            color: #6c757d;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Badges pour les statistiques */
-        .stat-badge {
-            background: #e8f4fd;
-            color: #1976d2;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .stat-badge.population {
-            background: #e8f5e8;
-            color: #2e7d32;
-        }
-
-        .stat-badge.superficie {
-            background: #fff3e0;
-            color: #ef6c00;
-        }
-
-        .localisation-badge {
-            background: #f3e5f5;
-            color: #7b1fa2;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-    </style>
-
-    <div class="card custom-card mb-4">
-        <div class="card-header custom-card-header">
-            <h3 class="card-title">Régions du Bénin</h3>
         </div>
 
-        <div class="card-body">
+
+
+        <div class="card-body p-0">
+
             @if ($regions->count() === 0)
-                <div class="empty-state">
-                    <img src="https://cdn-icons-png.flaticon.com/512/6356/6356656.png" width="120" alt="Aucune région">
-                    <h5>Aucune région trouvée</h5>
-                    <p>Commencez par ajouter votre première région.</p>
-                    <a href="{{ route('regions.create') }}" class="btn btn-add-modern">
-                        <i class="bi bi-plus-circle me-2"></i> Ajouter une région
+
+                <div class="empty-state-container py-5 text-center">
+
+                    <div class="empty-state-icon mb-4">
+
+                        <img src="https://cdn-icons-png.flaticon.com/512/6356/6356656.png" width="150" class="img-fluid opacity-75" alt="Aucune région">
+
+                    </div>
+
+                    <h3 class="fw-bold text-dark">Aucune région enregistrée</h3>
+
+                    <p class="text-muted mb-4 mx-auto" style="max-width: 400px;">
+
+                        Votre base de données territoriale est vide. Commencez par ajouter les départements ou régions du Bénin.
+
+                    </p>
+
+                    <a href="{{ route('regions.create') }}" class="btn btn-warning rounded-pill px-5 fw-bold text-white shadow-sm py-2">
+
+                        <i class="bi bi-plus-circle me-2"></i> Ajouter ma première région
+
                     </a>
+
                 </div>
+
             @else
-                <!-- Bouton Ajouter -->
-                <div class="mb-4 d-flex justify-content-start">
-                    <a href="{{ route('regions.create') }}" class="btn btn-add-modern">
-                        <i class="bi bi-plus-circle me-2"></i> Ajouter une région
-                    </a>
-                </div>
 
                 <div class="table-responsive">
-                    <table id="regions-table" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nom</th>
-                                <th>Population</th>
-                                <th>Superficie</th>
-                                <th>Localisation</th>
-                                <th class="text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($regions as $region)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        <strong>{{ $region->nom_region }}</strong>
-                                    </td>
-                                    <td>
-                                        <span class="stat-badge population">
-                                            <i class="bi bi-people-fill"></i>
-                                            {{ number_format($region->population) }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="stat-badge superficie">
-                                            <i class="bi bi-map"></i>
-                                            {{ number_format($region->superficie, 2) }} km²
-                                        </span>
-                                    </td>
-                                    <td>
-                                        @if ($region->localisation)
-                                            <span class="localisation-badge">
-                                                <i class="bi bi-geo-alt"></i>
-                                                {{ $region->localisation }}
-                                            </span>
-                                        @else
-                                            <span class="text-muted">-</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <!-- Voir -->
-                                        <a href="{{ route('regions.show', $region->id) }}"
-                                            class="icon-btn btn-info mx-1 no-link-style" title="Voir les détails">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
 
-                                        <!-- Modifier -->
-                                        <a href="{{ route('regions.edit', $region->id) }}"
-                                            class="icon-btn btn-edit mx-1 no-link-style" title="Modifier">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        @can('delete-regions')
-                                            <!-- Supprimer -->
-                                            <button type="button" class="icon-btn btn-delete mx-1 btn-delete" title="Supprimer"
-                                                data-id="{{ $region->id }}" data-name="{{ $region->nom_region }}">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        @endcan
+                    <table id="regions-table" class="table table-hover align-middle mb-0">
+
+                        <thead class="bg-light">
+
+                            <tr>
+
+                                <th class="ps-4 py-3 text-uppercase small fw-bolder text-muted">#</th>
+
+                                <th class="py-3 text-uppercase small fw-bolder text-muted">Nom</th>
+
+                                <th class="py-3 text-uppercase small fw-bolder text-muted">Démographie</th>
+
+                                <th class="py-3 text-uppercase small fw-bolder text-muted">Territoire</th>
+
+                                <th class="py-3 text-uppercase small fw-bolder text-muted">Localisation</th>
+
+                                <th class="py-3 text-uppercase small fw-bolder text-muted text-center">Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            @foreach ($regions as $region)
+
+                                <tr>
+
+                                    <td class="ps-4 text-muted fw-bold">{{ $loop->iteration }}</td>
+
+                                    <td>
+
+                                        <div class="fw-bold text-dark fs-6">{{ $region->nom_region }}</div>
+
                                     </td>
+
+                                    <td>
+
+                                        <div class="d-flex flex-column">
+
+                                            <span class="fw-bold text-dark">{{ number_format($region->population) }}</span>
+
+                                            <span class="text-muted tiny-text text-uppercase fw-bold">Habitants</span>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+
+                                        <div class="d-flex align-items-center">
+
+                                            <div class="superficie-chip">
+
+                                                <i class="bi bi-bounding-box-circles me-1 text-warning"></i>
+
+                                                {{ number_format($region->superficie, 2) }} <small>km²</small>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+
+                                        @if ($region->localisation)
+
+                                            <span class="badge bg-light text-primary border rounded-pill px-3">
+
+                                                <i class="bi bi-geo-alt-fill me-1"></i> {{ $region->localisation }}
+
+                                            </span>
+
+                                        @else
+
+                                            <span class="text-muted small italic">Non définie</span>
+
+                                        @endif
+
+                                    </td>
+
+                                    <td class="text-center pe-4">
+
+                                        <div class="d-flex justify-content-center gap-2">
+
+                                            <a href="{{ route('regions.show', $region->id) }}" 
+
+                                               class="btn-action btn-show" title="Détails">
+
+                                                <i class="bi bi-eye"></i>
+
+                                            </a>
+
+                                            <a href="{{ route('regions.edit', $region->id) }}" 
+
+                                               class="btn-action btn-edit" title="Modifier">
+
+                                                <i class="bi bi-pencil"></i>
+
+                                            </a>
+
+                                            @can('delete-regions')
+
+                                            <button type="button" class="btn-action btn-delete btn-delete-trigger" 
+
+                                                    data-id="{{ $region->id }}" data-name="{{ $region->nom_region }}">
+
+                                                <i class="bi bi-trash"></i>
+
+                                            </button>
+
+                                            @endcan
+
+                                        </div>
+
+                                    </td>
+
                                 </tr>
+
                             @endforeach
+
                         </tbody>
+
                     </table>
+
                 </div>
+
             @endif
+
         </div>
+
     </div>
+
+</div>
+
+
+
+<style>
+
+    /* Carte Google Style */
+
+    .google-card { border-radius: 15px; overflow: hidden; background: #fff; }
+
+    .header-accent-line-yellow {
+
+        position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #F0C43B;
+
+    }
+
+
+
+    /* Icônes */
+
+    .icon-circle {
+
+        width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px;
+
+        font-size: 1.25rem;
+
+    }
+
+    .bg-warning-subtle { background-color: #fff9e6 !important; }
+
+
+
+    /* Table & Chips */
+
+    .table thead th { border: none; font-size: 11px; letter-spacing: 0.5px; }
+
+    .table tbody tr { border-bottom: 1px solid #f1f3f4; transition: background 0.2s; }
+
+    .table tbody tr:hover { background-color: #fffdf5; }
+
+    
+
+    .superficie-chip {
+
+        background: #f8f9fa;
+
+        padding: 4px 12px;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+        color: #444;
+
+        border: 1px solid #eee;
+
+    }
+
+
+
+    .tiny-text { font-size: 0.65rem; letter-spacing: 0.5px; }
+
+
+
+    /* Boutons d'action */
+
+    .btn-action {
+
+        width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+
+        border-radius: 8px; border: none; transition: all 0.2s; text-decoration: none;
+
+    }
+
+    .btn-show { background: #e3f2fd; color: #1976d2; }
+
+    .btn-show:hover { background: #1976d2; color: #fff; }
+
+
+
+    .btn-edit { background: #fff3e0; color: #f57c00; }
+
+    .btn-edit:hover { background: #f57c00; color: #fff; }
+
+
+
+    .btn-delete { background: #ffebee; color: #d32f2f; }
+
+    .btn-delete:hover { background: #d32f2f; color: #fff; }
+
+
+
+    /* Empty State */
+
+    .empty-state-container { padding: 4rem 1rem; }
+
+    .empty-state-icon img { transition: transform 0.3s ease; }
+
+    .empty-state-container:hover .empty-state-icon img { transform: scale(1.05) rotate(5deg); }
+
+</style>
 
 @endsection
 
