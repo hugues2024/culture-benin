@@ -56,6 +56,7 @@ class UserSeeder extends Seeder
             'id_langue' =>3,
             'created_at' => now(),
             'updated_at' => now(),
+            'photo' => 'photos/profiles/profile_3_1768826146.png',
         ]);
         User::create([
             'nom' => 'HOUNKPATIN',
