@@ -7,208 +7,75 @@
 @section('content')
 
 <div class="container py-5">
-
     <div class="row justify-content-center">
-
         <div class="col-lg-10"> <div class="card google-card">
-
                 <div class="header-accent-line"></div>
-
-                
-
                 <div class="card-header-custom">
-
                     <div class="d-flex align-items-center">
-
                         <div class="icon-box-header me-3 shadow-sm">
-
                             <i class="bi bi-geo-alt-fill"></i>
-
                         </div>
-
                         <div>
-
                             <h3 class="mb-0 fw-bold" style="color: #202124;">Nouvelle Région</h3>
-
                             <p class="text-muted mb-0 small text-uppercase fw-bold letter-spacing-1">Configuration territoriale du Bénin</p>
-
                         </div>
-
                     </div>
-
                 </div>
 
-
-
-                <form action="{{ route('regions.store') }}" method="POST">
-
-                    @csrf
-
-                    <div class="card-body p-4 p-lg-5">
-
-                        
-
-                        <div class="row g-4">
-
-                            <div class="col-md-12">
-
-                                <label class="form-label">Nom de la région</label>
-
-                                <input type="text" 
-
-                                       class="form-control custom-input @error('nom_region') is-invalid @enderror" 
-
-                                       name="nom_region" 
-
-                                       value="{{ old('nom_region') }}" 
-
-                                       placeholder="Ex: Littoral, Atacora, Ouémé...">
-
-                                @error('nom_region')
-
-                                    <div class="invalid-feedback">{{ $message }}</div>
-
-                                @enderror
-
-                            </div>
-
-
-
-                            <div class="col-md-6">
-
-                                <label class="form-label">Population</label>
-
-                                <div class="input-group">
-
-                                    <span class="input-group-text bg-white border-end-0 custom-input"><i class="bi bi-people text-muted"></i></span>
-
-                                    <input type="number" 
-
-                                           class="form-control custom-input border-start-0 @error('population') is-invalid @enderror" 
-
-                                           name="population" 
-
-                                           value="{{ old('population') }}" 
-
-                                           placeholder="Nombre d'habitants">
-
-                                </div>
-
-                                @error('population')
-
-                                    <div class="text-danger small mt-1 fw-bold">{{ $message }}</div>
-
-                                @enderror
-
-                            </div>
-
-
-
-                            <div class="col-md-6">
-
-                                <label class="form-label">Superficie (km²)</label>
-
-                                <div class="input-group">
-
-                                    <span class="input-group-text bg-white border-end-0 custom-input"><i class="bi bi-layers text-muted"></i></span>
-
-                                    <input type="number" 
-
-                                           step="0.01" 
-
-                                           class="form-control custom-input border-start-0 @error('superficie') is-invalid @enderror" 
-
-                                           name="superficie" 
-
-                                           value="{{ old('superficie') }}" 
-
-                                           placeholder="Ex: 112.622">
-
-                                </div>
-
-                                @error('superficie')
-
-                                    <div class="text-danger small mt-1 fw-bold">{{ $message }}</div>
-
-                                @enderror
-
-                            </div>
-
-
-
-                            <div class="col-md-12">
-
-                                <label class="form-label">Localisation géographique</label>
-
-                                <input type="text" 
-
-                                       class="form-control custom-input @error('localisation') is-invalid @enderror" 
-
-                                       name="localisation" 
-
-                                       value="{{ old('localisation') }}" 
-
-                                       placeholder="Zone (ex: Sud du Bénin)">
-
-                                @error('localisation')
-
-                                    <div class="invalid-feedback">{{ $message }}</div>
-
-                                @enderror
-
-                            </div>
-
-
-
-                            <div class="col-12">
-
-                                <label class="form-label">Description détaillée</label>
-
-                                <textarea class="form-control custom-input @error('description_region') is-invalid @enderror" 
-
-                                          name="description_region" 
-
-                                          rows="5" 
-
-                                          placeholder="Présentation historique ou économique de la région...">{{ old('description_region') }}</textarea>
-
-                                @error('description_region')
-
-                                    <div class="invalid-feedback">{{ $message }}</div>
-
-                                @enderror
-
-                            </div>
-
-                        </div>
-
-
-
-                    </div>
-
-
-
-                    <div class="card-footer bg-white p-4 border-0 d-flex justify-content-end align-items-center">
-
-                        <a href="{{ route('regions.index') }}" class="btn-google-cancel me-3">
-
-                            Annuler
-
-                        </a>
-
-                        <button type="submit" class="btn btn-google-save">
-
-                            <i class="bi bi-check2-circle me-2"></i>Enregistrer la région
-
-                        </button>
-
-                    </div>
-
-                </form>
+<form action="{{ route('regions.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="card-body p-4 p-lg-5">
+        <div class="row g-4">
+            <div class="col-md-12">
+                <label class="form-label">Image de la région</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0 custom-input"><i class="bi bi-image text-muted"></i></span>
+                    <input type="file" class="form-control custom-input border-start-0 @error('img') is-invalid @enderror" name="img" accept="image/*">
+                </div>
+                @error('img') <div class="text-danger small mt-1 fw-bold">{{ $message }}</div> @enderror
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Nom de la région</label>
+                <input type="text" class="form-control custom-input @error('nom_region') is-invalid @enderror" name="nom_region" value="{{ old('nom_region') }}" placeholder="Ex: Littoral...">
+                @error('nom_region') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Population</label>
+                <input type="number" class="form-control custom-input @error('population') is-invalid @enderror" name="population" value="{{ old('population') }}">
+                @error('population') <div class="text-danger small mt-1 fw-bold">{{ $message }}</div> @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Superficie (km²)</label>
+                <input type="number" step="0.01" class="form-control custom-input @error('superficie') is-invalid @enderror" name="superficie" value="{{ old('superficie') }}">
+                @error('superficie') <div class="text-danger small mt-1 fw-bold">{{ $message }}</div> @enderror
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Localisation géographique</label>
+                <input type="text" class="form-control custom-input @error('localisation') is-invalid @enderror" name="localisation" value="{{ old('localisation') }}">
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Description détaillée</label>
+                <textarea class="form-control custom-input @error('description_region') is-invalid @enderror" name="description_region" rows="5">{{ old('description_region') }}</textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer bg-white p-4 border-0 d-flex justify-content-end align-items-center">
+        <a href="{{ route('regions.index') }}" class="btn-google-cancel me-3">Annuler</a>
+        <button type="submit" class="btn btn-google-save">
+            <i class="bi bi-check2-circle me-2"></i>Enregistrer la région
+        </button>
+    </div>
+</form>
 
             </div>
 
-            
+
 
             <p class="text-center text-muted mt-4 small">
 

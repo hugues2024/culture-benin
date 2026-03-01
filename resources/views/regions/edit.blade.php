@@ -14,7 +14,7 @@
 
                 <div class="header-accent-line-edit"></div>
 
-                
+
 
                 <div class="card-header-custom">
 
@@ -46,29 +46,43 @@
 
 
 
-                <form action="{{ route('regions.update', $region->id) }}" method="POST">
+                <form action="{{ route('regions.update', $region->id) }}" method="POST" enctype="multipart/form-data">
 
                     @csrf
 
                     @method('PUT')
 
-                    
+
 
                     <div class="card-body p-4 p-lg-5">
 
                         <div class="row g-4">
+                            <div class="col-md-12">
+                <label class="form-label">Image de la région (Laissez vide pour conserver l'actuelle)</label>
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    @if($region->img)
+                        <img src="{{ asset($region->img) }}" alt="Current" class="rounded shadow-sm" style="width: 80px; height: 50px; object-fit: cover;">
+                        <span class="text-muted small">Image actuelle</span>
+                    @endif
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-image"></i></span>
+                    <input type="file" name="img" class="form-control custom-input border-start-0 @error('img') is-invalid @enderror" accept="image/*">
+                </div>
+                @error('img') <div class="text-danger small mt-1 fw-bold">{{ $message }}</div> @enderror
+            </div>
 
                             <div class="col-md-8">
 
                                 <label class="form-label">Nom de la région</label>
 
-                                <input type="text" 
+                                <input type="text"
 
-                                       name="nom_region" 
+                                       name="nom_region"
 
-                                       class="form-control custom-input @error('nom_region') is-invalid @enderror" 
+                                       class="form-control custom-input @error('nom_region') is-invalid @enderror"
 
-                                       value="{{ old('nom_region', $region->nom_region) }}" 
+                                       value="{{ old('nom_region', $region->nom_region) }}"
 
                                        placeholder="Ex: Littoral" required>
 
@@ -86,13 +100,13 @@
 
                                 <label class="form-label">Localisation</label>
 
-                                <input type="text" 
+                                <input type="text"
 
-                                       name="localisation" 
+                                       name="localisation"
 
-                                       class="form-control custom-input @error('localisation') is-invalid @enderror" 
+                                       class="form-control custom-input @error('localisation') is-invalid @enderror"
 
-                                       value="{{ old('localisation', $region->localisation) }}" 
+                                       value="{{ old('localisation', $region->localisation) }}"
 
                                        placeholder="Zone géographique">
 
@@ -114,11 +128,11 @@
 
                                     <span class="input-group-text bg-light border-end-0"><i class="bi bi-people"></i></span>
 
-                                    <input type="number" 
+                                    <input type="number"
 
-                                           name="population" 
+                                           name="population"
 
-                                           class="form-control custom-input border-start-0 @error('population') is-invalid @enderror" 
+                                           class="form-control custom-input border-start-0 @error('population') is-invalid @enderror"
 
                                            value="{{ old('population', $region->population) }}" required>
 
@@ -142,13 +156,13 @@
 
                                     <span class="input-group-text bg-light border-end-0"><i class="bi bi-aspect-ratio"></i></span>
 
-                                    <input type="number" 
+                                    <input type="number"
 
-                                           step="0.01" 
+                                           step="0.01"
 
-                                           name="superficie" 
+                                           name="superficie"
 
-                                           class="form-control custom-input border-start-0 @error('superficie') is-invalid @enderror" 
+                                           class="form-control custom-input border-start-0 @error('superficie') is-invalid @enderror"
 
                                            value="{{ old('superficie', $region->superficie) }}" required>
 
@@ -168,11 +182,11 @@
 
                                 <label class="form-label">Description de la région</label>
 
-                                <textarea name="description_region" 
+                                <textarea name="description_region"
 
-                                          class="form-control custom-input @error('description_region') is-invalid @enderror" 
+                                          class="form-control custom-input @error('description_region') is-invalid @enderror"
 
-                                          rows="5" 
+                                          rows="5"
 
                                           placeholder="Détails sur la région...">{{ old('description_region', $region->description_region) }}</textarea>
 
@@ -210,7 +224,7 @@
 
             </div>
 
-            
+
 
             <p class="text-center text-muted mt-4 small italic">
 
@@ -414,7 +428,7 @@
 
 </style>
 
-@endpush 
+@endpush
 
 @push('scripts')
     <script>

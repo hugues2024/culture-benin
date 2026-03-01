@@ -22,7 +22,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Nord-Ouest (Natitingou)',
                 'superficie' => 20499,
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/atacora.jpg',
                 'paye' => false
             ],
             [
@@ -33,7 +33,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Zou (Sud-Bénin)',
                 'superficie' => '142',
                 'prix' => 150,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/abomey.jpg',
                 'paye' => true
             ],
             [
@@ -44,7 +44,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Atlantique (Littoral)',
                 'superficie' => '364',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/ouidah.jpg',
                 'paye' => false
             ],
             [
@@ -55,7 +55,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Borgou (Nord-Est)',
                 'superficie' => '441',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/parakou.jpg',
                 'paye' => true
             ],
             [
@@ -66,7 +66,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Extrême Nord (Kandi)',
                 'superficie' => '26242',
                 'prix' => 200,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/alibori.jpg',
                 'paye' => false
             ],
             [
@@ -77,7 +77,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Ouémé (Sud-Est)',
                 'superficie' => '110',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/portonovo.jpg',
                 'paye' => false
             ],
             [
@@ -88,7 +88,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Littoral (Sud)',
                 'superficie' => '79',
                 'prix' => 50,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/cotonou.jpg',
                 'paye' => true
             ],
             [
@@ -99,7 +99,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Centre-Nord (Djougou)',
                 'superficie' => '11126',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/donga.jpg',
                 'paye' => false
             ],
             [
@@ -110,7 +110,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Atlantique (Abomey-Calavi)',
                 'superficie' => '50',
                 'prix' => 300,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/ganvie.jpg',
                 'paye' => false
             ],
             [
@@ -121,7 +121,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Centre (Dassa-Zoumé)',
                 'superficie' => '13931',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/collines.jpg',
                 'paye' => true
             ],
             [
@@ -132,7 +132,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Sud-Ouest (Lokossa)',
                 'superficie' => '1605',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/mono.jpg',
                 'paye' => false
             ],
             [
@@ -143,7 +143,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Sud-Ouest (Dogbo)',
                 'superficie' => '2408',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/couffo.jpg',
                 'paye' => false
             ],
             [
@@ -154,7 +154,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Sud-Est (Pobè)',
                 'superficie' => '3264',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/plateau.jpg',
                 'paye' => true
             ],
             [
@@ -165,7 +165,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Mono (Littoral)',
                 'superficie' => '289',
                 'prix' => 150,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/grandpopo.jpg',
                 'paye' => false
             ],
             [
@@ -176,7 +176,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Borgou (Nord-Est)',
                 'superficie' => '3500',
                 'prix' => 250,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/nikki.jpg',
                 'paye' => false
             ],
             [
@@ -187,7 +187,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Atacora (Nord)',
                 'superficie' => '604',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/natitingou.jpg',
                 'paye' => true
             ],
             [
@@ -198,7 +198,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Zou (Centre-Sud)',
                 'superficie' => '44',
                 'prix' => 50,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/bohicon.jpg',
                 'paye' => false
             ],
             [
@@ -209,7 +209,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Atlantique (Sud)',
                 'superficie' => '381',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/allada.jpg',
                 'paye' => true
             ],
             [
@@ -220,7 +220,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Alibori (Nord)',
                 'superficie' => '3016',
                 'prix' => 100,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/malanville.jpg',
                 'paye' => false
             ],
             [
@@ -231,7 +231,7 @@ class RegionSeeder extends Seeder
                 'localisation' => 'Mono (Bopa)',
                 'superficie' => '120',
                 'prix' => 200,
-                'img' => 'img/regions/default.jpg',
+                'img' => 'img/regions/possotome.jpg',
                 'paye' => false
             ]
 ];

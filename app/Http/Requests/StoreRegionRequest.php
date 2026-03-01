@@ -27,6 +27,7 @@ class StoreRegionRequest extends FormRequest
             'population'         => 'required|integer|min:0',
             'superficie'         => 'required|numeric|min:0',
             'localisation'       => 'required',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Doit être nullable !
         ];
     }
 
